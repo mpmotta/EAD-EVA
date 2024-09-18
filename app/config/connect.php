@@ -3,7 +3,7 @@ abstract class Connect {
     private $servidor = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $banco = 'agenda';
+    private $banco = 'ava-ead';
     protected $conn;
 
     public function __construct() {

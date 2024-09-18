@@ -25,7 +25,7 @@ class Aluno extends Connect{
     }
 
     public function getCpf(){
-        return $this->email;
+        return $this->cpf;
     }
 
     public function getEmail(){
@@ -71,9 +71,6 @@ class Aluno extends Connect{
     public function setTurno($turno): void{
         $this->turno = $turno;
     }
-
-
-
 
 
 
