@@ -1,6 +1,6 @@
 <?php
 	session_start();
-        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['level'] >= 1 ){ 
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['level'] >= 3 ){ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

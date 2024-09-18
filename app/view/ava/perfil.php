@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+	session_start();
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['level'] >= 1 ){ 
+?><!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -42,3 +45,8 @@
     </div>
 </body>
 </html>
+<?php
+    }else{
+        header('Location: ../index.php');
+    }   
+?>
