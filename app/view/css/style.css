@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.flex{
+    display: flex;
+}
+.topo a{
+    color: #000;
+    text-decoration: none;
+}
+.icon{
+    height: 60%;
+}
+.main{
+    padding-top: 70px;
+}
+.mainMenu{
+    border-right: solid 2px #000;
+    padding: 40px;
+}
+.mainBox{
+    padding: 40px;
+}
