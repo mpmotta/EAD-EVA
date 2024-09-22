@@ -3,6 +3,7 @@ require_once '../config/connect.php';
 
 class Aluno extends Connect{
     private $nome;
+    private $avatar;
     private $ra;
     private $cpf;
     private $email;
@@ -18,6 +19,10 @@ class Aluno extends Connect{
 
     public function getNome(){
         return $this->nome;
+    }
+
+    public function getAvatar(){
+        return $this->avatar;
     }
 
     public function getRa(){
@@ -48,6 +53,10 @@ class Aluno extends Connect{
         $this->nome = $nome;
     }
 
+    public function setAvatar($avatar): void{
+        $this->avatar = $avatar;
+    }
+
     public function setRa($ra): void{
         $this->ra = $ra;
     }
@@ -76,21 +85,31 @@ class Aluno extends Connect{
 
     public function consultaAlunos()
     {
-        $sql = "SELECT id_aluno, nome, ra, cpf, email, fone, curso, turno FROM $this->tabela";
+        $sql = "SELECT id_aluno, nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
+    public function consultaAlunosPorTurno($turno) {
+        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE turno = :turno";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':turno', $turno, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultaAlunoID($id){
-        $sql = "SELECT nome, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE id_aluno = :id";
+        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE id_aluno = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
             $this->setNome($result['nome']);
+            $this->setAvatar($result['avatar']);
             $this->setRa($result['ra']);
             $this->setCpf($result['cpf']);
             $this->setEmail($result['email']);
@@ -102,12 +121,33 @@ class Aluno extends Connect{
     }
 
     public function consultaAlunoCpf($cpf){
-        $sql = "SELECT nome, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE cpf = :cpf";
+        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
+            $this->setNome($result['nome']);
+            $this->setNome($result['nome']);
+            $this->setRa($result['ra']);
+            $this->setCpf($result['cpf']);
+            $this->setEmail($result['email']);
+            $this->setFone($result['fone']);
+            $this->setCurso($result['curso']);
+            $this->setTurno($result['turno']);
+
+        }
+    }
+
+
+    public function consultaAlunoRA($RA){
+        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE ra = :RA";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':RA', $RA, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $this->setNome($result['nome']);
             $this->setNome($result['nome']);
             $this->setRa($result['ra']);
             $this->setCpf($result['cpf']);
@@ -120,9 +160,10 @@ class Aluno extends Connect{
     }
 
     public function inserir(Aluno $aluno){
-        $sql = "INSERT INTO $this->tabela (nome, ra, cpf, email, fone, curso, turno) VALUES (:nome, :ra, :cpf, :email, :fone, :curso, :turno)";
+        $sql = "INSERT INTO $this->tabela (nome, avatar ra, cpf, email, fone, curso, turno) VALUES (:nome, :avatar, :ra, :cpf, :email, :fone, :curso, :turno)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
+        $stmt->bindParam(':avatar', $aluno->getAvatar(), PDO::PARAM_STR);
         $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_STR);
         $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
@@ -137,7 +178,7 @@ class Aluno extends Connect{
         fone = :fone, curso = :curso, turno = :turno WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_INT);
         $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
         $stmt->bindParam(':fone', $aluno->getFone(), PDO::PARAM_STR);
@@ -152,13 +193,13 @@ class Aluno extends Connect{
         fone = :fone, curso = :curso, turno = :turno WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_INT);
         $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
         $stmt->bindParam(':fone', $aluno->getFone(), PDO::PARAM_STR);
         $stmt->bindParam(':curso', $aluno->getCurso(), PDO::PARAM_STR);
         $stmt->bindParam(':turno', $aluno->getTurno(), PDO::PARAM_STR);
-        $stmt->bindParam(':CPF', $cpf, PDO::PARAM_INT);
+        $stmt->bindParam(':CPF', $cpf, PDO::PARAM_STR);
         $stmt->execute();
     }
 

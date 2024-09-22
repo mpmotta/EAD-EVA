@@ -45,7 +45,15 @@ class Usuario extends Connect{
     }
 
 
-
+    public function cadastrarUsuario(Usuario $usuarioObj) {
+        $sql = "INSERT INTO $this->tabela (usename, senha, nivel, email email) VALUES (:username, :senha, :nivel, :email)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nome', $usuarioObj->getUsername(), PDO::PARAM_STR);
+        $stmt->bindParam(':fone', $usuarioObj->getSenha(), PDO::PARAM_STR);
+        $stmt->bindParam(':nivel', $usuarioObj->getNivel(), PDO::PARAM_INT);
+        $stmt->bindParam(':email', $usuarioObj->getEmail(), PDO::PARAM_STR);
+        $stmt->execute();
+    }
 
     public function logar($username, $senha){
         $sql = "SELECT username, senha, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
