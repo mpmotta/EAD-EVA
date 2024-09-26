@@ -72,4 +72,14 @@ class Usuario extends Connect{
             header('Location: ../view/index.php?erro=login');
         }
     }
+
+
+    public function alterarAvatar($avatar, $id){
+        $sql = "UPDATE $this->tabela SET avatar = :avatar 
+        WHERE id_usuario = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

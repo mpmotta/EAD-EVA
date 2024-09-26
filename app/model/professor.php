@@ -46,9 +46,6 @@ class Professor extends Connect{
         $this->fone = $fone;
     }
 
-  
-
-
 
     public function consultaProfessores(){
         $sql = "SELECT id_professor, nome, cpf, email, fone FROM $this->tabela";
@@ -58,7 +55,7 @@ class Professor extends Connect{
         return $result;
     }
 
-    public function consultaAlunoID($id){
+    public function consultaProfessorID($id){
         $sql = "SELECT nome, cpf, email, fone FROM $this->tabela WHERE id_professor = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -73,21 +70,16 @@ class Professor extends Connect{
         }
     }
 
-    public function consultaProfCpf($cpf){
-        $sql = "SELECT nome, cpf, email, fone FROM $this->tabela WHERE cpf = :cpf";
+    public function pesquisarProfessor($txt){
+        $sql = "SELECT nome, cpf, email, fone FROM $this->tabela WHERE nome like :txt";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':cpf', $cpf, PDO::PARAM_INT);
+        $stmt->bindValue(':txt', "%" . $txt . "%", PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $this->setNome($result['nome']);
-            $this->setCpf($result['cpf']);
-            $this->setEmail($result['email']);
-            $this->setFone($result['fone']);
-        }
+        return $result;
     }
 
-    public function inserir(Professor $professor){
+    public function inserir($professor){
         $sql = "INSERT INTO $this->tabela (nome, cpf, email, fone) VALUES (:nome, :cpf, :email, :fone)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $professor->getNome(), PDO::PARAM_STR);
@@ -97,7 +89,7 @@ class Professor extends Connect{
         $stmt->execute();
     }
 
-    public function editarProfessorId(Professor $professor, $id){
+    public function editarProfessorId($professor, $id){
         $sql = "UPDATE $this->tabela SET nome = :nome, cpf = :cpf, email = :email 
         fone = :fone WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -109,7 +101,7 @@ class Professor extends Connect{
         $stmt->execute();
     }
 
-    public function editarProfessorCpf(Professor $professor, $cpf){
+    public function editarProfessorCpf($professor, $cpf){
         $sql = "UPDATE $this->tabela SET nome = :nome, cpf = :cpf, email = :email 
         fone = :fone WHEREWHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
@@ -121,8 +113,17 @@ class Professor extends Connect{
         $stmt->execute();
     }
 
+    public function alterarAvatar($avatar, $id){
+        $sql = "UPDATE $this->tabela SET avatar = :avatar 
+        WHERE id_professor = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
     public function excluirProfessor($id){
-        $sql = "DELETE FROM $this->tabela WHERE id = :id";
+        $sql = "DELETE FROM $this->tabela WHERE id_professor = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

@@ -1,5 +1,5 @@
 <?php
-    require_once('../model/alunoModel.php');
+    require_once('../model/aluno.php');
 
     class alunoController {
 
@@ -53,7 +53,13 @@
             return $result;
         }
 
-        public function editarAluno(Aluno $alunoObj) {
+        public function pesquisarAluno($txt){
+            $aluno = new Aluno();
+            $result = $aluno->pesquisarAluno($txt);
+            return $result;
+        }
+
+        public function editarAluno($alunoObj, $id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $aluno = new Aluno(); 
                 $aluno->editarAluno($alunoObj);
@@ -63,15 +69,20 @@
             }
         }
 
-        public function alterarAvatar() {
+        public function alterarAvatar($id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
-                require 'upload.php';
+                require 'uploadAvatar.php';
                 $aluno = new Aluno(); 
-                $aluno->alterarAvatar($avatar);
+                $aluno->alterarAvatar($avatar, $id);
                 header('Location: ../view/admin/index.php?alterado=ok');
             } else {
                 header("Location: ../view/admin/index.php?erro");
             }
+        }
+
+        public function excluirAluno($id){
+            $aluno = new Aluno(); 
+            $aluno->excluirAluno($id);
         }
 
 
@@ -88,6 +99,7 @@
                 $this->cadastrarAluno ($alunoObj);
             }
             if (isset($_GET['action']) && $_GET['action'] == 'editarAluno') {
+                $id = $_GET['id'];
                 $alunoObj = new aluno();
                 $alunoObj->setNome($_POST['nome']);
                 $alunoObj->setSenha($_POST['ra']);
@@ -96,11 +108,17 @@
                 $alunoObj->setFone($_POST['fone']);
                 $alunoObj->setCurso($_POST['curso']);
                 $alunoObj->setTurno($_POST['turno']);
-                $this->editarAluno ($alunoObj);
+                $this->editarAluno ($alunoObj, $id);
             }
 
             if (isset($_GET['action']) && $_GET['action'] == 'alterarAvatar') {
-                $this->alterarAvatar();
+                $id = $_GET['id'];
+                $this->alterarAvatar($id);
+            }
+            
+            if (isset($_GET['action']) && $_GET['action'] == 'excluirAluno') {
+                $id = $_GET['id'];
+                $this->excluirAluno($id);
             }
         }
     }

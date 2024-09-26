@@ -155,6 +155,16 @@ class Aluno extends Connect{
         }
     }
 
+
+    public function pesquisarAluno($txt){
+        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE nome like :txt";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':txt', "%" . $txt . "%", PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function cadastrarAluno(Aluno $aluno){
         $sql = "INSERT INTO $this->tabela (nome, ra, cpf, email, fone, curso, turno) VALUES (:nome, :avatar, :ra, :cpf, :email, :fone, :curso, :turno)";
         $stmt = $this->conn->prepare($sql);
@@ -168,47 +178,47 @@ class Aluno extends Connect{
         $stmt->execute();
     }
 
-    public function editarAluno(Aluno $aluno, $id){
+    public function editarAluno($alunoObj, $id){
         $sql = "UPDATE $this->tabela SET nome = :nome, ra = :ra, cpf = :cpf, email = :email 
         fone = :fone, curso = :curso, turno = :turno WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_INT);
-        $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $aluno->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':curso', $aluno->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':turno', $aluno->getTurno(), PDO::PARAM_STR);
+        $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $alunoObj->getRa(), PDO::PARAM_INT);
+        $stmt->bindParam(':cpf', $alunoObj->getCpf(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $alunoObj->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':fone', $alunoObj->getFone(), PDO::PARAM_STR);
+        $stmt->bindParam(':curso', $alunoObj->getCurso(), PDO::PARAM_STR);
+        $stmt->bindParam(':turno', $alunoObj->getTurno(), PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
     public function alterarAvatar($avatar, $id){
         $sql = "UPDATE $this->tabela SET avatar = :avatar 
-        WHERE id = :id";
+        WHERE id_aluno = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':avatar', $aluno->getAvatar(), PDO::PARAM_STR);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    public function editarAlunoCpf(Aluno $aluno, $cpf){
+    public function editarAlunoCpf($alunoObj, $cpf){
         $sql = "UPDATE $this->tabela SET nome = :nome, ra = :ra, cpf = :cpf, email = :email 
         fone = :fone, curso = :curso, turno = :turno WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_INT);
-        $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $aluno->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':curso', $aluno->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':turno', $aluno->getTurno(), PDO::PARAM_STR);
+        $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $alunoObj->getRa(), PDO::PARAM_INT);
+        $stmt->bindParam(':cpf', $alunoObj->getCpf(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $alunoObj->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':fone', $alunoObj->getFone(), PDO::PARAM_STR);
+        $stmt->bindParam(':curso', $alunoObj->getCurso(), PDO::PARAM_STR);
+        $stmt->bindParam(':turno', $alunoObj->getTurno(), PDO::PARAM_STR);
         $stmt->bindParam(':CPF', $cpf, PDO::PARAM_STR);
         $stmt->execute();
     }
 
     public function excluirAluno($id){
-        $sql = "DELETE FROM $this->tabela WHERE id = :id";
+        $sql = "DELETE FROM $this->tabela WHERE id_aluno = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
