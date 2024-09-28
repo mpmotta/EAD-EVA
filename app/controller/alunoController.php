@@ -62,7 +62,7 @@
         public function editarAluno($alunoObj, $id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $aluno = new Aluno(); 
-                $aluno->editarAluno($alunoObj);
+                $aluno->editarAluno($alunoObj, $id);
                 header('Location: ../view/admin/index.php?alterado=ok');
             } else {
                 header("Location: ../view/admin/index.php?erro");
@@ -90,7 +90,7 @@
             if (isset($_GET['action']) && $_GET['action'] == 'cadastrarAluno') {
                 $alunoObj = new aluno();
                 $alunoObj->setNome($_POST['nome']);
-                $alunoObj->setSenha($_POST['ra']);
+                $alunoObj->setRa($_POST['ra']);
                 $alunoObj->setCpf($_POST['cpf']);
                 $alunoObj->setEmail($_POST['email']);
                 $alunoObj->setFone($_POST['fone']);
@@ -102,7 +102,6 @@
                 $id = $_GET['id'];
                 $alunoObj = new aluno();
                 $alunoObj->setNome($_POST['nome']);
-                $alunoObj->setSenha($_POST['ra']);
                 $alunoObj->setCpf($_POST['cpf']);
                 $alunoObj->setEmail($_POST['email']);
                 $alunoObj->setFone($_POST['fone']);

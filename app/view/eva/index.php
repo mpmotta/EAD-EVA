@@ -1,6 +1,6 @@
 <?php
-	//session_start();
-        //if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['level'] >= 1 ){ 
+	session_start();
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] >= 1 ){ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,10 +12,17 @@
 </head>
 <body>
     <div class="container-full">
-        <header class="fixed-top topo bg-warning bg-gradient">
-			<img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-			<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
-        </header>
+		<header class="fixed-top topo bg-warning bg-gradient pt-3 ps-3 row">
+				<div class="col-md-11">
+					<img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
+					<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
+				</div>
+				<div class="col-md-1 text-center">
+					<a href="../../controller/usuarioController.php?action=sair">
+						SAIR<img src="../img/exit.png" class="icon"/>
+					</a>
+				</div>
+			</header>
         <section class="main">
 		<div class="bord2">		
 			<section class="flex">
@@ -49,7 +56,7 @@
 </body>
 </html>
 <?php
-    //}else{
-        //header('Location: ../index.php');
-    //}   
+    }else{
+        header('Location: ../index.php');
+    }   
 ?>

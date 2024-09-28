@@ -1,22 +1,24 @@
 <?php
 	session_start();
-        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['level'] >= 3 ){ 
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] >= 3 ){ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambiente Virtual de Aprendizagem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>EVA - Espaço Virtual de Aprendizagem</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="container-full">
         <header class="fixed-top topo bg-warning bg-gradient pt-3 ps-3 row">
-            <div class="col-md-11">Ambiente Virtual de Aprendizagem</div>
+            <div class="col-md-11">
+                <img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
+			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
+            </div>
             <div class="col-md-1 text-center">
-                <a href="sair.php">
+                <a href="../../controller/usuarioController.php?action=sair">
                     SAIR<img src="../img/exit.png" class="icon"/>
                 </a>
             </div>

@@ -1,5 +1,5 @@
 <?php
-    require_once('../model/usuarioModel.php');
+    require_once('../model/usuario.php');
 
     class usuarioController {
 
@@ -13,13 +13,15 @@
             }
         }
 
-        public function logar() {
+        public function logarUsuario() {
+
             $usuario = new Usuario();
 
             $user = $_POST['usuario'];
             $senha = $_POST['senha'];
             $pass = hash('sha256', $senha);
-            $usuario->logar($user, $pass);    
+            $usuario->logarUsuario($user, $pass);
+  
         }
 
         public function sair() {
@@ -39,8 +41,8 @@
                 $this->cadastrarUsuario ($usuarioObj);
             }
 
-            if (isset($_GET['action']) && $_GET['action'] == 'logar') {
-                $this->logar();
+            if (isset($_GET['action']) && $_GET['action'] == 'logarUsuario') {
+                $this->logarUsuario();
             }
             if (isset($_GET['action']) && $_GET['action'] == 'sair') {
                 $this->sair();

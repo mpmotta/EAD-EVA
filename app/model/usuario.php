@@ -55,8 +55,9 @@ class Usuario extends Connect{
         $stmt->execute();
     }
 
-    public function logar($username, $senha){
+    public function logarUsuario($username, $senha){
         $sql = "SELECT username, senha, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
+        
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
@@ -71,6 +72,7 @@ class Usuario extends Connect{
         } else {
             header('Location: ../view/index.php?erro=login');
         }
+         
     }
 
 
