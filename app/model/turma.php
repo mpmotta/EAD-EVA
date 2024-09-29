@@ -75,7 +75,7 @@ class Turma extends Connect{
         $stmt->execute();
     }
 
-    public function editarTurma($Turma, $id){
+    public function editarTurma($turma, $id){
         $sql = "UPDATE $this->tabela SET nome_turma = :nomeTurma, 
         disciplina = :disciplina, periodo  = :periodo, professor = :professor
         WHERE id_turma = :id";

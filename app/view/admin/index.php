@@ -1,56 +1,80 @@
-<?php
-	session_start();
-        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] == 9 ){ 
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambiente Virtual de Aprendizagem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>EVA - Espaço Virtual de Aprendizagem</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="container-full">
-        <header class="fixed-top topo bg-warning bg-gradient pt-3 ps-3 row">
-            <div class="col-md-11">
+    <header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
+            <div class="left">
                 <img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
 			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
             </div>
-            <div class="col-md-1 text-center">
+            <div class="right text-center">
                 <a href="../../controller/usuarioController.php?action=sair">
                     SAIR<img src="../img/exit.png" class="icon"/>
                 </a>
             </div>
         </header>
-        <section class="main bg-white flex">
-            <nav class="mainMenu">
-            <ol>
-                <li>Introdução ao Desenvolvimento Web</li>
-                <li>Fundamentos de Programação</li>
-                <li>Design Responsivo com CSS</li>
-                <li>JavaScript para Iniciantes</li>
-                <li>Manipulação do DOM com JavaScript</li>
-                <li>Introdução ao Bootstrap</li>
-                <li>Conceitos Básicos de Banco de Dados</li>
-                <li>Desenvolvimento de Aplicações com PHP</li>
-                <li>Fundamentos de SEO</li>
-                <li>Introdução ao Controle de Versão com Git</li>
-            </ol>
-            </nav>
-            <article class="mainBox">
-                        principal
+        <section class="container main bg-white">
+            <h2> EVA - PÁGINA ADMINISTRATIVA</h2>
+            <article class="mainBox mt-5">
+                    <a href="alunos.php">
+                        <div class="box">
+                            ALUNOS
+                            <img src="../../../public/icons/student.png" alt="alunos">
+                        </div>
+                    </a>
+
+                    <a href="profes.php">
+                        <div class="box">
+                            PROFES
+                            <img src="../../../public/icons/teacher.png" alt="professores">
+                        </div>
+                    </a>
+
+                    <a href="users.php">
+                        <div class="box">
+                            USUÁRIOS
+                            <img src="../../../public/icons/user.png" alt="usuarios">
+                        </div>
+                    </a>
+
+                    <a href="disc.php">
+                        <div class="box">
+                            DISCIPLINAS
+                            <img src="../../../public/icons/disc.png" alt="disciplinas">
+                        </div>
+                    </a>
+
+                    <a href="turmas.php">
+                        <div class="box">
+                            TURMAS
+                            <img src="../../../public/icons/class.png" alt="turmas">
+                        </div>
+                    </a>
+
+                    <a href="periodos.php">
+                        <div class="box">
+                            PERÍODOS
+                            <img src="../../../public/icons/calendar.png" alt="períodos">
+                        </div>
+                    </a>
+
+                    <a href="admin.php">
+                        <div class="box">
+                            ADMIN
+                            <img src="../../../public/icons/admin.png" alt="admin">
+                        </div>
+                    </a>
             </article>
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-5 pb-4">
-            <p>Copyright &copy 2024 - Ambiente Virtual de Aprendizagem</p>
+        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
+                <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
         </footer>
     </div>
 </body>
 </html>
-<?php
-    }else{
-        header('Location: ../index.php');
-    }   
-?>

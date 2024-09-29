@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="container-full">
-        <header class="fixed-top topo bg-warning bg-gradient">
+        <header class="topo bg-warning bg-gradient">
 			<img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
 			<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
         </header>
         <section class="main">
-        <div class="container border">
+        <div class="border">
 			<h2 class="text-center">Página de Login</h2>
 				<form method="POST" action="../controller/usuarioController.php?action=logarUsuario">
 					<table class='table table-bordered insert'>	
@@ -49,7 +49,7 @@
 		</div>
 
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-5 pb-4">
+        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
                 <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
         </footer>
     </div>

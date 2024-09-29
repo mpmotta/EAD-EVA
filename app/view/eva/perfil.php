@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container-full">
-        <header class="fixed-top topo bg-warning bg-gradient pt-3 ps-3 row">
+        <header class="topo bg-warning bg-gradient pt-3 ps-3 row">
             <div class="col-md-11">Ambiente Virtual de Aprendizagem</div>
             <div class="col-md-1 text-center">
                 <a href="sair.php">

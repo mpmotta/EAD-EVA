@@ -20,7 +20,7 @@
             </div>
         </header>
         <section class="container main bg-white">
-            <h2> ADMIN - GERENCIAMENTO AVANÇADO</h2>
+            <h2> EVA - GERENCIAR PERÍODOS</h2>
             <article class="mainBox mt-5">
                     <a href="alunos.php">
                         <div class="box">
@@ -76,15 +76,5 @@
                 <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
         </footer>
     </div>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <?php
-        if(isset($_GET['erro']) && $_GET['erro'] == 'login'){
-            echo  "<script src='js/erro-login.js'></script>";
-        }
-
-        if(isset($_GET['user']) && $_GET['user'] == 'deslogado'){
-            echo  "<script src='js/deslogado.js'></script>";
-        }
-    ?>
 </body>
 </html>

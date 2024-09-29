@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container-full">
-		<header class="fixed-top topo bg-warning bg-gradient pt-3 ps-3 row">
+		<header class="topo bg-warning bg-gradient pt-3 ps-3 row">
 				<div class="col-md-11">
 					<img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
 					<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
@@ -49,8 +49,8 @@
 		</div>
 
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-5 pb-4">
-                <p>Copyright &copy 2024/2005 - EVA - Eva Virtual de Aprendizagem</p>
+        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
+                <p>Copyright &copy 2024/2005 - EVA - Eespa Virtual de Aprendizagem</p>
         </footer>
     </div>
 </body>
