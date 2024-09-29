@@ -1,21 +1,25 @@
+<?php
+	session_start();
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] >= 3 ){ 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA - Espaço Virtual de Aprendizagem</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container-full">
     <header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
             <div class="left">
-                <img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
+                <img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
 			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
             </div>
             <div class="right text-center">
-                <a href="../../controller/usuarioController.php?action=sair">
-                    SAIR<img src="../img/exit.png" class="icon"/>
+                <a href="../controller/usuarioController.php?action=sair">
+                    SAIR<img src="img/exit.png" class="icon"/>
                 </a>
             </div>
         </header>
@@ -33,7 +37,7 @@
                 LOCALIZAR ALUNO
             </button>
 
-            <a href="index.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
+            <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
             <br>&nbsp;
             <hr class="pt-2 pb-2">
 
@@ -145,3 +149,8 @@
 
 </body>
 </html>
+<?php
+    }else{
+        header('Location: ../index.php');
+    }   
+?>

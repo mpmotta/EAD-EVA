@@ -44,9 +44,16 @@ class Usuario extends Connect{
         $this->email = $email;
     }
 
+    public function consultarUsuarios(){
+        $sql = "SELECT id_usuario, username, nivel, email, ultimo_login FROM $this->tabela";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
-    public function cadastrarUsuario(Usuario $usuarioObj) {
-        $sql = "INSERT INTO $this->tabela (usename, senha, nivel, email email) VALUES (:username, :senha, :nivel, :email)";
+    public function cadastrarUsuario($usuarioObj) {
+        $sql = "INSERT INTO $this->tabela (usename, senha, nivel, email) VALUES (:username, :senha, :nivel, :email)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $usuarioObj->getUsername(), PDO::PARAM_STR);
         $stmt->bindParam(':fone', $usuarioObj->getSenha(), PDO::PARAM_STR);
@@ -56,7 +63,7 @@ class Usuario extends Connect{
     }
 
     public function logarUsuario($username, $senha){
-        $sql = "SELECT username, senha, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
+        $sql = "SELECT id_usuario, username, senha, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
         
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -67,12 +74,23 @@ class Usuario extends Connect{
         if ($result) {
             session_start();
             $_SESSION['logado'] = true;
+            $_SESSION['id'] = $result['id_usuario'];
             $_SESSION['nivel'] = $result['nivel'];
+
+            $this->ultimoAcesso($result['id_usuario']);
+
             header('Location: ../view/logado.php?logado=true');
         } else {
             header('Location: ../view/index.php?erro=login');
         }
          
+    }
+
+    function ultimoAcesso($id) {
+        $sql = "UPDATE $this->tabela SET ultimo_login=NOW() WHERE id_usuario = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();    
     }
 
 

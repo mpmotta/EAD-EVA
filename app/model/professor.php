@@ -3,9 +3,9 @@ require_once '../config/connect.php';
 
 class Professor extends Connect{
     private $nome;
-    private $cpf;
     private $email;
     private $fone;
+    private $lastLogin;
     private $tabela = 'professores';
 
 
@@ -17,10 +17,6 @@ class Professor extends Connect{
         return $this->nome;
     }
 
-    public function getCpf(){
-        return $this->cpf;
-    }
-
     public function getEmail(){
         return $this->email;
     }
@@ -29,13 +25,13 @@ class Professor extends Connect{
         return $this->fone;
     }
 
+    public function getLastLogin(){
+        return $this->lastLogin;
+    }
+
   
     public function setNome($nome): void{
         $this->nome = $nome;
-    }
-
-    public function setCpf($cpf): void{
-        $this->cpf = $cpf;
     }
 
     public function setEmail($email): void{
@@ -46,86 +42,24 @@ class Professor extends Connect{
         $this->fone = $fone;
     }
 
+    public function setLastLogin($lastLogin): void{
+        $this->lastLogin = $lastLogin;
+    }
 
-    public function consultaProfessores(){
-        $sql = "SELECT id_professor, nome, cpf, email, fone FROM $this->tabela";
+    public function consultarProfessores(){
+        $sql = "SELECT id_prof, nome, email, fone FROM $this->tabela";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function consultaProfessorID($id){
-        $sql = "SELECT nome, cpf, email, fone FROM $this->tabela WHERE id_professor = :id";
+    public function cadastrarProfessor($professorObj){
+        $sql = "INSERT INTO $this->tabela (nome, email, fone) VALUES (:nome, :email, :fone)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            $this->setNome($result['nome']);
-            $this->setCpf($result['cpf']);
-            $this->setEmail($result['email']);
-            $this->setFone($result['fone']);
-
-        }
-    }
-
-    public function pesquisarProfessor($txt){
-        $sql = "SELECT nome, cpf, email, fone FROM $this->tabela WHERE nome like :txt";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(':txt', "%" . $txt . "%", PDO::PARAM_STR);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function inserir($professor){
-        $sql = "INSERT INTO $this->tabela (nome, cpf, email, fone) VALUES (:nome, :cpf, :email, :fone)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $professor->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':cpf', $professor->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $professor->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $professor->getFone(), PDO::PARAM_STR);
-        $stmt->execute();
-    }
-
-    public function editarProfessorId($professor, $id){
-        $sql = "UPDATE $this->tabela SET nome = :nome, cpf = :cpf, email = :email 
-        fone = :fone WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $professor->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':cpf', $professor->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $professor->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $professor->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function editarProfessorCpf($professor, $cpf){
-        $sql = "UPDATE $this->tabela SET nome = :nome, cpf = :cpf, email = :email 
-        fone = :fone WHEREWHERE cpf = :CPF";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $professor->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':cpf', $professor->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $professor->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $professor->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':CPF', $cpf, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function alterarAvatar($avatar, $id){
-        $sql = "UPDATE $this->tabela SET avatar = :avatar 
-        WHERE id_professor = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function excluirProfessor($id){
-        $sql = "DELETE FROM $this->tabela WHERE id_professor = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':nome', $professorObj->getNome(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $professorObj->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':fone', $professorObj->getFone(), PDO::PARAM_STR);
         $stmt->execute();
     }
 }
