@@ -165,17 +165,19 @@ class Aluno extends Connect{
         return $result;
     }
 
-    public function cadastrarAluno(Aluno $aluno){
-        $sql = "INSERT INTO $this->tabela (nome, ra, cpf, email, fone, curso, turno) VALUES (:nome, :avatar, :ra, :cpf, :email, :fone, :curso, :turno)";
+    public function cadastrarAluno($alunoObj){
+        $sql = "INSERT INTO $this->tabela (nome, ra, cpf, email, fone, curso, turno) 
+        VALUES (:nome, :ra, :cpf, :email, :fone, :curso, :turno)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $aluno->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $aluno->getRa(), PDO::PARAM_INT);
-        $stmt->bindParam(':cpf', $aluno->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $aluno->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $aluno->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':curso', $aluno->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':turno', $aluno->getTurno(), PDO::PARAM_STR);
+        $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $alunoObj->getRa(), PDO::PARAM_INT);
+        $stmt->bindParam(':cpf', $alunoObj->getCpf(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $alunoObj->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':fone', $alunoObj->getFone(), PDO::PARAM_STR);
+        $stmt->bindParam(':curso', $alunoObj->getCurso(), PDO::PARAM_STR);
+        $stmt->bindParam(':turno', $alunoObj->getTurno(), PDO::PARAM_STR);
         $stmt->execute();
+
     }
 
     public function editarAluno($alunoObj, $id){

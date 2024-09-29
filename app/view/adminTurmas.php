@@ -12,24 +12,12 @@
 </head>
 <body>
     <div class="container-full">
-    <header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
-            <div class="left">
-                <img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
-            </div>
-            <div class="right text-center">
-                <a href="../controller/usuarioController.php?action=sair">
-                    SAIR<img src="img/exit.png" class="icon"/>
-                </a>
-            </div>
-        </header>
+    <?php require_once 'headerAdmin.php'; ?>
         <section class="container main bg-white">
             <h2> EVA - GERENCIAR TURMAS</h2>
      
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
-                <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
-        </footer>
+        <?php require_once 'footer.php'; ?>
     </div>
 </body>
 </html>

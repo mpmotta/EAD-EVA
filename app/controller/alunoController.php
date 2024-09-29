@@ -3,13 +3,16 @@
 
     class alunoController {
 
-        public function cadastrarAluno(Aluno $alunoObj) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+        public function cadastrarAluno($alunoObj) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
                 $aluno = new Aluno(); 
                 $aluno->cadastrarAluno($alunoObj);
-                header('Location: ../view/admin/index.php?cadastro=ok');
+            
+                header('Location: ../view/adminAlunos.php?cadastro=ok');
             } else {
-                header("Location: ../view/admin/index.php?erro");
+                header("Location: ../view/adminAlunos.php?erro");
+        
             }
         }
 
@@ -100,7 +103,7 @@
             }
             if (isset($_GET['action']) && $_GET['action'] == 'editarAluno') {
                 $id = $_GET['id'];
-                $alunoObj = new aluno();
+                $alunoObj = new Aluno();
                 $alunoObj->setNome($_POST['nome']);
                 $alunoObj->setCpf($_POST['cpf']);
                 $alunoObj->setEmail($_POST['email']);

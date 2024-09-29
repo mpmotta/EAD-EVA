@@ -13,9 +13,9 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $professor = new professor(); 
                 $professor->cadastrarProfessor($professorObj);
-                header('Location: ../view/admin/adminProfes.php?cadastro=ok');
+                header('Location: ../view/adminProfes.php?cadastro=ok');
             } else {
-                header("Location: ../view/admin/adminProfes.php?erro");
+                header("Location: ../view/adminProfes.php?erro");
             }
                 
         }

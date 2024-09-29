@@ -7,9 +7,9 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $usuario = new usuario(); 
                 $usuario->cadastrarUsuario($usuarioObj);
-                header('Location: ../view/admin/index.php?cadastro=ok');
+                header('Location: ../view/adminUsers.php?cadastro=ok');
             } else {
-                header("Location: ../view/admin/index.php?erro");
+                header("Location: ../view/adminUsers.php?erro");
             }
         }
 

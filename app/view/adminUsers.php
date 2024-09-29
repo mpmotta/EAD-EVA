@@ -1,6 +1,6 @@
 <?php
 	session_start();
-        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] >= 3 ){ 
+        if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] == 9 ){ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,26 +12,16 @@
 </head>
 <body>
     <div class="container-full">
-    <header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
-            <div class="left">
-                <img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
-            </div>
-            <div class="right text-center">
-                <a href="../controller/usuarioController.php?action=sair">
-                    SAIR<img src="img/exit.png" class="icon"/>
-                </a>
-            </div>
-        </header>
+        <?php require_once 'headerAdmin.php'; ?> 
         <section class="container main bg-white">
-            <h2 class="mb-5"> EVA - GERENCIAR PROFESSORES</h2>
+            <h2 class="mb-5"> EVA - GERENCIAR USUÁRIOS</h2>
 
-            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cadProf">
-                CADASTRAR PROFESSOR
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cadUser">
+                CADASTRAR USUÁRIO
              </button>
 
             <button type="button" class="btn btn-sm btn-primary ms-4" data-bs-toggle="modal" data-bs-target="#localiza">
-                LOCALIZAR PROFESSOR
+                LOCALIZAR USUÁRIO
             </button>
 
             <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
@@ -74,8 +64,8 @@
                           echo"
                           <tr>
                               <td class='text-center'>". $i++ ."</td> 
-                              <td>$nome</td>
-                              <td>$nivel</td>
+                              <td>$username</td>
+                              <td class='text-center'>$nivel</td>
                               <td>$email</td>";
 
                                       
@@ -108,10 +98,7 @@
             </table>
         
         </section>
-        </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
-                <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
-        </footer>
+        <?php require_once 'footer.php'; ?>
     </div>
 
 
@@ -119,16 +106,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="modal fade" id="cadProf" tabindex="-1" aria-labelledby="Cadastrar Professor" aria-hidden="true">
+<div class="modal fade" id="cadUser" tabindex="-1" aria-labelledby="Cadastrar Usuário" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="cadProfLabel">Cadastrar Professor</h1>
+        <h1 class="modal-title fs-5" id="cadUserLabel">Cadastrar Usuário</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body p-5 cadastra">
-            <form action="../../controller/professorController.php?action=cadastrarProfessor" method="post">
+            <form action="../controller/usuarioController.php?action=cadastrarUsuário" method="post">
                 <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required>
+                <select name="nivel" class="form-control mb-3">
+                      <option selected disabled value="">Nível</option>
+                      <option value="1">Aluno</option>
+                      <option value="2">Professor</option>
+                      <option value="3">Pedagógico</option>
+                      <option value="9">Administrador</option>
+                </select>
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required>
                 <input type="tel" name="fone" class="form-control" placeholder="Telefone" required>
                 <input type="submit" value="Cadastrar" class="btn btn-success mt-4">
@@ -145,7 +139,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="localizaLabel">Localizar Professor</h1>
+        <h1 class="modal-title fs-5" id="localizaLabel">Localizar Usuário</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body">

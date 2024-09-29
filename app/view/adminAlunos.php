@@ -12,17 +12,7 @@
 </head>
 <body>
 <div class="container-full">
-    <header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
-            <div class="left">
-                <img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-			    <span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
-            </div>
-            <div class="right text-center">
-                <a href="../controller/usuarioController.php?action=sair">
-                    SAIR<img src="img/exit.png" class="icon"/>
-                </a>
-            </div>
-        </header>
+      <?php require_once 'headerAdmin.php'; ?>
         <section class="container main bg-white">
             <h2 class="mb-5"> EVA - GERENCIAR ALUNOS</h2>
 
@@ -48,10 +38,19 @@
                             #
                         </th>
                         <th>
+                            NOME
+                        </th>
+                        <th>
                             RA
                         </th>
                         <th>
-                            NOME COMPLETO
+                            CPF
+                        </th>
+                        <th>
+                            E-MAIL
+                        </th>
+                        <th>
+                            FONE
                         </th>
                         <th>
                             CURSO
@@ -64,15 +63,39 @@
                         </th>
                     </tr>
                 </thead> 
-                <tbody>
-
+                <tbody> 
+                <?php
+                      require_once '../controller/alunoController.php';
+                      $aluno = new Aluno(); 
+                      $consulta = $aluno->consultarAlunos();
+                        $i = 1;
+                      foreach($consulta as $linha){
+                          $nome = $linha['nome'];
+                          $ra = $linha['ra'];
+                          $cpf = $linha['cpf'];
+                          $fone = $linha['fone'];
+                          $email = $linha['email'];
+                          $turno = $linha['turno'];
+                          $curso = $linha['curso'];
+  
+                          echo"
+                          <tr>
+                              <td class='text-center'>". $i++ ."</td> 
+                              <td>$nome</td>
+                              <td>$ra</td>
+                              <td>$cpf</td>
+                              <td>$email</td>
+                              <td>$fone</td>
+                              <td>$curso</td>
+                              <td>$turno</td>
+                          </tr>";
+                      }
+                ?>
                 </tbody>   
             </table>
         
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
-                <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
-        </footer>
+        <?php require_once 'footer.php'; ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -84,7 +107,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body p-5 cadastra">
-            <form action="" method="post">
+            <form action="../controller/alunoController.php?action=cadastrarAluno" method="post">
                 <input type="text" name="ra" class="form-control" placeholder="Matrícula(RA)" required>
                 <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required>
                 <input type="text" name="cpf" class="form-control" placeholder="CPF" required>
@@ -145,8 +168,12 @@
     </div>
   </div>
 </div>
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <?php
+        if(isset($_GET['cadastro']) && $_GET['cadastro'] == 'ok'){
+            echo  "<script src='js/cadastrado.js'></script>";
+        }
+    ?>
 </body>
 </html>
 <?php
