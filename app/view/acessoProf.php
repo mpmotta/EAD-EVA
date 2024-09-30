@@ -8,26 +8,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA - Espaço Virtual de Aprendizagem</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container-full">
-		<header class="topo bg-warning bg-gradient pt-3 ps-3 row">
-				<div class="col-md-11">
-					<img src="../../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-					<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
-				</div>
-				<div class="col-md-1 text-center">
-					<a href="../../controller/usuarioController.php?action=sair">
-						SAIR<img src="../img/exit.png" class="icon"/>
-					</a>
-				</div>
-			</header>
+	<?php require_once 'headerAdmin.php'; ?>
+	<h2 class="m-3"> EVA - PÁGINA DO PROFESSOR</h2>
         <section class="main">
 		<div class="bord2">		
 			<section class="flex">
 				<aside class="info">
-					<img src="../img/avatar.png" alt="avatar do usuário" />
+					<img src="img/avatar.png" alt="avatar do usuário" />
 					<h4>Curso</h4>
 					<ul>
 						<li><span class="negrito">ALUNO:</span> Rihan da Massa</li>
@@ -49,9 +40,7 @@
 		</div>
 
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
-                <p>Copyright &copy 2024/2005 - EVA - Eespa Virtual de Aprendizagem</p>
-        </footer>
+		<?php require_once 'footer.php'; ?>
     </div>
 </body>
 </html>

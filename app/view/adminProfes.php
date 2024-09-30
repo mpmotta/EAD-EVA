@@ -58,14 +58,36 @@
                           $nome = $linha['nome'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
-  
+                          $ultimo_login = $linha['ultimo_login'];
+                          $timestampAtual = time();
                           echo"
                           <tr>
                               <td class='text-center'>". $i++ ."</td> 
                               <td>$nome</td>
                               <td>$fone</td>
-                              <td>$email</td>
-                          </tr>";
+                              <td>$email</td>";
+                                
+                                  $dataHoraUltimoLogin = $ultimo_login;
+                                      if (empty($dataHoraUltimoLogin)) {
+                                          echo "<td>Nunca acessou</td>";
+                                      } else {
+                                          $timestampLogin = strtotime($dataHoraUltimoLogin); ;
+                                          $diferenca = $timestampAtual - $timestampLogin; ;
+
+                                          if ($diferenca < 60) {
+                                              echo "<td>Agora</td>";
+                                          } elseif ($diferenca < 3600) {
+                                              $minutos = floor($diferenca / 60);
+                                              echo "<td>Há $minutos minutos</td>";
+                                          } elseif ($diferenca < 86400) {
+                                              $horas = floor($diferenca / 3600);
+                                              echo "<td>Há $horas horas<br></td>";
+                                          } else {
+                                              $dias = floor($diferenca / 86400);
+                                              echo "<td>Há $dias dias</td>"; 
+                                          }
+                                      }
+                          echo "</tr>";
                       }
                 ?>
                 </tbody>   

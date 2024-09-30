@@ -83,7 +83,9 @@ class Aluno extends Connect{
 
 
     public function consultarAlunos(){
-        $sql = "SELECT id_aluno, nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela";
+        $sql = "SELECT a.id_aluno, a.nome, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, a.turno, u.ultimo_login 
+                FROM $this->tabela AS a 
+                LEFT JOIN usuarios AS u ON a.ra = u.username"; 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
