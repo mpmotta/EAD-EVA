@@ -1,0 +1,6 @@
+NOME;RA;CPF;E-MAIL;FONE;CURSO;TURNO
+João Silva;1234567-89;123.456.789-00;joao.silva@example.com;(11) 91234-5678;Técnico em Informática;Manhã
+Maria Oliveira;98-7654321;987.654.321-00;maria.oliveira@example.com;(21) 99876-5432;Técnico em ADM;Manhã
+Carlos Santos;4567891-23;456.789.123-00;carlos.santos@example.com;(31) 93456-7890;Técnico em Informárica;Tarde
+Ana Costa;3216-54987;321.654.987-00;ana.costa@example.com;(41) 94567-8901;Técnico em ADM;Noite
+Fernando Lima;159753-486;159.753.486-00;fernanda.lima@example.com;(51) 95678-9012;Técnico em Informática;Noite
