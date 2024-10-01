@@ -1,7 +1,7 @@
-<header class="topo bg-warning bg-gradient pt-2 ps-3 flex">
+<header class="topo bg-warning bg-gradient pt-0 pb-0 ps-3 flex">
             <div class="left flex">
-                <img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
-			          <div class="titulo pt-3">EVA - Espaço Virtual de Aprendizagem</div>
+                <img src="../../public/img/logo.png" class="logo" alt="logo-alcides">	
+			          <div class="titulo pt-2">EVA - Espaço Virtual de Aprendizagem</div>
             </div>
             <div class="right text-center">
                 <a href="../controller/usuarioController.php?action=sair">

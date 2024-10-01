@@ -161,11 +161,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body p-5">
-            <form action="" method="post">
-                <label class="negrito">Envie um arquivo .csv </label>
-                <input type="file" name="lote" class="form-control" 
-                enctype="multipart/form-data" required>
-                <input type="submit" value="Enviar" class="btn btn-success mt-4">
+        <form action="../controller/alunoController.php?action=lote" method="post" enctype="multipart/form-data">
+          <label class="negrito">Envie um arquivo .csv </label>
+          <input type="file" name="lote" class="form-control" accept=".csv" required>
+          <input type="submit" value="Enviar" class="btn btn-success mt-4">
+      </form>
             </form>
       </div>
       <div class="modal-footer">
@@ -196,6 +196,9 @@
         if(isset($_GET['cadastro']) && $_GET['cadastro'] == 'ok'){
             echo  "<script src='js/cadastrado.js'></script>";
         }
+        if(isset($_GET['registro']) && $_GET['registro'] == 'duplicado'){
+          echo  "<script src='js/duplicado.js'></script>";
+      }
     ?>
 </body>
 </html>

@@ -28,19 +28,6 @@
                  $aluno = new Aluno();
                  $result = $aluno->consultarAlunosPorTurno($turno);
                  return $result;
-                 
-                 /*
-                 isso vai no view
-                if (!empty($result)) {
-                    foreach ($result as $aluno) {
-                        echo "Nome: " . $aluno['nome'] . "<br>";
-                        echo "RA: " . $aluno['ra'] . "<br>";
-                        
-                    }
-                } else {
-                    echo "Nenhum aluno encontrado para o turno especificado.";
-                }
-                */
         }
 
         public function consultarAlunoCpf($cpf){
@@ -101,6 +88,42 @@
                 $alunoObj->setTurno($_POST['turno']);
                 $this->cadastrarAluno ($alunoObj);
             }
+
+
+
+            if (isset($_GET['action']) && $_GET['action'] == 'lote') {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['lote']) && $_FILES['lote']['error'] === UPLOAD_ERR_OK) {
+                    $file = $_FILES['lote']['tmp_name'];
+                    $handle = fopen($file, 'r');
+                    fgetcsv($handle, 1000, ";");
+    
+                    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+                        if (count($data) === 7) {
+                            $alunoObj = new Aluno();
+                            $alunoObj->setNome($data[0]);
+                            $alunoObj->setRa($data[1]);
+                            $alunoObj->setCpf($data[2]);
+                            $alunoObj->setEmail($data[3]);
+                            $alunoObj->setFone($data[4]);
+                            $alunoObj->setCurso($data[5]);
+                            $alunoObj->setTurno($data[6]);
+    
+                            try {
+                                $this->cadastrarAluno($alunoObj);
+                            } catch (PDOException $e) {
+                                header('Location: ../view/adminAlunos.php?registro=duplicado');
+                                exit;
+                            }
+                        }
+                    }
+    
+                    fclose($handle);
+                    header('Location: ../view/adminAlunos.php?cadastro=ok');
+                    exit;
+                }
+            }
+
+
             if (isset($_GET['action']) && $_GET['action'] == 'editarAluno') {
                 $id = $_GET['id'];
                 $alunoObj = new Aluno();
