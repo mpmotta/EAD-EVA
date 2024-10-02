@@ -61,7 +61,8 @@ table{
 .insert{
     font-size: 15px;
 	margin: 30px auto;
-	width: 500px;	
+	width: 500px;
+	margin-bottom: 50px !important;	
 }
 .insert td:first-child{
 	text-align: right;
@@ -150,4 +151,13 @@ table{
 }
 .cadastra input{
 	margin-bottom: 15px !important;
+}
+.dis{
+	vertical-align: middle;
+}
+.log img{
+	width: 30px;
+}
+.log img:hover{
+	filter: opacity(50%);
 }

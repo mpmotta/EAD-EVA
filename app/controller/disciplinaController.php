@@ -3,13 +3,13 @@
 
     class disciplinaController {
 
-        public function cadastrardisciplina($disciplinaObj) {
+        public function cadastrarDisciplina($disciplinaObj) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $disciplina = new disciplina(); 
                 $disciplina->cadastrarDisciplina($disciplinaObj);
-                header('Location: ../view/admin/index.php?cadastro=ok');
+                header('Location: ../view/adminDisc.php?cadastro=ok');
             } else {
-                header("Location: ../view/admin/index.php?erro");
+                header("Location: ../view/adminDisc.php?erro");
             }
         }
 
@@ -25,20 +25,20 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $disciplina = new disciplina(); 
                 $disciplina->editardisciplina($disciplinaObj, $id);
-                header('Location: ../view/admin/index.php?alterado=ok');
+                header('Location: ../view/adminDisc.php?alterado=ok');
             } else {
-                header("Location: ../view/admin/index.php?erro");
+                header("Location: ../view/adminDisc.php?erro");
             }
         }
 
         public function alterarLogo() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 require 'uploadLogo.php';
-                $aluno = new Aluno(); 
-                $aluno->alterarLogo($avatar);
-                header('Location: ../view/admin/index.php?alterado=ok');
+                $disciplina = new Disciplina(); 
+                $disciplina->alterarLogo($logo, $id);
+                header('Location: ../view/adminDisc.php?alterado=ok');
             } else {
-                header("Location: ../view/admin/index.php?erro");
+                header("Location: ../view/adminDisc.php?erro");
             }
         }
 
@@ -52,6 +52,9 @@
                 $disciplinaObj = new disciplina();
                 $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
                 $disciplinaObj->setPreRequisito($_POST['preRequisito']);
+                if(!$_POST['preRequisito']){
+                    $disciplinaObj->setPreRequisito("Nenhum");  
+                }
                 $this->cadastrarDisciplina ($disciplinaObj);
             }
             if (isset($_GET['action']) && $_GET['action'] == 'editarDisciplina') {

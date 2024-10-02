@@ -2,6 +2,7 @@
 require_once '../config/connect.php';
 
 class Disciplina extends Connect{
+    private $logo;
     private $nomeDisciplina;
     private $preRequisito;
     private $tabela = 'disciplinas';
@@ -19,6 +20,14 @@ class Disciplina extends Connect{
         $this->nomeDisciplina = $nomeDisciplina;
     }
 
+    public function getLogo(){
+        return $this->logo;
+    }
+
+    public function setLogo($logo): void{
+        $this->logo = $logo;
+    }
+
     public function getPreRequisito(){
         return $this->preRequisito;
     }
@@ -29,18 +38,19 @@ class Disciplina extends Connect{
 
 
     public function consultarDisciplinas(){
-        $sql = "SELECT id_aluno, nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela";
+        $sql = "SELECT id_disciplina, nome, logo, pre_requisito
+        FROM $this->tabela ORDER BY nome";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function cadastrarDisciplina($disciplina){
-        $sql = "INSERT INTO $this->tabela (nome_disciplina, pre_requisito) VALUES (:nomeDisciplina, :preRequisito)";
+    public function cadastrarDisciplina($disciplinaObj){
+        $sql = "INSERT INTO $this->tabela (nome, pre_requisito) VALUES (:nomeDisciplina, :preRequisito)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nomeDisciplina', $disciplina->getNomeDisciplina(), PDO::PARAM_STR);
-        $stmt->bindParam(':preRequisito', $disciplina->getPreRequisito(), PDO::PARAM_STR);
+        $stmt->bindParam(':nomeDisciplina', $disciplinaObj->getNomeDisciplina(), PDO::PARAM_STR);
+        $stmt->bindParam(':preRequisito', $disciplinaObj->getPreRequisito(), PDO::PARAM_STR);
         $stmt->execute();
     }
 

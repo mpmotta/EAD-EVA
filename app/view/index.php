@@ -9,7 +9,7 @@
 <body>
     <div class="container-full">
         <header class="topo bg-warning bg-gradient">
-			<img src="../../public/img/alcides-maya-tecnologia.png" alt="logo-alcides">	
+			<img src="../../public/img/logo.png" alt="logo-alcides">	
 			<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
         </header>
         <section class="main">

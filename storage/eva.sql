@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Out-2024 às 21:59
+-- Generation Time: 02-Out-2024 às 20:55
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -79,6 +79,33 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `disciplinas`
+--
+
+CREATE TABLE `disciplinas` (
+  `id_disciplina` int(11) NOT NULL,
+  `nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `logo` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'logo.png',
+  `pre_requisito` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'Nenhum',
+  `quem_editou` varchar(60) COLLATE utf8_unicode_ci DEFAULT 'Admin',
+  `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `disciplinas`
+--
+
+INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `logo`, `pre_requisito`, `quem_editou`, `data_criado`, `data_editado`) VALUES
+(1, 'Sistemas Operacionais I', 'so1.png', 'Nenhum', 'Admin', '2024-10-02 17:39:37', '2024-10-02 17:56:32'),
+(2, 'Sistemas Operacionais II', 'so2.png', 'Nenhum', 'Admin', '2024-10-02 18:28:13', '2024-10-02 18:34:04'),
+(3, 'IntroduÃ§Ã£o a Redes', 'logo.png', 'Nenhum', 'Admin', '2024-10-02 18:31:21', '2024-10-02 18:31:21'),
+(4, 'IntroduÃ§Ã£o Ã  InformÃ¡tica', 'logo.png', 'Nenhum', 'Admin', '2024-10-02 18:32:45', '2024-10-02 18:32:45'),
+(5, 'Tecnologia Wireless', 'wir.png', 'IntroduÃ§Ã£o a Redes', 'Admin', '2024-10-02 18:52:27', '2024-10-02 18:53:25');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `professores`
 --
 
@@ -147,7 +174,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `ultimo_login`, `data_criado`, `data_editado`) VALUES
-(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-01 19:30:29', '2024-09-28 20:31:27', '2024-10-01 19:30:29'),
+(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-02 17:33:06', '2024-09-28 20:31:27', '2024-10-02 17:33:06'),
 (2, 'NADD', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 3, 'nadd@alcidesmaya.com.br', NULL, '2024-09-28 21:03:32', '2024-09-28 21:03:59'),
 (3, '123456789', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'aluno@alcides.com', NULL, '2024-09-28 21:03:52', '2024-09-28 21:03:52'),
 (16, '564564', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'jsilva@gmail.com', NULL, '2024-09-29 21:54:34', '2024-09-29 21:54:34'),
@@ -183,6 +210,12 @@ ALTER TABLE `alunos`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `disciplinas`
+--
+ALTER TABLE `disciplinas`
+  ADD PRIMARY KEY (`id_disciplina`);
+
+--
 -- Indexes for table `professores`
 --
 ALTER TABLE `professores`
@@ -206,6 +239,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `alunos`
   MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `disciplinas`
+--
+ALTER TABLE `disciplinas`
+  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `professores`
