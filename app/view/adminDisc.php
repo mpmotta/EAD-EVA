@@ -37,6 +37,9 @@
                             DISCIPLINA
                         </th>
                         <th>
+                            CURSO
+                        </th>
+                        <th>
                             PRÉ-REQUISITO
                         </th>
                         <th class='text-center'>
@@ -54,6 +57,7 @@
                           $id = $linha['id_disciplina'];
                           $logo = $linha['logo'];
                           $nome = $linha['nome'];
+                          $curso = $linha['curso'];
                           $pre = $linha['pre_requisito'];
                           echo"
                           <tr class='dis'>
@@ -61,9 +65,10 @@
                               <td class='text-center log'>
                               <img src='../../public/img/logos/$logo'></td>
                               <td>$nome</td>
+                              <td>$curso</td>
                               <td>$pre</td>
                               <td class='text-center log'>
-                                <a href='editDis.php?id=$id'>
+                                <a href='editDis.php?id=$id&disc=$nome'>
                                 <img src='../../public/img/logos/edit.png'></a
                               </td>
                               </tr>";
@@ -92,6 +97,24 @@
       <div class="modal-body p-5 cadastra">
             <form action="../controller/disciplinaController.php?action=cadastrarDisciplina" method="post">
                 <input type="text" name="nomeDisciplina" class="form-control" placeholder="Nome da Disciplina" required>
+                <select name="curso" class="mb-3" required>
+                <option selected disabled hidden value="">Curso</option>
+                    <option value="Técnico em Informática">
+                        Técnico em Informática
+                    </option>
+                    <option value="Técnico em ADM">
+                        Técnico em ADM
+                    </option>
+                    <option value="Jovem Profissional">
+                        Jovem Profissional
+                    </option>
+                    <option value="Pacote Office">
+                         Pacote Office
+                    </option>
+                    <option value="Outros">
+                         Outros
+                    </option>
+                </select>
                 <input type="text" name="preRequisito" class="form-control" placeholder="Pré Requisito">
                 <input type="submit" 
                 class="btn btn-success"

@@ -51,6 +51,7 @@
             if (isset($_GET['action']) && $_GET['action'] == 'cadastrarDisciplina') {
                 $disciplinaObj = new disciplina();
                 $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
+                $disciplinaObj->setCurso($_POST['curso']);
                 $disciplinaObj->setPreRequisito($_POST['preRequisito']);
                 if(!$_POST['preRequisito']){
                     $disciplinaObj->setPreRequisito("Nenhum");  
@@ -61,6 +62,7 @@
                 $id = $_GET['id'];
                 $disciplinaObj = new disciplina();
                 $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
+                $disciplinaObj->setCurso($_POST['curso']);
                 $disciplinaObj->setPreRequisito($_POST['preRequisito']);
                 $this->editardisciplina ($disciplinaObj, $id);
             }

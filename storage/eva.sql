@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Out-2024 às 20:55
+-- Generation Time: 07-Out-2024 às 21:47
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -79,6 +79,32 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `conteudos`
+--
+
+CREATE TABLE `conteudos` (
+  `id_conteudo` int(11) NOT NULL,
+  `disciplina` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `num_aula` int(11) NOT NULL,
+  `conteudo` text COLLATE utf8_unicode_ci NOT NULL,
+  `tipo` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `quem_editou` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `conteudos`
+--
+
+INSERT INTO `conteudos` (`id_conteudo`, `disciplina`, `num_aula`, `conteudo`, `tipo`, `quem_editou`, `data_criado`, `data_editado`) VALUES
+(1, 'InglÃªs Instrumental', 1, 'Ingles Instrumental - Aula 1', 'Titulo', 'Admin', '2024-10-07 18:52:35', '2024-10-07 18:52:50'),
+(2, 'InglÃªs Instrumental', 1, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/IOU6qyF9u3s?si=ikpkE6eY9S2B_w95\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>', 'Video', 'Admin', '2024-10-07 18:55:05', '2024-10-07 18:55:05'),
+(3, 'InglÃªs Instrumental', 1, 'APRESENTAÇÃO\r\nO Inglês Instrumental, English for Specific Purposes (ESP), é uma abordagem que surgiu nas\r\nuniversidades brasileiras, nos anos 70, apresentando técnicas de leitura que possibilitavam, ao\r\nleitor, compreender e interpretar textos em inglês. A demanda principal do mundo globalizado é\r\nque estejamos sempre atualizados; o mercado de trabalho exige que sejamos profissionais\r\narrojados e o inglês aparece como o idioma oficial do mercado internacional.\r\nJuntando todas essas constatações, entendemos a necessidade de se obter uma certa proficiência\r\nem técnicas de leitura para cumprirmos tais exigências, através da utilização de bibliografias\r\ntécnicas ou não, produzidas mundialmente. Por isso, o nosso objetivo nesta Unidade de\r\nAprendizagem é focarmos na importância do Inglês Instrumental, aplicando-o, eficientemente,\r\npara obtermos a essência dos textos em inglês que lermos.\r\nBons estudos.\r\nAo final desta Unidade de Aprendizagem, você deve apresentar os seguintes aprendizados:\r\n• Explicar a importância do Inglês Instrumental na leitura de textos em inglês.\r\n• Reconhecer a importância do inglês como o idioma oficial do mercado internacional.\r\n• Realizar a tradução e interpretação de pequenos textos, a partir de técnicas bem simples.', 'texto', 'Admin', '2024-10-07 19:22:12', '2024-10-07 19:22:12');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `disciplinas`
 --
 
@@ -86,8 +112,9 @@ CREATE TABLE `disciplinas` (
   `id_disciplina` int(11) NOT NULL,
   `nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `logo` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'logo.png',
-  `pre_requisito` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'Nenhum',
-  `quem_editou` varchar(60) COLLATE utf8_unicode_ci DEFAULT 'Admin',
+  `curso` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `pre_requisito` varchar(90) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Nenhum',
+  `quem_editou` varchar(60) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Admin',
   `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -96,12 +123,30 @@ CREATE TABLE `disciplinas` (
 -- Extraindo dados da tabela `disciplinas`
 --
 
-INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `logo`, `pre_requisito`, `quem_editou`, `data_criado`, `data_editado`) VALUES
-(1, 'Sistemas Operacionais I', 'so1.png', 'Nenhum', 'Admin', '2024-10-02 17:39:37', '2024-10-02 17:56:32'),
-(2, 'Sistemas Operacionais II', 'so2.png', 'Nenhum', 'Admin', '2024-10-02 18:28:13', '2024-10-02 18:34:04'),
-(3, 'IntroduÃ§Ã£o a Redes', 'logo.png', 'Nenhum', 'Admin', '2024-10-02 18:31:21', '2024-10-02 18:31:21'),
-(4, 'IntroduÃ§Ã£o Ã  InformÃ¡tica', 'logo.png', 'Nenhum', 'Admin', '2024-10-02 18:32:45', '2024-10-02 18:32:45'),
-(5, 'Tecnologia Wireless', 'wir.png', 'IntroduÃ§Ã£o a Redes', 'Admin', '2024-10-02 18:52:27', '2024-10-02 18:53:25');
+INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `logo`, `curso`, `pre_requisito`, `quem_editou`, `data_criado`, `data_editado`) VALUES
+(1, 'Sistemas Operacionais I', 'so1.png', 'Tecnico em Informatica', 'Nenhum', 'Admin', '2024-10-02 17:39:37', '2024-10-07 17:20:21'),
+(2, 'Sistemas Operacionais II', 'so2.png', 'Tecnico em Informatica', 'Nenhum', 'Admin', '2024-10-02 18:28:13', '2024-10-07 17:20:34'),
+(3, 'IntroduÃ§Ã£o a Redes', 'rede.png', 'Tecnico em Informatica', 'Nenhum', 'Admin', '2024-10-02 18:31:21', '2024-10-07 17:39:31'),
+(4, 'IntroduÃ§Ã£o Ã  InformÃ¡tica', 'info.png', 'Tecnico em Informatica', 'Nenhum', 'Admin', '2024-10-02 18:32:45', '2024-10-07 17:39:23'),
+(5, 'Tecnologia Wireless', 'wir.png', 'Tecnico em Informatica', 'IntroduÃ§Ã£o a Redes', 'Admin', '2024-10-02 18:52:27', '2024-10-07 17:20:42'),
+(6, 'Linguagem de ProgramaÃ§Ã£o Web I', 'php.png', 'TÃ©cnico em InformÃ¡tica', 'LÃ³gica de ProgramaÃ§Ã£o', 'Admin', '2024-10-07 17:32:37', '2024-10-07 17:38:10'),
+(7, 'Linguagem de ProgramaÃ§Ã£o Web II ', 'php.png', 'TÃ©cnico em InformÃ¡tica', 'Banco de Dados', 'Admin', '2024-10-07 17:33:01', '2024-10-07 17:38:15'),
+(8, 'Banco de Dados', 'bd.png', 'TÃ©cnico em InformÃ¡tica', 'AnÃ¡lise de Sistemas', 'Admin', '2024-10-07 17:33:32', '2024-10-07 17:38:21'),
+(9, 'Linguagem de ProgramaÃ§Ã£o Desktop I', 'java.png', 'TÃ©cnico em InformÃ¡tica', 'LÃ³gica de ProgramaÃ§Ã£o', 'Admin', '2024-10-07 17:37:04', '2024-10-07 17:38:25'),
+(10, 'Linguagem de ProgramaÃ§Ã£o Desktop II', 'java.png', 'TÃ©cnico em InformÃ¡tica', 'Banco de Dados', 'Admin', '2024-10-07 17:37:23', '2024-10-07 17:38:30'),
+(11, 'Arquitetura de Computadores', 'hd.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:00:22', '2024-10-07 18:23:57'),
+(12, 'InglÃªs Instrumental', 'flag.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:00:35', '2024-10-07 18:24:11'),
+(13, 'Mercado de Trabalho', 'mercado.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:00:51', '2024-10-07 18:24:19'),
+(14, 'OrganizaÃ§Ã£o de Empresas', 'empresa.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:01:02', '2024-10-07 18:24:32'),
+(15, 'Redes de Computadores', 'rede.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:01:24', '2024-10-07 18:24:47'),
+(16, 'Design e AnimaÃ§Ã£o', 'design.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:01:36', '2024-10-07 18:24:54'),
+(17, 'Internet', 'internet.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:01:47', '2024-10-07 18:25:03'),
+(18, 'Metodologia Para ElaboraÃ§Ã£o de Projetos', 'project.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:01:59', '2024-10-07 18:25:10'),
+(19, 'LÃ³gica de ProgramaÃ§Ã£o', 'logic.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:02:15', '2024-10-07 18:25:28'),
+(20, 'AnÃ¡lise de Sistemas', 'flux.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:02:26', '2024-10-07 18:07:05'),
+(21, 'Fundamentos de Sistemas Operacionais', 'os.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:02:39', '2024-10-07 18:31:27'),
+(22, 'HTML', 'html.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:02:48', '2024-10-07 18:25:38'),
+(23, 'ComputaÃ§Ã£o em Nuvem', 'cloud.png', 'TÃ©cnico em InformÃ¡tica', 'Nenhum', 'Admin', '2024-10-07 18:02:59', '2024-10-07 18:25:48');
 
 -- --------------------------------------------------------
 
@@ -174,7 +219,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `ultimo_login`, `data_criado`, `data_editado`) VALUES
-(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-02 17:33:06', '2024-09-28 20:31:27', '2024-10-02 17:33:06'),
+(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-07 17:02:30', '2024-09-28 20:31:27', '2024-10-07 17:02:30'),
 (2, 'NADD', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 3, 'nadd@alcidesmaya.com.br', NULL, '2024-09-28 21:03:32', '2024-09-28 21:03:59'),
 (3, '123456789', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'aluno@alcides.com', NULL, '2024-09-28 21:03:52', '2024-09-28 21:03:52'),
 (16, '564564', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'jsilva@gmail.com', NULL, '2024-09-29 21:54:34', '2024-09-29 21:54:34'),
@@ -210,6 +255,12 @@ ALTER TABLE `alunos`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `conteudos`
+--
+ALTER TABLE `conteudos`
+  ADD PRIMARY KEY (`id_conteudo`);
+
+--
 -- Indexes for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
@@ -238,13 +289,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `conteudos`
+--
+ALTER TABLE `conteudos`
+  MODIFY `id_conteudo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `professores`

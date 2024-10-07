@@ -4,6 +4,7 @@ require_once '../config/connect.php';
 class Disciplina extends Connect{
     private $logo;
     private $nomeDisciplina;
+    private $curso;
     private $preRequisito;
     private $tabela = 'disciplinas';
 
@@ -28,6 +29,14 @@ class Disciplina extends Connect{
         $this->logo = $logo;
     }
 
+    public function getCurso(){
+        return $this->curso;
+    }
+
+    public function setCurso($curso): void{
+        $this->curso = $curso;
+    }
+
     public function getPreRequisito(){
         return $this->preRequisito;
     }
@@ -38,7 +47,7 @@ class Disciplina extends Connect{
 
 
     public function consultarDisciplinas(){
-        $sql = "SELECT id_disciplina, nome, logo, pre_requisito
+        $sql = "SELECT id_disciplina, nome, logo, curso,  pre_requisito
         FROM $this->tabela ORDER BY nome";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
@@ -47,18 +56,21 @@ class Disciplina extends Connect{
     }
 
     public function cadastrarDisciplina($disciplinaObj){
-        $sql = "INSERT INTO $this->tabela (nome, pre_requisito) VALUES (:nomeDisciplina, :preRequisito)";
+        $sql = "INSERT INTO $this->tabela (nome, curso, pre_requisito) VALUES (:nomeDisciplina, :curso,  :preRequisito)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomeDisciplina', $disciplinaObj->getNomeDisciplina(), PDO::PARAM_STR);
-        $stmt->bindParam(':preRequisito', $disciplinaObj->getPreRequisito(), PDO::PARAM_STR);
+        $stmt->bindParam(':curso', 
+        $disciplinaObj->getCurso(), PDO::PARAM_STR);
+        $stmt->bindParam(':preRequisito',$disciplinaObj->getPreRequisito(), PDO::PARAM_STR);
         $stmt->execute();
     }
 
     public function editarDisciplina($disciplina, $id){
-        $sql = "UPDATE $this->tabela SET nome_disciplina = :nomeDisciplina, 
+        $sql = "UPDATE $this->tabela SET nome_disciplina = :nomeDisciplina, curso = :curso,
         pre_requisito = :preRequisito WHERE id_disciplina = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomeDisciplina', $disciplina->getNomeDisciplina(), PDO::PARAM_STR);
+        $stmt->bindParam(':curso', $disciplina->getCurso(), PDO::PARAM_STR);
         $stmt->bindParam(':preRequisito', $disciplina->getPreRequisito(), PDO::PARAM_INT);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
