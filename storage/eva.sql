@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Out-2024 às 21:47
+-- Generation Time: 08-Out-2024 às 21:43
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alunos` (
   `id_aluno` int(11) NOT NULL,
-  `nome` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `nome_aluno` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'avatar.png',
   `ra` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `cpf` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `alunos` (
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `nome`, `avatar`, `ra`, `cpf`, `email`, `fone`, `curso`, `turno`, `data_criado`, `data_editado`) VALUES
+INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `avatar`, `ra`, `cpf`, `email`, `fone`, `curso`, `turno`, `data_criado`, `data_editado`) VALUES
 (13, 'Jose da Silva', 'avatar.png', '564564', '56456454', 'jsilva@gmail.com', '(51) 847-47985', 'TÃ©cnico em ADM', 'Noite', '2024-09-29 21:54:34', '2024-10-01 19:24:25'),
 (14, 'Rhian Silva', 'avatar.png', '84132351', '534.654.745-54', 'rihan@gmail.com', '(51) 3456-8974', 'TÃ©cnico em InformÃ¡tica', 'Tarde', '2024-09-29 21:56:29', '2024-10-01 19:24:30'),
 (17, 'JoÃ£o Silva', 'avatar.png', '1234567-89', '123.456.789-00', 'joao.silva@example.com', '(11) 91234-5678', 'TÃ©cnico em InformÃ¡tica', 'ManhÃ£', '2024-10-01 19:21:34', '2024-10-01 19:21:34'),
@@ -151,12 +151,32 @@ INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `logo`, `curso`, `pre_requis
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `periodos`
+--
+
+CREATE TABLE `periodos` (
+  `id_periodo` int(11) NOT NULL,
+  `periodo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `periodos`
+--
+
+INSERT INTO `periodos` (`id_periodo`, `periodo`, `data_criado`, `data_editado`) VALUES
+(1, '05-2024', '2024-10-08 18:38:57', '2024-10-08 18:38:57');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `professores`
 --
 
 CREATE TABLE `professores` (
   `id_prof` int(11) NOT NULL,
-  `nome` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `nome_prof` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `fone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -167,7 +187,7 @@ CREATE TABLE `professores` (
 -- Extraindo dados da tabela `professores`
 --
 
-INSERT INTO `professores` (`id_prof`, `nome`, `email`, `fone`, `data_criado`, `data_editado`) VALUES
+INSERT INTO `professores` (`id_prof`, `nome_prof`, `email`, `fone`, `data_criado`, `data_editado`) VALUES
 (2, 'Elias Almeida Ramos', 'elias_ramos@gmail.com', '(51) 98407-4070', '2024-09-29 16:44:26', '2024-09-29 16:44:26'),
 (3, 'Alexandre Bonnamin', 'bonnamin@gmail.com', '(51) 99887-6655', '2024-09-29 16:44:57', '2024-09-29 16:44:57'),
 (4, 'Carla Souto', 'carla.souto@gmail.com', '(51) 98844-5577', '2024-09-29 16:45:23', '2024-09-29 16:45:23'),
@@ -200,6 +220,37 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `turmas`
+--
+
+CREATE TABLE `turmas` (
+  `id_turma` int(11) NOT NULL,
+  `nome_turma` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `aluno_ra` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `disciplina_id` int(11) NOT NULL,
+  `professor_id` int(11) NOT NULL,
+  `periodo_id` int(11) NOT NULL,
+  `curso` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `turno` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `alterado_por` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `turmas`
+--
+
+INSERT INTO `turmas` (`id_turma`, `nome_turma`, `aluno_ra`, `disciplina_id`, `professor_id`, `periodo_id`, `curso`, `turno`, `alterado_por`, `data_criado`, `data_editado`) VALUES
+(1, 'TPRE.INF-3T1A ', '84132351', 7, 8, 1, 'TÃ©cnico em InformÃ¡tica', 'Tarde', 'Admin', '2024-10-08 18:39:37', '2024-10-08 18:46:18'),
+(2, 'TPRE.INF-3T1A ', '234567-12', 7, 8, 1, 'TÃ©cnico em InformÃ¡tica', 'Tarde', 'Admin', '2024-10-08 18:39:37', '2024-10-08 18:46:22'),
+(3, 'TPRE.INF-3T1A ', '345678-13', 7, 8, 1, 'TÃ©cnico em InformÃ¡tica', 'Tarde', 'Admin', '2024-10-08 18:39:37', '2024-10-08 18:46:24'),
+(4, 'TPRE.INF-3T1A ', '123456-11', 7, 8, 1, 'TÃ©cnico em InformÃ¡tica', 'Tarde', 'Admin', '2024-10-08 18:39:37', '2024-10-08 18:46:27'),
+(5, 'TPRE.INF-3T1A ', '98-7654321', 7, 8, 1, 'TÃ©cnico em InformÃ¡tica', 'Tarde', 'Admin', '2024-10-08 18:39:37', '2024-10-08 18:46:29');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
@@ -219,7 +270,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `ultimo_login`, `data_criado`, `data_editado`) VALUES
-(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-07 17:02:30', '2024-09-28 20:31:27', '2024-10-07 17:02:30'),
+(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', '2024-10-08 18:33:32', '2024-09-28 20:31:27', '2024-10-08 18:33:32'),
 (2, 'NADD', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 3, 'nadd@alcidesmaya.com.br', NULL, '2024-09-28 21:03:32', '2024-09-28 21:03:59'),
 (3, '123456789', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'aluno@alcides.com', NULL, '2024-09-28 21:03:52', '2024-09-28 21:03:52'),
 (16, '564564', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'jsilva@gmail.com', NULL, '2024-09-29 21:54:34', '2024-09-29 21:54:34'),
@@ -267,11 +318,28 @@ ALTER TABLE `disciplinas`
   ADD PRIMARY KEY (`id_disciplina`);
 
 --
+-- Indexes for table `periodos`
+--
+ALTER TABLE `periodos`
+  ADD PRIMARY KEY (`id_periodo`),
+  ADD UNIQUE KEY `periodo` (`periodo`);
+
+--
 -- Indexes for table `professores`
 --
 ALTER TABLE `professores`
   ADD PRIMARY KEY (`id_prof`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `turmas`
+--
+ALTER TABLE `turmas`
+  ADD PRIMARY KEY (`id_turma`),
+  ADD KEY `aluno_ra` (`aluno_ra`),
+  ADD KEY `disciplina_id` (`disciplina_id`),
+  ADD KEY `professor_id` (`professor_id`),
+  ADD KEY `periodo_id` (`periodo_id`);
 
 --
 -- Indexes for table `usuarios`
@@ -304,16 +372,41 @@ ALTER TABLE `disciplinas`
   MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `periodos`
+--
+ALTER TABLE `periodos`
+  MODIFY `id_periodo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `professores`
 --
 ALTER TABLE `professores`
   MODIFY `id_prof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `turmas`
+--
+ALTER TABLE `turmas`
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `turmas`
+--
+ALTER TABLE `turmas`
+  ADD CONSTRAINT `turmas_ibfk_1` FOREIGN KEY (`aluno_ra`) REFERENCES `alunos` (`ra`),
+  ADD CONSTRAINT `turmas_ibfk_2` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplinas` (`id_disciplina`),
+  ADD CONSTRAINT `turmas_ibfk_3` FOREIGN KEY (`professor_id`) REFERENCES `professores` (`id_prof`),
+  ADD CONSTRAINT `turmas_ibfk_4` FOREIGN KEY (`periodo_id`) REFERENCES `periodos` (`id_periodo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

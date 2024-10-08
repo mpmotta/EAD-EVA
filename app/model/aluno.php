@@ -83,7 +83,7 @@ class Aluno extends Connect{
 
 
     public function consultarAlunos(){
-        $sql = "SELECT a.id_aluno, a.nome, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, a.turno, u.ultimo_login 
+        $sql = "SELECT a.id_aluno, a.nome_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, a.turno, u.ultimo_login 
                 FROM $this->tabela AS a 
                 LEFT JOIN usuarios AS u ON a.ra = u.username"; 
         $stmt = $this->conn->prepare($sql);
@@ -93,7 +93,7 @@ class Aluno extends Connect{
     }
 
     public function consultarAlunosPorTurno($turno) {
-        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE turno = :turno";
+        $sql = "SELECT nome_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE turno = :turno";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':turno', $turno, PDO::PARAM_STR);
         $stmt->execute();
@@ -102,7 +102,7 @@ class Aluno extends Connect{
     }
 
     public function consultarAlunoID($id){
-        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE id_aluno = :id";
+        $sql = "SELECT nome_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE id_aluno = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -120,7 +120,7 @@ class Aluno extends Connect{
     }
 
     public function consultarAlunoCpf($cpf){
-        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE cpf = :CPF";
+        $sql = "SELECT nome_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
         $stmt->execute();
@@ -140,7 +140,7 @@ class Aluno extends Connect{
 
 
     public function consultarAlunoRA($RA){
-        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE ra = :RA";
+        $sql = "SELECT nome_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE ra = :RA";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':RA', $RA, PDO::PARAM_STR);
         $stmt->execute();
@@ -159,7 +159,7 @@ class Aluno extends Connect{
 
 
     public function pesquisarAluno($txt){
-        $sql = "SELECT nome, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE nome like :txt";
+        $sql = "SELECT nome_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE nome like :txt";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':txt', "%" . $txt . "%", PDO::PARAM_STR);
         $stmt->execute();
@@ -168,7 +168,7 @@ class Aluno extends Connect{
     }
 
     public function cadastrarAluno($alunoObj){
-        $sql = "INSERT INTO $this->tabela (nome, ra, cpf, email, fone, curso, turno) 
+        $sql = "INSERT INTO $this->tabela (nome_aluno, ra, cpf, email, fone, curso, turno) 
         VALUES (:nome, :ra, :cpf, :email, :fone, :curso, :turno)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
@@ -183,7 +183,7 @@ class Aluno extends Connect{
     }
 
     public function editarAluno($alunoObj, $id){
-        $sql = "UPDATE $this->tabela SET nome = :nome, ra = :ra, cpf = :cpf, email = :email 
+        $sql = "UPDATE $this->tabela SET nome_aluno = :nome, ra = :ra, cpf = :cpf, email = :email 
         fone = :fone, curso = :curso, turno = :turno WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
@@ -207,7 +207,7 @@ class Aluno extends Connect{
     }
 
     public function editarAlunoCpf($alunoObj, $cpf){
-        $sql = "UPDATE $this->tabela SET nome = :nome, ra = :ra, cpf = :cpf, email = :email 
+        $sql = "UPDATE $this->tabela SET nome_aluno = :nome, ra = :ra, cpf = :cpf, email = :email 
         fone = :fone, curso = :curso, turno = :turno WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);

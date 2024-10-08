@@ -47,7 +47,7 @@ class Professor extends Connect{
     }
 
     public function consultarProfessores(){
-        $sql = "SELECT p.id_prof, p.nome, p.email, p.fone, u.ultimo_login 
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.ultimo_login 
                 FROM $this->tabela AS p 
                 LEFT JOIN usuarios AS u ON p.email = u.email";
         $stmt = $this->conn->prepare($sql);
@@ -57,7 +57,7 @@ class Professor extends Connect{
     }
 
     public function cadastrarProfessor($professorObj){
-        $sql = "INSERT INTO $this->tabela (nome, email, fone) VALUES (:nome, :email, :fone)";
+        $sql = "INSERT INTO $this->tabela (nome_prof, email, fone) VALUES (:nome, :email, :fone)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nome', $professorObj->getNome(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $professorObj->getEmail(), PDO::PARAM_STR);
