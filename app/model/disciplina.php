@@ -55,6 +55,17 @@ class Disciplina extends Connect{
         return $result;
     }
 
+    public function consultarDisciplinasCursos(){
+        $sql = "SELECT d.id_disciplina, d.nome, d.logo, d.curso,  d.pre_requisito, c.nome_curso
+        FROM $this->tabela as d
+        LEFT JOIN cursos AS c ON d.curso = c.id_curso
+        ORDER BY d.nome";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function cadastrarDisciplina($disciplinaObj){
         $sql = "INSERT INTO $this->tabela (nome, curso, pre_requisito) VALUES (:nomeDisciplina, :curso,  :preRequisito)";
         $stmt = $this->conn->prepare($sql);

@@ -14,15 +14,14 @@
     <div class="container-full">
     <?php require_once 'headerAdmin.php'; ?>
         <section class="container main bg-white">
-            <h2 class="mb-5"> EVA - GERENCIAR DISCIPLINAS</h2>
+            <h4 class="mb-3"> EVA - GERENCIAR DISCIPLINAS</h4>
 
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cadDis">
                 CADASTRAR DISCIPLINA
              </button>
 
             <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
-            <br>&nbsp;
-            <hr class="pt-2 pb-2">
+            <hr class="pt-2 pb-1">
 
             <table class="table table-bordered table stripped">
                 <thead class="table-dark">
@@ -51,13 +50,13 @@
                 <?php
                       require_once '../controller/disciplinaController.php';
                       $disciplina = new Disciplina(); 
-                      $consulta = $disciplina->consultarDisciplinas();
+                      $consulta = $disciplina->consultarDisciplinasCursos();
                         $i = 1;
                       foreach($consulta as $linha){
                           $id = $linha['id_disciplina'];
                           $logo = $linha['logo'];
                           $nome = $linha['nome'];
-                          $curso = $linha['curso'];
+                          $curso = $linha['nome_curso'];
                           $pre = $linha['pre_requisito'];
                           echo"
                           <tr class='dis'>
