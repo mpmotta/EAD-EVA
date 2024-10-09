@@ -55,7 +55,7 @@
                       $consulta = $professor->consultarProfessores();
                         $i = 1;
                       foreach($consulta as $linha){
-                          $nome = $linha['nome'];
+                          $nome = $linha['nome_prof'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
                           $ultimo_login = $linha['ultimo_login'];

@@ -13,8 +13,8 @@
 <body>
 <div class="container-full">
       <?php require_once 'headerAdmin.php'; ?>
-        <section class="container main bg-white">
-            <h2 class="mb-5"> EVA - GERENCIAR ALUNOS</h2>
+        <section class="container-fluid px-5 main bg-white">
+            <h4 class="mb-3"> EVA - GERENCIAR ALUNOS</h4>
 
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cadAluno">
                 CADASTRAR ALUNO
@@ -29,7 +29,7 @@
 
             <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
             <br>&nbsp;
-            <hr class="pt-2 pb-2">
+            <hr class="pt-1 pb-1">
 
             <table class="table table-bordered table stripped">
                 <thead class="table-dark">
@@ -42,6 +42,9 @@
                         </th>
                         <th>
                             RA
+                        </th>
+                        <th>
+                            STATUS
                         </th>
                         <th>
                             CPF
@@ -70,13 +73,14 @@
                       $consulta = $aluno->consultarAlunos();
                         $i = 1;
                       foreach($consulta as $linha){
-                          $nome = $linha['nome'];
+                          $nome = $linha['nome_aluno'];
                           $ra = $linha['ra'];
+                          $status = $linha['status_aluno'];
                           $cpf = $linha['cpf'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
                           $turno = $linha['turno'];
-                          $curso = $linha['curso'];
+                          $curso = $linha['nome_curso'];
                           $ultimo_login = $linha['ultimo_login'];
                           $timestampAtual = time();
   
@@ -84,8 +88,16 @@
                           <tr>
                               <td class='text-center'>". $i++ ."</td> 
                               <td>$nome</td>
-                              <td>$ra</td>
-                              <td>$cpf</td>
+                              <td>$ra</td>";
+                          if($status == 'inativo'){
+                            echo "<td class='text-danger'>$status</td>";
+                          }else{
+                            echo "<td>$status</td>";
+                          }    
+                              
+
+                          echo    
+                              "<td>$cpf</td>
                               <td>$email</td>
                               <td>$fone</td>
                               <td>$curso</td>
@@ -136,8 +148,21 @@
                 <input type="text" name="cpf" class="form-control" placeholder="CPF" required>
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required>
                 <input type="tel" name="fone" class="form-control" placeholder="Telefone" required>
-                <input type="text" name="curso" class="form-control" placeholder="Curso" required>
-                <select name="turno" class="form-control" required>
+                <select name="curso" class="form-control" required>
+                <option selected disabled hidden value="">Curso</option>
+                <?php
+                  require_once '../controller/cursoController.php';
+                  $curso = new Curso(); 
+                  $cons = $curso->consultarCursos();
+                    $i = 1;
+                  foreach($cons as $linha){
+                    $id_curso = $linha['id_curso'];
+                    $nome_curso = $linha['nome_curso'];
+                    echo "<option value='$id_curso'>$nome_curso</option>";
+                  }
+                ?>
+                </select>
+                <select name="turno" class="form-control mt-3" required>
                     <option selected disabled hidden value="">Turno</option>
                     <option value="manha">Manhã</option>
                     <option value="tarde">Tarde</option>

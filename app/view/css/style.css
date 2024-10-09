@@ -128,7 +128,7 @@ table{
 .box{
 	width: 115px;
 	display: inline-block;
-	margin: 0 10px;
+	margin: 12px 10px !important;
 	padding: 8px;
 	box-shadow: 0px 0px 6px 4px #777;
 	text-align: center;

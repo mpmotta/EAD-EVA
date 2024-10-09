@@ -57,6 +57,13 @@
                             <img src="../../public/icons/calendar.png" alt="períodos">
                         </div>
                     </a>
+                    <br>
+                    <a href="adminConteudos.php">
+                        <div class="box">
+                            CONTEÚDOS
+                            <img src="../../public/icons/documents.png" alt="períodos">
+                        </div>
+                    </a>
 
                     <a href="adminGer.php">
                         <div class="box">
