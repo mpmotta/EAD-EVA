@@ -141,15 +141,16 @@ class Aluno extends Connect{
     }
 
 
-    public function consultarAlunoRA($RA){
-        $sql = "SELECT nome_aluno, status_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE ra = :RA";
+    public function consultarAlunoRA($ra){
+        $sql = "SELECT *
+        FROM $this->tabela 
+        WHERE ra = :ra";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':RA', $RA, PDO::PARAM_STR);
+        $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            $this->setNome($result['nome']);
-            $this->setNome($result['nome']);
+            $this->setNome($result['nome_aluno']);
             $this->setRa($result['ra']);
             $this->setCpf($result['cpf']);
             $this->setEmail($result['email']);
@@ -157,6 +158,19 @@ class Aluno extends Connect{
             $this->setCurso($result['curso']);
             $this->setTurno($result['turno']);
         }
+    }
+
+    public function consultarAlunoRALL($ra){
+        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, a.turno, c.nome_curso
+        FROM $this->tabela as a
+        LEFT JOIN cursos AS c ON a.curso = c.id_curso
+        LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
+        WHERE ra = :ra";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
 

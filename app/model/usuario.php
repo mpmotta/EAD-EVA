@@ -76,6 +76,7 @@ class Usuario extends Connect{
             $_SESSION['logado'] = true;
             $_SESSION['id'] = $result['id_usuario'];
             $_SESSION['nivel'] = $result['nivel'];
+            $_SESSION['username'] = $result['username'];
 
             $this->ultimoAcesso($result['id_usuario']);
 

@@ -34,6 +34,10 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                   </ul>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link text-warning" 
+                  href="../controller/usuarioController.php?action=sair">DESLOGAR</a>
+                </li>
               </ul>
             </div>
           </div>

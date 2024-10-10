@@ -21,7 +21,10 @@
              </button>
 
             <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
-            <hr class="pt-2 pb-1">
+            <hr class="pt-2
+            
+            
+              pb-1">
 
             <table class="table table-bordered table stripped">
                 <thead class="table-dark">

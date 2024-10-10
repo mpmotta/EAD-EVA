@@ -43,6 +43,12 @@
             return $result;
         }
 
+        public function consultarAlunoRALL($RA){
+            $aluno = new Aluno();
+            $result = $aluno->consultarAlunoRALL($RA);
+            return $result;
+        }
+
         public function pesquisarAluno($txt){
             $aluno = new Aluno();
             $result = $aluno->pesquisarAluno($txt);

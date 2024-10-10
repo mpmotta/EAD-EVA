@@ -71,12 +71,12 @@ table{
     font-weight: bold;
 }
 .info{
-    margin-top: 20px;
     margin-right: 40px;
-	width: 260px;
+	text-align: center;
+	width: 300px;
 	background-color: #999;
 	color: #fff;
-    padding: 40px 20px 10px 20px;
+    padding: 10px 20px 10px 20px;
 }
 .info h4{
 	text-align: center;
@@ -84,7 +84,7 @@ table{
 	text-shadow: 1px 1px 3px #000;
 }
 .info img{
-	width: 90%;	
+	width: 60%;	
 	margin: 10px;
 }
 .info ul{
