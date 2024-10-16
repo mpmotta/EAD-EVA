@@ -9,6 +9,13 @@
             return $result;
         }
 
+        public function consultarProfessorID($id){
+            $id = $_GET['id'];
+            $professor = new Professor();
+            $result = $professor->consultarProfessorID($id);            
+            return $result;
+        }
+
         public function cadastrarProfessor($professorObj) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $professor = new professor(); 

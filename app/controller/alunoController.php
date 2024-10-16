@@ -37,9 +37,11 @@
         }
 
 
-        public function consultarAlunoRA($RA){
+        public function consultarAlunoID($id){
+            $id = $_GET['id'];
+    
             $aluno = new Aluno();
-            $result = $aluno->consultarAlunoRA($RA);
+            $result = $aluno->consultarAlunoID($id);
             return $result;
         }
 

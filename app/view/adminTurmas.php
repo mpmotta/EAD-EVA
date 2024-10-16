@@ -61,7 +61,7 @@
                           $disciplina = $linha['nome'];
                           $professor = $linha['nome_prof'];
                           $periodo = $linha['periodo'];
-                          $curso = $linha['curso'];
+                          $curso = $linha['nome_curso'];
                           $turno = $linha['turno'];
   
                           echo"

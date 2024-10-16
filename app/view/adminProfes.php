@@ -38,13 +38,16 @@
                             PROFESSOR
                         </th>
                         <th>
-                            E-MAIL
-                        </th>
-                        <th>
                             FONE
                         </th>
                         <th>
+                            E-MAIL
+                        </th>
+                        <th>
                             ÚLTIMO LOGIN
+                        </th>
+                        <th class='text-center'>
+                            EDITAR
                         </th>
                     </tr>
                 </thead> 
@@ -55,6 +58,7 @@
                       $consulta = $professor->consultarProfessores();
                         $i = 1;
                       foreach($consulta as $linha){
+                          $id = $linha['id_prof'];
                           $nome = $linha['nome_prof'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
@@ -87,7 +91,12 @@
                                               echo "<td>Há $dias dias</td>"; 
                                           }
                                       }
-                          echo "</tr>";
+                          echo "
+                                <td class='text-center log'>
+                                <a href='editProf.php?id=$id'>
+                                <img src='../../public/img/logos/edit.png'></a
+                              </td>
+                          </tr>";
                       }
                 ?>
                 </tbody>   

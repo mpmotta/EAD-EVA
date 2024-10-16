@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `eva`
@@ -233,7 +233,7 @@ CREATE TRIGGER `trg_after_insert_professores` AFTER INSERT ON `professores` FOR 
     DECLARE primeiroNome VARCHAR(50);
     DECLARE ultimoNome VARCHAR(50);
 
-    SET nomeMinusculo = LOWER(NEW.nome);
+    SET nomeMinusculo = LOWER(NEW.nome_prof);
     SET primeiroNome = SUBSTRING_INDEX(nomeMinusculo, ' ', 1);
     SET ultimoNome = SUBSTRING_INDEX(nomeMinusculo, ' ', -1);
     SET username = CONCAT(primeiroNome, '_', ultimoNome);

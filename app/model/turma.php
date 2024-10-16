@@ -63,11 +63,13 @@ class Turma extends Connect{
     }
 
     public function consultarTurmas(){
-        $sql = "SELECT t.nome_turma, t.aluno_ra, t.disciplina_id, t.periodo_id, t.professor_id, t.turno, t.curso, d.nome, p.nome_prof, pe.periodo, a.nome_aluno
+        $sql = "SELECT t.nome_turma, t.aluno_ra, t.disciplina_id, t.periodo_id, t.professor_id, t.curso, d.nome, p.nome_prof, pe.periodo, a.nome_aluno, c.nome_curso, tu.turno
         FROM $this->tabela as t
         LEFT JOIN alunos as a ON t.aluno_ra = a.ra
         LEFT JOIN disciplinas as d ON t.disciplina_id = d.id_disciplina
         LEFT JOIN professores as p ON t.professor_id = p.id_prof
+        LEFT JOIN cursos as c ON t.curso = c.id_curso
+        LEFT JOIN turnos as tu ON t.turno_id = tu.id_turno
         LEFT JOIN periodos as pe ON t.periodo_id = pe.id_periodo";  
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();

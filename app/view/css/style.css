@@ -11,6 +11,17 @@ table{
 	font-size: 14px;
 	margin-bottom: 150px !important;
 }
+.tabela-user{
+	font-size: 18px !important;
+}
+.tabela-user th{
+	text-transform: uppercase;
+	text-align: right;
+	width: 200px;
+}
+.tabela-user * {
+	vertical-align: middle !important;
+}
 .container, .border{
     background-color: #fbfbfb;
 }

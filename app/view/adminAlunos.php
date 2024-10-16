@@ -59,7 +59,7 @@
                             CURSO
                         </th>
                         <th>
-                            TURNO
+                            TURMA
                         </th>
                         <th>
                             ÚLTIMO LOGIN
@@ -79,7 +79,7 @@
                           $cpf = $linha['cpf'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
-                          $turno = $linha['turno'];
+                          $turma = $linha['nome_turma'];
                           $curso = $linha['nome_curso'];
                           $ultimo_login = $linha['ultimo_login'];
                           $timestampAtual = time();
@@ -101,7 +101,7 @@
                               <td>$email</td>
                               <td>$fone</td>
                               <td>$curso</td>
-                              <td>$turno</td>";
+                              <td>$turma</td>";
                           
                               $dataHoraUltimoLogin = $ultimo_login;
                               if (empty($dataHoraUltimoLogin)) {
