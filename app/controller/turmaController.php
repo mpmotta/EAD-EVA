@@ -13,6 +13,28 @@
             }
         }
 
+        public function matricularAluno($turmaObj) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+                $turma = new turma(); 
+                $turma->matricularAluno($turmaObj);
+                header('Location: ../view/adminTurmas.php?matricula=ok');
+            } else {
+                header("Location: ../view/adminTurmas.php?matricula=erro");
+            }
+        }
+
+
+        public function matricularVAriosAlunos($turmaObj, $alunosRA) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $turma = new turma();
+                $turma->matricularVAriosAlunos($turmaObj, $alunosRA);
+                header('Location: ../view/adminTurmas.php?matricula=ok');
+            } else {
+                header("Location: ../view/adminTurmas.php?matricula=erro");
+            }
+        }
+
+
 
         public function consultarTurmas(){
             $turma = new turma();
@@ -48,6 +70,33 @@
                 $turmaObj = new turma();
                 $turmaObj->setNometurma($_POST['nometurma']);
                 $this->editarturma ($turmaObj, $id);
+            }
+
+            if (isset($_GET['action']) && $_GET['action'] == 'matricularAluno') {
+                
+                $turmaObj = new turma();
+                $turmaObj->setNometurma($_POST['turma']);
+                $turmaObj->setAluno_ra($_POST['ra']);
+                $turmaObj->setDisciplina_id($_POST['disciplina']);
+                $turmaObj->setProfessor_id($_POST['professor']);
+                $turmaObj->setPeriodo_id($_POST['periodo']);
+                $turmaObj->setCurso_id($_POST['curso']);
+                $turmaObj->setTurno_id($_POST['turno']);
+                $this->matricularAluno ($turmaObj);
+            }
+
+            if (isset($_GET['action']) && $_GET['action'] == 'matricularVariosAlunos') {
+                $turmaObj = new turma();
+                $turmaObj->setNometurma($_POST['turma']);
+                $turmaObj->setDisciplina_id($_POST['disciplina']);
+                $turmaObj->setProfessor_id($_POST['professor']);
+                $turmaObj->setPeriodo_id($_POST['periodo']);
+                $turmaObj->setCurso_id($_POST['curso']);
+                $turmaObj->setTurno_id($_POST['turno']);
+            
+                $alunosRA = $_POST['ras'];
+            
+                $this->matricularVariosAlunos($turmaObj, $alunosRA);
             }
 
 

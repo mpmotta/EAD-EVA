@@ -95,6 +95,14 @@ class Aluno extends Connect{
         return $result;
     }
 
+    public function consultarAlunosAtivos(){
+        $sql = "SELECT * FROM $this->tabela";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultarAlunosPorTurno($turno) {
         $sql = "SELECT nome_aluno, status_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE turno = :turno";
         $stmt = $this->conn->prepare($sql);

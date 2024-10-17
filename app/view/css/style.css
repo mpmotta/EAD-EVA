@@ -11,6 +11,13 @@ table{
 	font-size: 14px;
 	margin-bottom: 150px !important;
 }
+.lista-alunos{
+	margin-bottom: 10px !important;
+}
+.check{
+	text-align: right;
+	width: 20px;
+}
 .tabela-user{
 	font-size: 18px !important;
 }
@@ -21,6 +28,9 @@ table{
 }
 .tabela-user * {
 	vertical-align: middle !important;
+}
+.bold{
+	font-weight: 900 !important;
 }
 .container, .border{
     background-color: #fbfbfb;
@@ -52,10 +62,7 @@ table{
     text-decoration: none;
     vertical-align: middle;
 }
-.logo{
-	
 
-}
 .icon{
     height: 28px;
 }

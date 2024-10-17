@@ -23,6 +23,12 @@
             return $result;
         }
 
+        public function consultarAlunosAtivos(){
+            $aluno = new Aluno();
+            $result = $aluno->consultarAlunosAtivos();
+            return $result;
+        }
+
 
         public function consultarAlunosPorTurno($turno) {
                  $aluno = new Aluno();

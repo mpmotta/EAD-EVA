@@ -146,7 +146,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                                 $periodo = new Periodo();
                                 $per = $periodo->consultarPeriodos();
                                 foreach ($per as $per_linha) {
-                                    $id_periodo = $per_inha['id_periodo'];
+                                    $id_periodo = $per_linha['id_periodo'];
                                     $nome_periodo = $per_linha['periodo'];
                                     echo "<option value='$id_periodo'>$nome_periodo</option>";
                                 }
@@ -198,12 +198,115 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                     </div>
                     <div class="modal-body p-5">
-                        <form action="../controller/alunoController.php?action=lote" method="post" enctype="multipart/form-data">
-                            <label class="negrito">Envie um arquivo .csv </label>
-                            <input type="file" name="lote" class="form-control" accept=".csv" required>
-                            <input type="submit" value="Enviar" class="btn btn-success mt-4">
-                        </form>
-                        </form>
+                    <form action="../controller/turmaController.php?action=matricularVariosAlunos" method="post">
+                        
+                        <input type="text" name="turma" class="form-control" placeholder="Turma" required>
+
+                                          
+                        <select name="disciplina" class="form-control mt-3" required>
+                            <option selected disabled hidden value="">Disciplina</option>
+                            <?php
+                            require_once '../controller/disciplinaController.php';
+                            $disciplina = new disciplina();
+                            $dis = $disciplina->consultarDisciplinas();
+                            foreach ($dis as $dis_linha) {
+                                $id_disciplina = $dis_linha['id_disciplina'];
+                                $nome_disciplina = $dis_linha['nome'];
+                                echo "<option value='$id_disciplina'>$nome_disciplina</option>";
+                            }
+                            ?>
+                        </select>
+
+                        <select name="professor" class="form-control mt-3" required>
+                            <option selected disabled hidden value="">Professor</option>
+                            <?php
+                            require_once '../controller/professorController.php';
+                            $professor = new Professor();
+                            $prof = $professor->consultarProf();
+                            foreach ($prof as $prof_linha) {
+                                $id_prof = $prof_linha['id_prof'];
+                                $nome_prof = $prof_linha['nome_prof'];
+                                echo "<option value='$id_prof'>$nome_prof</option>";
+                            }
+                            ?>
+                        </select>
+                        <select name="periodo" class="form-control mt-3" required>
+                            <option selected disabled hidden value="">Período</option>
+                            <?php
+                            require_once '../controller/periodoController.php';
+                            $periodo = new Periodo();
+                            $per = $periodo->consultarPeriodos();
+                            foreach ($per as $per_linha) {
+                                $id_periodo = $per_linha['id_periodo'];
+                                $nome_periodo = $per_linha['periodo'];
+                                echo "<option value='$id_periodo'>$nome_periodo</option>";
+                            }
+                            ?>
+                        </select>
+                        <select name="curso" class="form-control mt-3" required>
+                            <option selected disabled hidden value="">Curso</option>
+                            <?php
+                            require_once '../controller/cursoController.php';
+                            $curso = new Curso();
+                            $curs = $curso->consultarCursos();
+                            foreach ($curs as $curs_linha) {
+                                $id_curso = $curs_linha['id_curso'];
+                                $nome_curso = $curs_linha['nome_curso'];
+                                echo "<option value='$id_curso'>$nome_curso</option>";
+                            }
+                            ?>
+                        </select>
+
+                        <select name="turno" class="form-control mt-3" required>
+                            <option selected disabled hidden value="">Turno</option>
+                            <?php
+                            require_once '../controller/turnoController.php';
+                            $turno = new Turno();
+                            $tur = $turno->consultarTurnos();
+                            foreach ($tur as $tur_linha) {
+                                $id_turno = $tur_linha['id_turno'];
+                                $nome_turno = $tur_linha['turno'];
+                                echo "<option value='$id_turno'>$nome_turno</option>";
+                            }
+                            ?>
+                        </select>
+                            <br><br>
+                            <label class="form-control>"><strong>Lista de Alunos</strong></label>
+                            <table class="table table-bordered table-striped lista-alunos">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <th>
+                                            NOME
+                                        </th>
+                                        <th>
+                                            RA
+                                        </th>
+                                    </tr>
+                        </thead>
+                            <?php
+                                require_once '../controller/alunoController.php';
+                                $aluno = new Aluno();
+                                $alu = $aluno->consultarAlunosAtivos();
+                                foreach ($alu as $alu_linha) {
+                                    $aluno_ra = $alu_linha['ra'];
+                                    $nome_aluno = $alu_linha['nome_aluno'];
+                                    echo "
+                                    <tr>
+                                        <td class='check'><input type='checkbox' 
+                                        name='ras[]' 
+                                        value='$aluno_ra' id='$aluno_ra'></td>
+                                        <td>$nome_aluno</td>
+                                        <td>$aluno_ra</td>
+                                    </tr>    
+                                    ";
+                                }
+                            ?>
+                            </table>
+                                    
+                        <input type="submit" value="Matricular Alunos" class="btn btn-success mt-4">
+                    </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -218,6 +321,9 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
             echo  "<script src='js/matriculado.js'></script>";
         }
         if (isset($_GET['matricula']) && $_GET['matricula'] == 'duplicado') {
+            echo  "<script src='js/duplicado.js'></script>";
+        }
+        if (isset($_GET['matricula']) && $_GET['matricula'] == 'erro') {
             echo  "<script src='js/duplicado.js'></script>";
         }
         ?>

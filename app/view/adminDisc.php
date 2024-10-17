@@ -26,7 +26,7 @@
             
               pb-1">
 
-            <table class="table table-bordered table stripped">
+            <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th class='text-center'>
