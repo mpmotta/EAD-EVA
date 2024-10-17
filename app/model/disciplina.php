@@ -47,8 +47,7 @@ class Disciplina extends Connect{
 
 
     public function consultarDisciplinas(){
-        $sql = "SELECT id_disciplina, nome, logo, curso,  pre_requisito
-        FROM $this->tabela ORDER BY nome";
+        $sql = "SELECT * FROM $this->tabela ORDER BY nome";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

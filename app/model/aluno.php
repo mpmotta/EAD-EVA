@@ -86,9 +86,17 @@ class Aluno extends Connect{
         $sql = "SELECT a.id_aluno, a.nome_aluno, u.avatar, a.status_aluno, a.ra, a.cpf, a.email, a.fone, c.nome_curso, t.nome_turma, u.ultimo_login 
                 FROM $this->tabela AS a 
                 LEFT JOIN usuarios AS u ON a.ra = u.username
-                LEFT JOIN turmas AS t ON a.turma_id = t.id_turma
+                LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
                 LEFT JOIN cursos AS c ON a.curso = c.id_curso
-        ORDER BY a.curso, a.nome_aluno"; 
+        ORDER BY a.curso, a.status_aluno, a.nome_aluno"; 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function consultarAlunosAtivos(){
+        $sql = "SELECT * FROM $this->tabela";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

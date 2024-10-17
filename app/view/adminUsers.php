@@ -28,7 +28,7 @@
             <br>&nbsp;
             <hr class="pt-2 pb-2">
 
-            <table class="table table-bordered table stripped">
+            <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th>
