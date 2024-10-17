@@ -25,6 +25,10 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                     MATRICULAR GRUPO DE ALUNOS
                 </button>
 
+                <button type="button" class="btn btn-sm btn-primary ms-4" data-bs-toggle="modal" data-bs-target="#matLoteCSV">
+                    MATRICULAR LOTE (CSV)
+                 </button>
+
                 <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
                 <br>&nbsp;
                 <hr class="pt-1 pb-1">
@@ -190,7 +194,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
             </div>
         </div>
 
-        <div class="modal fade" id="matGrupo" tabindex="-1" aria-labelledby="Cadastrar Lote" aria-hidden="true">
+        <div class="modal fade" id="matGrupo" tabindex="-1" aria-labelledby="Matricular Lote" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -315,12 +319,34 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
             </div>
         </div>
 
+        <div class="modal fade" id="matLoteCSV" tabindex="-1" aria-labelledby="Matricular Lote" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="matLoteLabel">Matricular Lote de Alunos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body p-5">
+                    <form action="../controller/turmaController.php?action=LoteCSV" method="post" enctype="multipart/form-data">
+                    <label class="negrito">Envie um arquivo .csv </label>
+                    <input type="file" name="lote" class="form-control" accept=".csv" required>
+                    <input type="submit" value="Enviar" class="btn btn-success mt-4">
+                </form>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+                </div>
+            </div>
+    </div>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <?php
         if (isset($_GET['matricula']) && $_GET['matricula'] == 'ok') {
             echo  "<script src='js/matriculado.js'></script>";
         }
-        if (isset($_GET['matricula']) && $_GET['matricula'] == 'duplicado') {
+        if (isset($_GET['registro']) && $_GET['registro'] == 'duplicado') {
             echo  "<script src='js/duplicado.js'></script>";
         }
         if (isset($_GET['matricula']) && $_GET['matricula'] == 'erro') {

@@ -14,12 +14,14 @@
         }
 
         public function matricularAluno($turmaObj) {
+            
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $turma = new turma(); 
                 $turma->matricularAluno($turmaObj);
                 header('Location: ../view/adminTurmas.php?matricula=ok');
             } else {
                 header("Location: ../view/adminTurmas.php?matricula=erro");
+                
             }
         }
 
@@ -97,6 +99,11 @@
                 $alunosRA = $_POST['ras'];
             
                 $this->matricularVariosAlunos($turmaObj, $alunosRA);
+            
+            }
+
+            if (isset($_GET['action']) && $_GET['action'] == 'LoteCSV') {
+               
             }
 
 
@@ -106,6 +113,7 @@
             }
         }
     }
+
     $turmaController = new turmaController();
     $turmaController->handleRequest();
 ?>

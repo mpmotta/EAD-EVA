@@ -190,8 +190,7 @@
           <label class="negrito">Envie um arquivo .csv </label>
           <input type="file" name="lote" class="form-control" accept=".csv" required>
           <input type="submit" value="Enviar" class="btn btn-success mt-4">
-      </form>
-            </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
