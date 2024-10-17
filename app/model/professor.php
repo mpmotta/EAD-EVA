@@ -46,10 +46,21 @@ class Professor extends Connect{
         $this->lastLogin = $lastLogin;
     }
 
+    public function consultarProf(){
+        $sql = "SELECT id_prof, nome_prof
+                FROM $this->tabela 
+                ORDER BY nome_prof";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultarProfessores(){
         $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.ultimo_login 
                 FROM $this->tabela AS p 
-                LEFT JOIN usuarios AS u ON p.email = u.email";
+                LEFT JOIN usuarios AS u ON p.email = u.email
+                ORDER BY u.ultimo_login DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

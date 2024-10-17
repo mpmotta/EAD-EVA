@@ -45,7 +45,8 @@ class Usuario extends Connect{
     }
 
     public function consultarUsuarios(){
-        $sql = "SELECT id_usuario, username, nivel, email, ultimo_login FROM $this->tabela";
+        $sql = "SELECT id_usuario, username, nivel, email, ultimo_login 
+        FROM $this->tabela ORDER BY ultimo_login DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

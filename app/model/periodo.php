@@ -38,7 +38,8 @@ class Periodo extends Connect{
 
 
     public function consultarPeriodos(){
-        $sql = "SELECT id_periodo, nome_periodo, data_inicio, data_final FROM $this->tabela";       
+        $sql = "SELECT id_periodo, periodo FROM $this->tabela
+        ORDER BY periodo DESC";       
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
