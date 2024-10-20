@@ -179,3 +179,14 @@ table{
 .log img:hover{
 	filter: opacity(50%);
 }
+.lnk a:hover{
+	color: #ffa200 !important;
+}
+.fa-whatsapp{
+	color:#00ff00;
+	margin-right:5px;
+}
+.lil{
+	background-color: #fff;
+	border-radius: 50%;
+}
