@@ -35,12 +35,15 @@
                 header("Location: ../view/adminTurmas.php?matricula=erro");
             }
         }
-
-
-
-        public function consultarTurmas(){
+       public function consultarTurmas(){
             $turma = new turma();
             $result = $turma->consultarTurmas();
+            return $result;
+        }
+
+        public function turmaMaterias($ra){
+            $turma = new turma();
+            $result = $turma->turmaMaterias($ra);
             return $result;
         }
 

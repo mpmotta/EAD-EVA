@@ -95,6 +95,21 @@ class Turma extends Connect{
         return $result;
     }
 
+    public function turmaMaterias($ra){
+        $sql = "SELECT t.nome_turma, t.disciplina_id, d.nome, d.logo
+        FROM $this->tabela as t
+        LEFT JOIN alunos as a ON t.aluno_ra = a.ra
+        LEFT JOIN disciplinas as d ON t.disciplina_id = d.id_disciplina
+        WHERE a.ra = :ra";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     public function matricularAluno($turmaObj) {
         $nomeTurma = $turmaObj->getNomeTurma();
         $aluno_ra = $turmaObj->getAluno_ra();

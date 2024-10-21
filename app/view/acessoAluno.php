@@ -20,41 +20,55 @@
 					<?php
 						require_once '../controller/alunoController.php';
 						$aluno = new Aluno(); 
-						$consulta = $aluno->consultarAlunoRALL($myra);
+						$consulta = $aluno->PageAlunoRA($myra);
 
 						foreach($consulta as $linha){
+							$avatar = $linha['avatar'];
 							$nome = $linha['nome_aluno'];
 							$ra = $linha['ra'];;
 							$email = $linha['email'];
-							$turno = $linha['turno'];
 							$curso = $linha['nome_curso'];
-
+							$turma = $linha['nome_turma'];
+							$turno = $linha['turno'];
 
 					?>
 					<h4><?=$nome ?></h4>
-					<img src="img/avatar.png" alt="avatar do usuário" />
+					<img src="../../public/img/avatar/<?=$avatar ?>" alt="avatar do usuário" />
 					<h4><?=$curso ?></h4>
 					<ul>
 						<li><span class="negrito">MATRÍCULA:</span> 
 						<?=$ra ?></li>
 						<li><span class="negrito">TURNO:</span> 
 						<?=$turno ?></li>
-						<li><span class="negrito">TURMA:</span> INF4M172</li>
+						<li><span class="negrito">TURMA:</span> 
+						<?=$turma ?></li>
 					</ul>
 					<?php
 						}
 					?>
 				</aside>
 				<div class="disciplinas">
-				<h4 class="m-3"> EVA - PÁGINA DO ALUNO</h4>
 					<h4 class="m-3">Disciplinas:</h4>
 					<div class="m-3">
-						<figure class="ucs">
-									HTML
-							<figcaption>
-								<button class="btn btn-warning uc">ACESSAR</button>
-							</figcaption>
-						</figure>	
+					<?php
+						require_once '../controller/turmaController.php';
+						$turma = new Turma(); 
+						$consulta = $turma->turmaMaterias($myra);
+						foreach($consulta as $linha){
+								$uc_nome = $linha['nome'];
+								$uc_id = $linha['disciplina_id']; 
+								$logo = $linha['logo'];
+
+						echo "<figure class='ucs'>
+									<div class='d_nome'>$uc_nome</div>
+									<div class='d_logo'>
+									<img src='../../public/img/logos/$logo'></div>
+								<figcaption>
+									<a href='conteudoUC.php?uc=$uc_id' class='btn btn-warning uc'>ACESSAR</a>
+								</figcaption>
+							</figure>";
+						}
+					?>	
 					</div>		
 				</div>
 			</section>
