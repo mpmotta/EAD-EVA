@@ -6,14 +6,14 @@
     <title>EVA - Espaço Virtual de Aprendizagem</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="first">
     <div class="container-full">
         <header class="topo bg-warning bg-gradient">
 			<img src="../../public/img/logo.png" alt="logo-alcides">	
 			<span class="titulo">EVA - Espaço Virtual de Aprendizagem</span>
         </header>
         <section class="main">
-        <div class="border">
+        <div class="border login">
 			<h2 class="text-center">Página de Login</h2>
 				<form method="POST" action="../controller/usuarioController.php?action=logarUsuario">
 					<table class='table table-bordered insert'>	
@@ -49,7 +49,7 @@
 		</div>
 
         </section>
-        <footer class="fixed-bottom bg-primary bg-gradient text-center text-white pt-3 pb-1">
+        <footer class="fixed-bottom bg-dark bg-gradient text-center text-white pt-3 pb-1">
                 <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
         </footer>
     </div>

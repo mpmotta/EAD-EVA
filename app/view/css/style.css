@@ -11,6 +11,15 @@ table{
 	font-size: 14px;
 	margin-bottom: 150px !important;
 }
+.first{
+	background-image: url(../img/digital.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.login {
+	margin-top: 120px !important;
+	opacity: 0.95;
+}
 .lista-alunos{
 	margin-bottom: 10px !important;
 }
@@ -118,9 +127,9 @@ table{
 	color: #000;	
 }
 .ucs{
-	width: 200px;
+	width: 150px;
 	display: inline-block;
-	margin: 30px 40px 0 0;
+	margin: 30px 20px 0 0;
 	box-shadow: 0px 0px 6px 4px #777;
 	text-align: center;
 }
@@ -133,7 +142,7 @@ table{
 	padding: 8px 0;
 }
 .ucs img{
-	width: 128px;
+	width: 80%;
 	margin: 10px 0;
 }
 .uc{
@@ -142,16 +151,6 @@ table{
 	font-weight: 700;
 	margin-bottom: 8px;
 }	
-
-.ucs .d_nome{
-	font-size: 18px;
-	font-weight: 900;
-	height: 40px;
-	padding: 5px 0;
-}
-.ucs .d_logo{
-	margin: 20px 0;
-}
 
 .box{
 	width: 115px;
@@ -170,11 +169,10 @@ table{
 	color: #777;
 	text-decoration: none;
 	cursor: pointer;
+	&:hover{
+		color: #000;
+	}
 }
-.mainBox a:hover{
-	color: #000;
-}
-
 .box:hover{
 	box-shadow: 0px 0px 6px 4px #000;
 }
