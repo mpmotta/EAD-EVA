@@ -57,6 +57,12 @@
             return $result;
         }
 
+        public function showAlunoRA($RA){
+            $aluno = new Aluno();
+            $result = $aluno->showAlunoRA($RA);
+            return $result;
+        }
+
         public function pesquisarAluno($txt){
             $aluno = new Aluno();
             $result = $aluno->pesquisarAluno($txt);

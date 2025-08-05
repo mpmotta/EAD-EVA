@@ -3,7 +3,7 @@ date_default_timezone_set('America/Sao_Paulo');
 abstract class Connect {
     private $servidor = 'localhost';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'apple';
     private $banco = 'eva';
     protected $conn;
 

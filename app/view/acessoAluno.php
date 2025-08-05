@@ -20,15 +20,16 @@
 					<?php
 						require_once '../controller/alunoController.php';
 						$aluno = new Aluno(); 
-						$consulta = $aluno->consultarAlunoRALL($myra);
+						$consulta = $aluno->showAlunoRA($myra);
 
 						foreach($consulta as $linha){
 							$nome = $linha['nome_aluno'];
 							$ra = $linha['ra'];;
 							$email = $linha['email'];
-							$turno = $linha['turno'];
 							$curso = $linha['nome_curso'];
-
+							$curso = $linha['nome_curso'];
+							$turno = $linha['turno'];
+							$turma = $linha['nome_turma'];
 
 					?>
 					<h4><?=$nome ?></h4>
@@ -39,7 +40,7 @@
 						<?=$ra ?></li>
 						<li><span class="negrito">TURNO:</span> 
 						<?=$turno ?></li>
-						<li><span class="negrito">TURMA:</span> INF4M172</li>
+						<li><span class="negrito">TURMA:</span> <?=$turma ?></li>
 					</ul>
 					<?php
 						}

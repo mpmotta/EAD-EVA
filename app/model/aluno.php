@@ -9,7 +9,6 @@ class Aluno extends Connect{
     private $email;
     private $fone;
     private $curso;
-    private $turno;
     private $tabela = 'alunos';
 
 
@@ -45,10 +44,6 @@ class Aluno extends Connect{
         return $this->curso;
     }
 
-    public function getTurno(){
-        return $this->turno;
-    }
-
     public function setNome($nome): void{
         $this->nome = $nome;
     }
@@ -77,9 +72,6 @@ class Aluno extends Connect{
         $this->curso = $curso;
     }
 
-    public function setTurno($turno): void{
-        $this->turno = $turno;
-    }
 
 
     public function consultarAlunos(){
@@ -127,7 +119,7 @@ class Aluno extends Connect{
     }
 
     public function consultarAlunoCpf($cpf){
-        $sql = "SELECT nome_aluno, status_aluno, avatar, ra, cpf, email, fone, curso, turno FROM $this->tabela WHERE cpf = :CPF";
+        $sql = "SELECT nome_aluno, status_aluno, avatar, ra, cpf, email, fone, curso FROM $this->tabela WHERE cpf = :CPF";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
         $stmt->execute();
@@ -140,17 +132,30 @@ class Aluno extends Connect{
             $this->setEmail($result['email']);
             $this->setFone($result['fone']);
             $this->setCurso($result['curso']);
-            $this->setTurno($result['turno']);
 
         }
     }
 
 
     public function consultarAlunoRALL($ra){
-        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, a.turno, c.nome_curso
+        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, c.nome_curso
         FROM $this->tabela as a
         LEFT JOIN cursos AS c ON a.curso = c.id_curso
         LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
+        WHERE ra = :ra";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+        public function showAlunoRA($ra){
+        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, c.nome_curso, tu.turno, t.nome_turma
+        FROM $this->tabela as a
+        LEFT JOIN cursos AS c ON a.curso = c.id_curso
+        LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
+        LEFT JOIN turnos AS tu ON t.turno_id = tu.id_turno
         WHERE ra = :ra";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
