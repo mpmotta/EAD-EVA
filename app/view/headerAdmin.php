@@ -26,8 +26,8 @@
                     EDUCA
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" target="_blank" href="#">PORTAL DO ALUNO</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="#">PORTAL DO PROFESSOR</a></li>
+                  <li><a class="dropdown-item" target="_blank" href="http://educa.alcidesmaya.com.br">PORTAL DO ALUNO</a></li>
+                    <li><a class="dropdown-item" target="_blank" href="http://educa.alcidesmaya.com.br/Corpore.Net/Login.aspx">PORTAL DO PROFESSOR</a></li>
                   </ul>
                 </li>
 
@@ -36,6 +36,10 @@
                     TELEFONES
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993400528">
+                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      Coordenação (Márcio) - (51) 99340-0528
+                    </a></li>
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993880915">
                       <i class="fa fa-whatsapp" aria-hidden="true"></i>
                       NADD (Kathy) - (51) 99388-0915

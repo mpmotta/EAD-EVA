@@ -49,8 +49,8 @@
 		</div>
 
         </section>
-        <footer class="fixed-bottom bg-dark bg-gradient text-center text-white pt-3 pb-1">
-                <p>Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</p>
+        <footer class="fixed-bottom bg-dark bg-gradient text-center text-white pt-2 pb-2">
+                <span class="foot">Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</foot>
         </footer>
     </div>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
