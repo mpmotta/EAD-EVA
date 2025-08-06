@@ -156,7 +156,7 @@ class Aluno extends Connect{
         LEFT JOIN cursos AS c ON a.curso = c.id_curso
         LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
         LEFT JOIN turnos AS tu ON t.turno_id = tu.id_turno
-        WHERE ra = :ra";
+        WHERE ra = :ra LIMIT 1";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
         $stmt->execute();
