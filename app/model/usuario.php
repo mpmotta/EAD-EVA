@@ -64,7 +64,7 @@ class Usuario extends Connect{
     }
 
     public function logarUsuario($username, $senha){
-        $sql = "SELECT id_usuario, username, senha, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
+        $sql = "SELECT id_usuario, username, senha, email, nivel FROM $this->tabela WHERE username = :username AND senha = :senha";
         
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -78,6 +78,7 @@ class Usuario extends Connect{
             $_SESSION['id'] = $result['id_usuario'];
             $_SESSION['nivel'] = $result['nivel'];
             $_SESSION['username'] = $result['username'];
+            $_SESSION['email'] = $result['email'];
 
             $this->ultimoAcesso($result['id_usuario']);
 

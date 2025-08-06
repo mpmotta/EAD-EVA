@@ -57,7 +57,7 @@ class Professor extends Connect{
     }
 
     public function consultarProfessores(){
-        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.ultimo_login 
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email as mail, p.fone, u.ultimo_login 
                 FROM $this->tabela AS p 
                 LEFT JOIN usuarios AS u ON p.email = u.email
                 ORDER BY u.ultimo_login DESC";
@@ -74,6 +74,18 @@ class Professor extends Connect{
                 WHERE id_prof = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function consultarProfessorEmail($email){
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.avatar, u.ultimo_login
+                FROM $this->tabela AS p
+                LEFT JOIN usuarios AS u ON p.email = u.email
+                WHERE p.email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

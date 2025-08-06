@@ -24,7 +24,7 @@
 
 						foreach($consulta as $linha){
 							$nome = $linha['nome_aluno'];
-							$ra = $linha['ra'];;
+							$ra = $linha['ra'];
 							$email = $linha['email'];
 							$curso = $linha['nome_curso'];
 							$curso = $linha['nome_curso'];
@@ -32,9 +32,9 @@
 							$turma = $linha['nome_turma'];
 
 					?>
-					<h4><?=$nome ?></h4>
+					<h5><?=$nome ?></h5>
 					<img src="img/avatar.png" alt="avatar do usuário" />
-					<h4><?=$curso ?></h4>
+					<h6><?=$curso ?></h6>
 					<ul>
 						<li><span class="negrito">MATRÍCULA:</span> 
 						<?=$ra ?></li>
@@ -47,15 +47,30 @@
 					?>
 				</aside>
 				<div class="disciplinas">
-				<h4 class="m-3"> EVA - PÁGINA DO ALUNO</h4>
 					<h4 class="m-3">Disciplinas:</h4>
 					<div class="m-3">
+											<?php
+						require_once '../controller/disciplinaController.php';
+						$disciplina = new disciplina();
+						$consulta = $disciplina->consultarDisciplinaAluno($myra);
+
+						foreach($consulta as $linha){
+							$disciplina = $linha['nome'];
+							$thumb = $linha['thumb'];
+						?>
 						<figure class="ucs">
-									HTML
+								<h5><?=$disciplina ?></h5>
 							<figcaption>
+								<?php 
+								echo "
+								<img src='../../public/img/thumbs/$thumb'>";
+								?>
 								<button class="btn btn-warning uc">ACESSAR</button>
 							</figcaption>
-						</figure>	
+						</figure>
+						<?php
+						}
+					?>	
 					</div>		
 				</div>
 			</section>

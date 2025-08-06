@@ -16,6 +16,13 @@
             return $result;
         }
 
+        public function consultarProfessorEmail($email){
+            $email = $_GET['email'];
+            $professor = new Professor();
+            $result = $professor->consultarProfessorEmail($email);            
+            return $result;
+        }
+
         public function cadastrarProfessor($professorObj) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
                 $professor = new professor(); 

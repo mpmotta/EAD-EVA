@@ -20,6 +20,12 @@
             return $result;
         }
 
+        public function consultarDisciplinaAluno($ra){
+            $disciplina = new disciplina();
+            $result = $disciplina->consultarDisciplinaAluno($ra);
+            return $result;
+        }
+
 
         public function editarDisciplina($disciplinaObj, $id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
