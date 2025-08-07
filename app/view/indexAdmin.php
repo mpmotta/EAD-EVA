@@ -10,11 +10,11 @@
     <title>EVA - Espaço Virtual de Aprendizagem</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="admin">
     <div class="container-full">
     <?php require_once 'headerAdmin.php'; ?>
-        <section class="container main bg-white">
-            <h2> EVA - PÁGINA ADMINISTRATIVA</h2>
+        <section class="container bgadmin">
+            <h3 class="text-center">EVA - PÁGINA ADMINISTRATIVA</h3>
             <article class="mainBox mt-5">
                     <a href="adminAlunos.php">
                         <div class="box">

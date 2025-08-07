@@ -57,7 +57,7 @@ class Professor extends Connect{
     }
 
     public function consultarProfessores(){
-        $sql = "SELECT p.id_prof, p.nome_prof, p.email as mail, p.fone, u.ultimo_login 
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.ultimo_login 
                 FROM $this->tabela AS p 
                 LEFT JOIN usuarios AS u ON p.email = u.email
                 ORDER BY u.ultimo_login DESC";

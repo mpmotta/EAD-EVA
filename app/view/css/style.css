@@ -16,6 +16,10 @@ table{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+.bgadmin{
+	background-color: rgba(255,255,255,0.5);
+	height: 85vh;
+}
 .login {
 	margin-top: 120px !important;
 }
@@ -40,7 +44,7 @@ table{
 .bold{
 	font-weight: 900 !important;
 }
-.container, .border{
+.border{
     background-color: #fbfbfb;
 }
 .border{
@@ -55,16 +59,19 @@ table{
 	width: 95%;
 }
 .titulo {
-	font-size: 26px;
+	font-size: 18px;
 	font-weight: 500;
 	padding-left:15px;
+}
+.logo{
+	height: 45px;
 }
 
 .flex{
     display: flex;
 }
 .topo{
-    padding: 10px;
+    padding: 2px 5px;
     display: flex; 
     align-items: center;
 }
@@ -73,12 +80,8 @@ table{
     text-decoration: none;
     vertical-align: middle;
 }
-
 .icon{
     height: 28px;
-}
-.main{
-    padding-top: 15px;
 }
 .mainMenu{
     border-right: solid 2px #000;
@@ -154,9 +157,15 @@ table{
 	color: #00C;
 	font-weight: 700;
 	margin-bottom: 8px;
+}
+.admin{
+	background-image: url(../img/admin.png);
+	background-repeat: no-repeat;
+	background-size: cover;
 }	
 
 .box{
+	background-color: #fbfbfb;
 	width: 115px;
 	display: inline-block;
 	margin: 12px 10px !important;

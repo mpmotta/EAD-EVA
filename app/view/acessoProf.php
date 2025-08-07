@@ -14,7 +14,6 @@
 <body>
     <div class="container-full">
 	<?php require_once 'headerAdmin.php'; ?>
-	<h2 class="m-3"> EVA - PÁGINA DO PROFESSOR</h2>
         <section class="main">
 			<section class="flex">
 				<aside class="info">
@@ -36,6 +35,7 @@
 					?>
 				</aside>
 				<div class="disciplinas">
+				<h3 class="m-3"> EVA - PÁGINA DO PROFESSOR</h3>
 				<h4 class="m-3">UCS MINISTRADAS</h4>
 					<div class="m-3">
 						<figure class="ucs">

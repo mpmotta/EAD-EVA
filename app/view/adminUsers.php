@@ -114,7 +114,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body p-5 cadastra">
-            <form action="../controller/usuarioController.php?action=cadastrarUsuário" method="post">
+            <form action="../controller/usuarioController.php?action=cadastrarUsuario" method="post">
                 <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required>
                 <select name="nivel" class="form-control mb-3">
                       <option selected disabled value="">Nível</option>

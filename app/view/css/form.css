@@ -1,0 +1,70 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+.login-container {
+    margin: 30px auto;
+    background-color: rgb(45, 47, 47); 
+    padding: 40px 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-title {
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+
+.custom-icon-span {
+    background-color: #F7941D; 
+    border: none;
+    color: #ffffff;
+    padding: 0 15px;
+}
+
+
+.custom-input {
+    border: none;
+    border-radius: 0 0.25rem 0.25rem 0; 
+}
+
+
+.custom-input:focus {
+    box-shadow: none;
+    border-color: #ced4da; 
+    z-index: 10; 
+}
+
+
+.btn-acessar {
+    background-color: #00B2E3; 
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    padding: 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-acessar:hover {
+    background-color: #009bcf; 
+    color: #ffffff;
+}
+
+
+.forgot-password-link {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #950; 
+}
