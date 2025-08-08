@@ -215,3 +215,10 @@ table{
 .foot{
 	font-size: 12px;
 }
+.list{
+	font-size: 12px !important;
+}
+.break{
+	display: block;
+	padding-left: 20px;
+}
