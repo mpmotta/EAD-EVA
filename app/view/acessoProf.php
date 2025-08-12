@@ -35,8 +35,9 @@
 					?>
 				</aside>
 				<div class="disciplinas">
-				<h3 class="m-3"> EVA - PÁGINA DO PROFESSOR</h3>
-				<h4 class="m-3">UCS MINISTRADAS</h4>
+				<h4 class="m-3">ÁREA DO PROFESSOR</h4>
+				<hr>
+				<h5 class="m-3">UCS MINISTRADAS</h5>
 					<div class="m-3">
 						<figure class="ucs">
 									HTML

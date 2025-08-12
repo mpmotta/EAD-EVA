@@ -38,5 +38,29 @@ class Professor extends Connect {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function consultarProfessorID($id) {
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.avatar, u.ultimo_login
+                FROM $this->tabela AS P
+                LEFT JOIN usuarios AS u ON p.email = u.email
+                WHERE id_prof = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function consultarProfessorEmail($email) {
+        $sql = "SELECT p.id_prof, p.nome_prof, p.email, p.fone, u.avatar, u.ultimo_login
+                FROM $this->tabela AS p
+                LEFT JOIN usuarios AS u ON p.email = u.email
+                WHERE p.email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 ?>
