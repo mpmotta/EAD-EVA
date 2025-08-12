@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 06-Ago-2025 às 20:07
+-- Tempo de geração: 12-Ago-2025 às 19:02
 -- Versão do servidor: 5.6.51
 -- versão do PHP: 8.0.7
 
@@ -31,12 +31,12 @@ CREATE TABLE `alunos` (
   `id_aluno` int(11) NOT NULL,
   `nome_aluno` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `status_aluno` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ativo',
-  `avatar` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'avatar.png',
+  `avatar` varchar(90) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'avatar.png',
   `ra` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `cpf` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `cpf` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `fone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `curso` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `curso_id` tinyint(1) DEFAULT NULL,
   `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -45,36 +45,8 @@ CREATE TABLE `alunos` (
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `status_aluno`, `avatar`, `ra`, `cpf`, `email`, `fone`, `curso`, `data_criado`, `data_editado`) VALUES
-(13, 'Jose da Silva', 'ativo', 'avatar.png', '564564', '56456454', 'jsilva@gmail.com', '(51) 847-47985', '2', '2024-09-29 21:54:34', '2024-10-16 13:26:16'),
-(14, 'Rhian Silva', 'ativo', 'avatar.png', '84132351', '534.654.745-54', 'rihan@gmail.com', '(51) 3456-8974', '1', '2024-09-29 21:56:29', '2024-10-16 13:26:16'),
-(17, 'João Silva', 'ativo', 'avatar.png', '1234567-89', '123.456.789-00', 'joao.silva@example.com', '(11) 91234-5678', '1', '2024-10-01 19:21:34', '2024-10-16 13:26:16'),
-(18, 'Maria Oliveira', 'ativo', 'avatar.png', '98-7654321', '987.654.321-00', 'maria.oliveira@example.com', '(21) 99876-5432', '2', '2024-10-01 19:21:34', '2024-10-16 13:26:16'),
-(19, 'Carlos Santos', 'ativo', 'avatar.png', '4567891-23', '456.789.123-00', 'carlos.santos@example.com', '(31) 93456-7890', '1', '2024-10-01 19:21:34', '2024-10-16 13:26:16'),
-(20, 'Ana Costa', 'ativo', 'avatar.png', '3216-54987', '321.654.987-00', 'ana.costa@example.com', '(41) 94567-8901', '2', '2024-10-01 19:21:34', '2024-10-16 13:26:16'),
-(21, 'Fernando Lima', 'ativo', 'avatar.png', '159753-486', '159.753.486-00', 'fernanda.lima@example.com', '(51) 95678-9012', '1', '2024-10-01 19:21:34', '2024-10-16 13:26:16'),
-(24, 'Juliana Almeida', 'ativo', 'avatar.png', '789012-07', '852.369.741-00', 'juliana.almeida@example.com', '(71) 97890-1234', '3', '2024-10-01 19:33:22', '2024-10-16 13:26:16'),
-(25, 'Ricardo Gomes', 'ativo', 'avatar.png', '890123-08', '951.753.852-00', 'ricardo.gomes@example.com', '(81) 98901-2345', '4', '2024-10-01 19:33:22', '2024-10-16 13:26:16'),
-(26, 'Patrí­cia Rocha', 'inativo', 'avatar.png', '901234-09', '147.258.369-00', 'p.patricia.rocha@example.com', '(91) 99012-3456', '1', '2024-10-01 19:33:22', '2024-10-16 13:26:16'),
-(27, 'Lucas Pereira', 'ativo', 'avatar.png', '678901-06', '753.759.486-00', 'lucas.pereira@example.com', '(51) 96789-0123', '2', '2024-10-01 19:35:51', '2024-10-16 13:26:16'),
-(28, 'Gabriel Martins', 'ativo', 'avatar.png', '012345-10', '258.969.147-00', ' gabriel.martins@example.com', '(51) 90123-4567', '2', '2024-10-01 19:36:37', '2024-10-16 13:26:16'),
-(29, 'Thiago Mendes', 'ativo', 'avatar.png', '123456-11', '111.222.333-44', 'thiago.mendes@example.com', '(11) 91234-5678', '1', '2024-10-01 19:39:46', '2024-10-16 13:26:16'),
-(30, 'Sofia Lima', 'ativo', 'avatar.png', '234567-12', '222.333.444-55', 'sofia.lima@example.com', '(21) 99876-5432', '2', '2024-10-01 19:39:46', '2024-10-16 13:26:16'),
-(31, 'Felipe Costa', 'ativo', 'avatar.png', '345678-13', '333.444.555-66', 'felipe.costa@example.com', '(31) 93456-7890', '3', '2024-10-01 19:39:47', '2024-10-16 13:26:16'),
-(32, 'Mariana Silva', 'ativo', 'avatar.png', '456789-14', '444.555.666-77', 'mariana.silva@example.com', '(41) 94567-8901', '4', '2024-10-01 19:39:47', '2024-10-16 13:26:16'),
-(33, 'Eduardo Rocha', 'ativo', 'avatar.png', '567890-15', '555.666.777-88', 'eduardo.rocha@example.com', '(51) 95678-9012', '1', '2024-10-01 19:39:47', '2024-10-16 13:26:16'),
-(34, 'Billy da Bahia', 'ativo', 'avatar.png', '987655-88', '91353645599', 'elias@fariseu.com', '(61) 84074070', '1', '2024-10-09 19:02:30', '2024-10-16 13:26:16');
-
---
--- Acionadores `alunos`
---
-DELIMITER $$
-CREATE TRIGGER `trg_after_insert` AFTER INSERT ON `alunos` FOR EACH ROW BEGIN
-    INSERT INTO usuarios (username, email)
-    VALUES (NEW.ra, NEW.email);
-END
-$$
-DELIMITER ;
+INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `status_aluno`, `avatar`, `ra`, `cpf`, `email`, `fone`, `curso_id`, `data_criado`, `data_editado`) VALUES
+(4, 'Daiene Torgo Fabretti', 'ativo', 'avatar.png', '4513515-12', NULL, 'daiene@gmail.com', '99885566', 1, '2025-08-12 18:38:58', '2025-08-12 18:38:58');
 
 -- --------------------------------------------------------
 
@@ -214,34 +186,8 @@ CREATE TABLE `professores` (
 --
 
 INSERT INTO `professores` (`id_prof`, `nome_prof`, `email`, `fone`, `data_criado`, `data_editado`) VALUES
-(2, 'Elias Almeida Ramos', 'elias_ramos@gmail.com', '(51) 98407-4070', '2024-09-29 16:44:26', '2024-09-29 16:44:26'),
-(3, 'Alexandre Bonnamin', 'bonnamin@gmail.com', '(51) 99887-6655', '2024-09-29 16:44:57', '2024-09-29 16:44:57'),
-(4, 'Carla Souto', 'carla.souto@gmail.com', '(51) 98844-5577', '2024-09-29 16:45:23', '2024-09-29 16:45:23'),
-(5, 'Jose Mendes', 'mendes@gmail.com', '(51) 33669-6669', '2024-09-29 17:25:08', '2024-09-29 17:25:08'),
-(6, 'Antonio Reis', 'Areis@gmail.com', '(51) 3857-4456', '2024-09-29 19:39:47', '2024-09-29 19:39:47'),
-(7, 'Rubens Albuquerque', 'rubens@up.com.br', '(91) 98754-4321', '2024-09-29 21:20:25', '2024-09-29 21:20:25'),
-(8, 'Marcio Paiva da Motta', 'mpmotta@gmail.com', '(51) 99534-3085', '2024-09-30 02:06:28', '2025-08-06 18:38:29');
-
---
--- Acionadores `professores`
---
-DELIMITER $$
-CREATE TRIGGER `trg_after_insert_professores` AFTER INSERT ON `professores` FOR EACH ROW BEGIN
-    DECLARE username VARCHAR(100);
-    DECLARE nomeMinusculo VARCHAR(100);
-    DECLARE primeiroNome VARCHAR(50);
-    DECLARE ultimoNome VARCHAR(50);
-
-    SET nomeMinusculo = LOWER(NEW.nome_prof);
-    SET primeiroNome = SUBSTRING_INDEX(nomeMinusculo, ' ', 1);
-    SET ultimoNome = SUBSTRING_INDEX(nomeMinusculo, ' ', -1);
-    SET username = CONCAT(primeiroNome, '_', ultimoNome);
-
-    INSERT INTO usuarios (username, nivel, email)
-    VALUES (username, 2, NEW.email);
-END
-$$
-DELIMITER ;
+(2, 'MÃ¡rcio Paiva da Motta', 'mmotta@gmail.com', '(51) 99534-3085', '2025-08-12 17:45:02', '2025-08-12 17:45:02'),
+(3, 'Alexandre Bonnamain', 'bonnamain@gmail.com', '99666669', '2025-08-12 17:50:40', '2025-08-12 17:50:40');
 
 -- --------------------------------------------------------
 
@@ -263,23 +209,6 @@ CREATE TABLE `turmas` (
   `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `turmas`
---
-
-INSERT INTO `turmas` (`id_turma`, `nome_turma`, `ativa`, `aluno_ra`, `disciplina_id`, `professor_id`, `periodo_id`, `curso_id`, `turno_id`, `alterado_por`, `data_criado`, `data_editado`) VALUES
-(1, 'TPRE.INF-3T1A ', 1, '84132351', 6, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2025-08-06 20:02:43'),
-(2, 'TPRE.INF-3T1A ', 1, '234567-12', 7, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2024-10-16 13:17:03'),
-(3, 'TPRE.INF-3T1A ', 1, '345678-13', 7, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2024-10-16 13:17:08'),
-(4, 'TPRE.INF-3T1A ', 1, '123456-11', 7, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2024-10-16 13:17:11'),
-(5, 'TPRE.INF-3T1A ', 1, '98-7654321', 7, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2024-10-16 13:17:14'),
-(11, 'TPRE.INF-3M1A', 1, '159753-486', 11, 3, 1, 1, 1, NULL, '2024-10-17 13:15:40', '2024-10-17 13:15:40'),
-(13, 'TPRE.INF-3M1A', 1, '159753-486', 8, 3, 1, 1, 1, NULL, '2024-10-17 13:30:13', '2024-10-17 13:30:13'),
-(14, 'TPRE.INF-3M1A', 1, '678901-06', 20, 2, 1, 1, 1, NULL, '2024-10-17 14:44:27', '2024-10-17 14:44:27'),
-(15, 'TPRE.INF-3M1A', 1, '012345-10', 20, 2, 1, 1, 1, NULL, '2024-10-17 14:44:27', '2024-10-17 14:44:27'),
-(16, 'TPRE.INF-3M1A', 1, '234567-12', 20, 2, 1, 1, 1, NULL, '2024-10-17 14:44:27', '2024-10-17 14:44:27'),
-(17, 'TPRE.INF-3T1A ', 1, '84132351', 9, 8, 1, 1, 2, 'Admin', '2024-10-08 18:39:37', '2025-08-06 20:06:50');
 
 -- --------------------------------------------------------
 
@@ -314,7 +243,7 @@ INSERT INTO `turnos` (`id_turno`, `turno`, `editado_por`, `data_criado`, `data_e
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `senha` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+  `senha` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2',
   `nivel` tinyint(1) DEFAULT '1',
   `email` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'avatar.png',
@@ -328,28 +257,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `avatar`, `ultimo_login`, `data_criado`, `data_editado`) VALUES
-(1, 'Admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 9, 'admin@eva-alcidesmaya.com.br', 'avatar.png', '2025-08-06 19:38:43', '2024-09-28 20:31:27', '2025-08-06 19:38:43'),
-(2, 'NADD', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 3, 'nadd@alcidesmaya.com.br', 'avatar.png', NULL, '2024-09-28 21:03:32', '2024-09-28 21:03:59'),
-(3, '123456789', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'aluno@alcides.com', 'avatar.png', NULL, '2024-09-28 21:03:52', '2024-09-28 21:03:52'),
-(16, '564564', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'jsilva@gmail.com', 'avatar.png', NULL, '2024-09-29 21:54:34', '2024-09-29 21:54:34'),
-(17, '84132351', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'rihan@gmail.com', 'avatar.png', '2025-08-06 19:39:28', '2024-09-29 21:56:29', '2025-08-06 19:39:28'),
-(18, 'marcio_motta', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 2, 'mpmotta@gmail.com', 'batman.webp', '2025-08-06 18:48:05', '2024-09-30 02:06:28', '2025-08-06 18:48:05'),
-(21, '1234567-89', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'joao.silva@example.com', 'avatar.png', NULL, '2024-10-01 19:21:34', '2024-10-01 19:21:34'),
-(22, '98-7654321', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'maria.oliveira@example.com', 'avatar.png', NULL, '2024-10-01 19:21:34', '2024-10-01 19:21:34'),
-(23, '4567891-23', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'carlos.santos@example.com', 'avatar.png', NULL, '2024-10-01 19:21:34', '2024-10-01 19:21:34'),
-(24, '3216-54987', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'ana.costa@example.com', 'avatar.png', NULL, '2024-10-01 19:21:34', '2024-10-01 19:21:34'),
-(25, '159753-486', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'fernanda.lima@example.com', 'avatar.png', '2024-10-01 19:26:34', '2024-10-01 19:21:34', '2024-10-01 19:26:34'),
-(26, '789012-07', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'juliana.almeida@example.com', 'avatar.png', NULL, '2024-10-01 19:33:22', '2024-10-01 19:33:22'),
-(27, '890123-08', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'ricardo.gomes@example.com', 'avatar.png', NULL, '2024-10-01 19:33:22', '2024-10-01 19:33:22'),
-(28, '901234-09', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'p.patricia.rocha@example.com', 'avatar.png', NULL, '2024-10-01 19:33:22', '2024-10-01 19:33:22'),
-(29, '678901-06', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'lucas.pereira@example.com', 'avatar.png', NULL, '2024-10-01 19:35:51', '2024-10-01 19:35:51'),
-(30, '012345-10', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, ' gabriel.martins@example.com', 'avatar.png', NULL, '2024-10-01 19:36:37', '2024-10-01 19:36:37'),
-(31, '123456-11', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'thiago.mendes@example.com', 'avatar.png', NULL, '2024-10-01 19:39:46', '2024-10-01 19:39:46'),
-(32, '234567-12', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'sofia.lima@example.com', 'avatar.png', NULL, '2024-10-01 19:39:46', '2024-10-01 19:39:46'),
-(33, '345678-13', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'felipe.costa@example.com', 'avatar.png', NULL, '2024-10-01 19:39:47', '2024-10-01 19:39:47'),
-(34, '456789-14', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'mariana.silva@example.com', 'avatar.png', NULL, '2024-10-01 19:39:47', '2024-10-01 19:39:47'),
-(35, '567890-15', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'eduardo.rocha@example.com', 'avatar.png', NULL, '2024-10-01 19:39:47', '2024-10-01 19:39:47'),
-(36, '987655-88', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1, 'elias@fariseu.com', 'avatar.png', NULL, '2024-10-09 19:02:30', '2024-10-09 19:02:30');
+(1, 'Admin', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 9, 'admin@eva-alcidesmaya.com.br', 'avatar.png', '2025-08-12 18:52:30', '2024-09-28 20:31:27', '2025-08-12 18:52:30'),
+(2, 'NADD', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 3, 'nadd@alcidesmaya.com.br', 'avatar.png', NULL, '2024-09-28 21:03:32', '2025-08-11 17:16:18'),
+(73, 'marcio_motta', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 2, 'mmotta@gmail.com', 'avatar.png', NULL, '2025-08-12 17:45:02', '2025-08-12 17:45:02'),
+(74, 'alexandre_bonnamain', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 2, 'bonnamain@gmail.com', 'avatar.png', NULL, '2025-08-12 17:50:40', '2025-08-12 17:50:40'),
+(77, '4513515-12', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 1, 'daiene@gmail.com', 'avatar.png', '2025-08-12 18:40:13', '2025-08-12 18:38:58', '2025-08-12 18:40:13');
 
 --
 -- Índices para tabelas despejadas
@@ -360,9 +272,9 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `av
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`id_aluno`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `ra` (`ra`),
-  ADD UNIQUE KEY `cpf` (`cpf`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- Índices para tabela `conteudos`
@@ -396,8 +308,7 @@ ALTER TABLE `periodos`
 -- Índices para tabela `professores`
 --
 ALTER TABLE `professores`
-  ADD PRIMARY KEY (`id_prof`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id_prof`);
 
 --
 -- Índices para tabela `turmas`
@@ -422,8 +333,7 @@ ALTER TABLE `turnos`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -433,7 +343,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `conteudos`
@@ -463,13 +373,13 @@ ALTER TABLE `periodos`
 -- AUTO_INCREMENT de tabela `professores`
 --
 ALTER TABLE `professores`
-  MODIFY `id_prof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_prof` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `turnos`
@@ -481,7 +391,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Restrições para despejos de tabelas
