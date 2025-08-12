@@ -14,8 +14,8 @@
     <div class="container-full">
     <?php require_once 'headerAdmin.php'; ?>
         <section class="container bgadmin">
-            <h3 class="text-center">EVA - PÁGINA ADMINISTRATIVA</h3>
-            <article class="mainBox mt-5">
+            <h5 class="text-center pt-3">PÁGINA ADMINISTRATIVA</h5>
+            <article class="mainBox mt-2">
                     <a href="adminAlunos.php">
                         <div class="box">
                             ALUNOS

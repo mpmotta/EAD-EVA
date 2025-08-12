@@ -30,7 +30,7 @@
 						<span class="input-group-text custom-icon-span">
 							<i class="fas fa-lock"></i>
 						</span>
-						<input type="password" name="pass" class="form-control custom-input"
+						<input type="password" name="senha" class="form-control custom-input"
 						 placeholder="Senha" aria-label="Senha">
 					</div>
 

@@ -23,12 +23,6 @@
             return $result;
         }
 
-        public function consultarAlunosAtivos(){
-            $aluno = new Aluno();
-            $result = $aluno->consultarAlunosAtivos();
-            return $result;
-        }
-
 
         public function consultarAlunosPorTurno($turno) {
                  $aluno = new Aluno();
@@ -57,11 +51,6 @@
             return $result;
         }
 
-        public function showAlunoRA($RA){
-            $aluno = new Aluno();
-            $result = $aluno->showAlunoRA($RA);
-            return $result;
-        }
 
         public function pesquisarAluno($txt){
             $aluno = new Aluno();
@@ -69,30 +58,16 @@
             return $result;
         }
 
-        public function editarAluno($alunoObj, $id) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
-                $aluno = new Aluno(); 
-                $aluno->editarAluno($alunoObj, $id);
-                header('Location: ../view/admin/index.php?alterado=ok');
-            } else {
-                header("Location: ../view/admin/index.php?erro");
-            }
-        }
+        public function editarAluno($id){
 
-        public function alterarAvatar($id) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
-                require 'uploadAvatar.php';
-                $aluno = new Aluno(); 
-                $aluno->alterarAvatar($avatar, $id);
-                header('Location: ../view/admin/index.php?alterado=ok');
-            } else {
-                header("Location: ../view/admin/index.php?erro");
-            }
         }
 
         public function excluirAluno($id){
-            $aluno = new Aluno(); 
-            $aluno->excluirAluno($id);
+
+        }
+
+        public function alterarAvatar($id){
+
         }
 
 
@@ -104,8 +79,7 @@
                 $alunoObj->setCpf($_POST['cpf']);
                 $alunoObj->setEmail($_POST['email']);
                 $alunoObj->setFone($_POST['fone']);
-                $alunoObj->setCurso($_POST['curso']);
-                $alunoObj->setTurno($_POST['turno']);
+                $alunoObj->setCursoId($_POST['curso_id']);
                 $this->cadastrarAluno ($alunoObj);
             }
 
@@ -125,8 +99,7 @@
                             $alunoObj->setCpf($data[2]);
                             $alunoObj->setEmail($data[3]);
                             $alunoObj->setFone($data[4]);
-                            $alunoObj->setCurso($data[5]);
-                            $alunoObj->setTurno($data[6]);
+                            $alunoObj->setCursoId($data[5]);
     
                             try {
                                 $this->cadastrarAluno($alunoObj);
@@ -151,9 +124,8 @@
                 $alunoObj->setCpf($_POST['cpf']);
                 $alunoObj->setEmail($_POST['email']);
                 $alunoObj->setFone($_POST['fone']);
-                $alunoObj->setCurso($_POST['curso']);
-                $alunoObj->setTurno($_POST['turno']);
-                $this->editarAluno ($alunoObj, $id);
+                $alunoObj->setCursoId($_POST['curso']);
+                $this->editarAluno($alunoObj, $id);
             }
 
             if (isset($_GET['action']) && $_GET['action'] == 'alterarAvatar') {

@@ -24,23 +24,19 @@
         }
 
         public function cadastrarProfessor($professorObj) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
-                $professor = new professor(); 
-                $professor->cadastrarProfessor($professorObj);
-                header('Location: ../view/adminProfes.php?cadastro=ok');
-            } else {
-                header("Location: ../view/adminProfes.php?erro");
-            }
-                
+
+            $professorObj->cadastrarProfessor($professorObj);
+            header('Location: ../view/adminUsers.php?cadastro=ok');      
         }
 
 
         public function handleRequest() {
             if (isset($_GET['action']) && $_GET['action'] == 'cadastrarProfessor') {
                 $professorObj = new professor();
-                $professorObj->setNome($_POST['nome']);
-                $professorObj->setEmail($_POST['email']);
-                $professorObj->setFone($_POST['fone']);
+                session_start();
+                $professorObj->setNome($_SESSION['name']);
+                $professorObj->setEmail($_SESSION['email']);
+                $professorObj->setFone($_SESSION['fone']);
                 $this->cadastrarProfessor ($professorObj);
             }
 

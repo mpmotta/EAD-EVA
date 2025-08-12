@@ -79,7 +79,7 @@
                           $cpf = $linha['cpf'];
                           $fone = $linha['fone'];
                           $email = $linha['email'];
-                          $turma = $linha['nome_turma'];
+                          $turma = $linha['turma'];
                           $curso = $linha['nome_curso'];
                           $ultimo_login = $linha['ultimo_login'];
                           $timestampAtual = time();

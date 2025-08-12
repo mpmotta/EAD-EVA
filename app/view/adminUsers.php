@@ -14,7 +14,7 @@
     <div class="container-full">
         <?php require_once 'headerAdmin.php'; ?> 
         <section class="container main bg-white">
-            <h2 class="mb-5"> EVA - GERENCIAR USUÁRIOS</h2>
+            <h4 class="my-3">GERENCIAR USUÁRIOS</h4>
 
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cadUser">
                 CADASTRAR USUÁRIO
@@ -115,7 +115,7 @@
       </div>
       <div class="modal-body p-5 cadastra">
             <form action="../controller/usuarioController.php?action=cadastrarUsuario" method="post">
-                <input type="text" name="nome" class="form-control" placeholder="Nome Completo" required>
+                <input type="text" name="username" class="form-control" placeholder="Nome Completo" required>
                 <select name="nivel" class="form-control mb-3">
                       <option selected disabled value="">Nível</option>
                       <option value="1">Aluno</option>
@@ -123,6 +123,7 @@
                       <option value="3">Pedagógico</option>
                       <option value="9">Administrador</option>
                 </select>
+                <input type="ra" name="ra" class="form-control" placeholder="RA">
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required>
                 <input type="tel" name="fone" class="form-control" placeholder="Telefone" required>
                 <input type="submit" value="Cadastrar" class="btn btn-success mt-4">

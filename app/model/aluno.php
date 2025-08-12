@@ -1,80 +1,63 @@
 <?php
 require_once '../config/connect.php';
 
-class Aluno extends Connect{
+class Aluno extends Connect {
     private $nome;
-    private $avatar;
+    private $status;
     private $ra;
-    private $cpf;
+    private $avatar;
+    private $cpf;    
     private $email;
     private $fone;
-    private $curso;
+    private $cursoId;
     private $tabela = 'alunos';
 
-
-    public function __construct(){
+    public function __construct() {
         parent::__construct();
     }
 
-    public function getNome(){
-        return $this->nome;
+    public function getNome() { return $this->nome; }
+    public function getStatus() { return $this->status; }
+    public function getRa() { return $this->ra; }
+    public function getAvatar() { return $this->avatar; }
+    public function getCpf() { return $this->cpf; }
+    public function getEmail() { return $this->email; }
+    public function getFone() { return $this->fone; }
+    public function getCursoId() { return $this->cursoId; }
+
+    public function setNome($nome): void { $this->nome = $nome; }
+    public function setStatus($status): void { $this->status = $status; }
+    public function setRa($ra): void { $this->ra = $ra; }
+    public function setAvatar($avatar): void { $this->avatar = $avatar; }
+    public function setCpf($cpf): void { $this->cpf = $cpf; }
+    public function setEmail($email): void { $this->email = $email; }
+    public function setFone($fone): void { $this->fone = $fone; }
+    public function setCursoId($cursoId): void { $this->cursoId = $cursoId; }
+    
+
+    public function cadastrarAluno() {
+        $sql = "INSERT INTO $this->tabela (nome_aluno, ra, email, fone) VALUES (:nome, :ra, :email, :fone)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':nome', $this->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(':ra', $this->getRa(), PDO::PARAM_STR);
+        $stmt->bindValue(':email', $this->getEmail(), PDO::PARAM_STR);
+        $stmt->bindValue(':fone', $this->getFone(), PDO::PARAM_STR);
+        return $stmt->execute();
     }
 
-    public function getAvatar(){
-        return $this->avatar;
-    }
-
-    public function getRa(){
-        return $this->ra;
-    }
-
-    public function getCpf(){
-        return $this->cpf;
-    }
-
-    public function getEmail(){
-        return $this->email;
-    }
-
-    public function getFone(){
-        return $this->fone;
-    }
-
-    public function getCurso(){
-        return $this->curso;
-    }
-
-    public function setNome($nome): void{
-        $this->nome = $nome;
-    }
-
-    public function setAvatar($avatar): void{
-        $this->avatar = $avatar;
-    }
-
-    public function setRa($ra): void{
-        $this->ra = $ra;
-    }
-
-    public function setCpf($cpf): void{
-        $this->cpf = $cpf;
-    }
-
-    public function setEmail($email): void{
-        $this->email = $email;
-    }
-
-    public function setFone($fone): void{
-        $this->fone = $fone;
-    }
-
-    public function setCurso($curso): void{
-        $this->curso = $curso;
+        public function consultarAlunos() {
+        $sql = "SELECT a.nome_aluno, a.ra, a.status_aluno, a.email, a.cpf, a.fone, c.nome_curso, u.ultimo_login 
+                FROM $this->tabela AS a 
+                LEFT JOIN usuarios AS u ON a.email = u.email
+                LEFT JOIN cursos AS c ON c.id_curso = a.curso_id
+                ORDER BY u.ultimo_login DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
-
-    public function consultarAlunos(){
+   public function consultAlunos(){
         $sql = "SELECT a.id_aluno, a.nome_aluno, u.avatar, a.status_aluno, a.ra, a.cpf, a.email, a.fone, c.nome_curso, t.nome_turma, u.ultimo_login 
                 FROM $this->tabela AS a 
                 LEFT JOIN usuarios AS u ON a.ra = u.username
@@ -131,7 +114,7 @@ class Aluno extends Connect{
             $this->setCpf($result['cpf']);
             $this->setEmail($result['email']);
             $this->setFone($result['fone']);
-            $this->setCurso($result['curso']);
+            $this->setCursoId($result['cursoId']);
 
         }
     }
@@ -151,9 +134,9 @@ class Aluno extends Connect{
     }
 
         public function showAlunoRA($ra){
-        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso, c.nome_curso, tu.turno, t.nome_turma
+        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso_id, c.nome_curso, tu.turno, t.nome_turma
         FROM $this->tabela as a
-        LEFT JOIN cursos AS c ON a.curso = c.id_curso
+        LEFT JOIN cursos AS c ON a.curso_id = c.id_curso
         LEFT JOIN turmas AS t ON a.ra = t.aluno_ra
         LEFT JOIN turnos AS tu ON t.turno_id = tu.id_turno
         WHERE ra = :ra LIMIT 1";
@@ -174,21 +157,7 @@ class Aluno extends Connect{
         return $result;
     }
 
-    public function cadastrarAluno($alunoObj){
-        $sql = "INSERT INTO $this->tabela (nome_aluno, ra, cpf, email, fone, curso, turno) 
-        VALUES (:nome, :ra, :cpf, :email, :fone, :curso, :turno)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nome', $alunoObj->getNome(), PDO::PARAM_STR);
-        $stmt->bindParam(':ra', $alunoObj->getRa(), PDO::PARAM_STR);
-        $stmt->bindParam(':cpf', $alunoObj->getCpf(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $alunoObj->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':fone', $alunoObj->getFone(), PDO::PARAM_STR);
-        $stmt->bindParam(':curso', $alunoObj->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':turno', $alunoObj->getTurno(), PDO::PARAM_STR);
-        $stmt->execute();
-
-    }
-
+ 
     public function editarAluno($alunoObj, $id){
         $sql = "UPDATE $this->tabela SET nome_aluno = :nome, ra = :ra, cpf = :cpf, email = :email 
         fone = :fone, curso = :curso, turno = :turno WHERE id = :id";
@@ -251,3 +220,5 @@ class Aluno extends Connect{
         $stmt->execute();
     }
 }
+
+?>
