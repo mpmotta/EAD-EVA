@@ -55,7 +55,8 @@ class Disciplina extends Connect{
     }
 
     public function consultarDisciplinaAluno($ra){
-        $sql = "SELECT d.nome, d.thumb FROM $this->tabela as d
+        $sql = "SELECT d.id_disciplina, d.nome, d.thumb 
+        FROM $this->tabela as d
         LEFT JOIN turmas as t ON disciplina_id = id_disciplina
         WHERE t.aluno_ra = :ra AND t.ativa = 1";
         $stmt = $this->conn->prepare($sql);

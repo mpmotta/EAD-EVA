@@ -25,10 +25,11 @@
 						foreach($consulta as $linha){
 							$nome = $linha['nome_prof'];
 							$email = $linha['email'];
+							$avatar = $linha['avatar'];
 
 					?>
 					<h5><?=$nome ?></h5>
-					<img src="img/avatar.png" alt="avatar do usuário" />
+					<img class="avatar" src="../../public/img/avatar/<?=$avatar ?>" alt="avatar do usuário" />
 					<h6><?=$email ?></h6>
 					<?php
 						}

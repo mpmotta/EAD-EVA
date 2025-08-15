@@ -18,9 +18,9 @@
 			<section class="flex">
 				<aside class="info">
 					<?php
-						require_once '../controller/alunoController.php';
-						$aluno = new Aluno(); 
-						$consulta = $aluno->showAlunoRA($myra);
+						require_once '../controller/conteudoController.php';
+						$conteudo = new Conteudo(); 
+						$consulta = $conteudo->consultarConteudo($id);
 
 						foreach($consulta as $linha){
 							$nome = $linha['nome_aluno'];
