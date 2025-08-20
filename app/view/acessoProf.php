@@ -50,15 +50,16 @@
 							$id = $linha['id_disciplina'];
 							$disciplina = $linha['nome'];
 							$turno = $linha['turno'];
+							$turnoId = $linha['id_turno'];
 							$thumb = $linha['thumb'];
 						?>
 						<figure class="ucs">
-								<h5><?=$disciplina ?> <br/> <?=$turno ?></h5>
+						<h5><?=$disciplina ?> <br/> <?=$turno ?></h5>
 							<figcaption>
 								<?php 
 								echo "
 								<img src='../../public/img/thumbs/$thumb'>
-								<a href='disciplinaProf.php?id=$id' class='btn btn-warning uc'>ACESSAR</a>";
+								<a href='disciplinaProf.php?id=$id&turno=$turnoId' class='btn btn-warning uc'>ACESSAR</a>";
 								?>
 							</figcaption>
 						</figure>

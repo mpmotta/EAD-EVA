@@ -58,7 +58,7 @@ class Disciplina extends Connect{
     }
 
     public function disciplinasProf($id){
-        $sql = "SELECT d.id_disciplina, d.nome, d.thumb, tu.turno 
+        $sql = "SELECT d.id_disciplina, d.nome, d.thumb, tu.id_turno, tu.turno 
         FROM $this->tabela as d
         LEFT JOIN turmas as t ON disciplina_id = id_disciplina
         LEFT JOIN turnos as tu ON turno_id = id_turno
