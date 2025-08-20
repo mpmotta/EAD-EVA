@@ -5,7 +5,6 @@ class Disciplina extends Connect{
     private $logo;
     private $nomeDisciplina;
     private $curso;
-    private $preRequisito;
     private $tabela = 'disciplinas';
 
 
@@ -37,14 +36,6 @@ class Disciplina extends Connect{
         $this->curso = $curso;
     }
 
-    public function getPreRequisito(){
-        return $this->preRequisito;
-    }
-
-    public function setPreRequisito($preRequisito): void{
-        $this->preRequisito = $preRequisito;
-    }
-
 
     public function consultarDisciplinas(){
         $sql = "SELECT * FROM $this->tabela ORDER BY nome";
@@ -60,14 +51,27 @@ class Disciplina extends Connect{
         LEFT JOIN turmas as t ON disciplina_id = id_disciplina
         WHERE t.aluno_ra = :ra AND t.ativa = 1";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':ra', $ra, PDO::PARAM_INT);
+        $stmt->bindParam(':ra', $ra, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function disciplinasProf($id){
+        $sql = "SELECT d.id_disciplina, d.nome, d.thumb, tu.turno 
+        FROM $this->tabela as d
+        LEFT JOIN turmas as t ON disciplina_id = id_disciplina
+        LEFT JOIN turnos as tu ON turno_id = id_turno
+        WHERE t.professor_id = :id AND t.ativa = 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
     public function consultarDisciplinasCursos(){
-        $sql = "SELECT d.id_disciplina, d.nome, d.logo, d.curso,  d.pre_requisito, c.nome_curso
+        $sql = "SELECT d.id_disciplina, d.nome, d.logo, d.curso,  c.nome_curso
         FROM $this->tabela as d
         LEFT JOIN cursos AS c ON d.curso = c.id_curso
         ORDER BY d.nome";
@@ -78,22 +82,20 @@ class Disciplina extends Connect{
     }
 
     public function cadastrarDisciplina($disciplinaObj){
-        $sql = "INSERT INTO $this->tabela (nome, curso, pre_requisito) VALUES (:nomeDisciplina, :curso,  :preRequisito)";
+        $sql = "INSERT INTO $this->tabela (nome, curso) VALUES (:nomeDisciplina, :curso)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomeDisciplina', $disciplinaObj->getNomeDisciplina(), PDO::PARAM_STR);
         $stmt->bindParam(':curso', 
         $disciplinaObj->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':preRequisito',$disciplinaObj->getPreRequisito(), PDO::PARAM_STR);
         $stmt->execute();
     }
 
     public function editarDisciplina($disciplina, $id){
         $sql = "UPDATE $this->tabela SET nome_disciplina = :nomeDisciplina, curso = :curso,
-        pre_requisito = :preRequisito WHERE id_disciplina = :id";
+        WHERE id_disciplina = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomeDisciplina', $disciplina->getNomeDisciplina(), PDO::PARAM_STR);
         $stmt->bindParam(':curso', $disciplina->getCurso(), PDO::PARAM_STR);
-        $stmt->bindParam(':preRequisito', $disciplina->getPreRequisito(), PDO::PARAM_INT);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }

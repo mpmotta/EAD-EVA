@@ -135,7 +135,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                                 <?php
                                 require_once '../controller/professorController.php';
                                 $professor = new Professor();
-                                $prof = $professor->consultarProf();
+                                $prof = $professor->consultarProfessores();
                                 foreach ($prof as $prof_linha) {
                                     $id_prof = $prof_linha['id_prof'];
                                     $nome_prof = $prof_linha['nome_prof'];
@@ -226,7 +226,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                             <?php
                             require_once '../controller/professorController.php';
                             $professor = new Professor();
-                            $prof = $professor->consultarProf();
+                            $prof = $professor->consultarProfessores();
                             foreach ($prof as $prof_linha) {
                                 $id_prof = $prof_linha['id_prof'];
                                 $nome_prof = $prof_linha['nome_prof'];

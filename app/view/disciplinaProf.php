@@ -37,34 +37,8 @@
 					?>
 				</aside>
 				<div class="disciplinas">
-				<h4 class="m-3">ÁREA DO PROFESSOR</h4>
-				<hr>
-				<h5 class="m-3">UCS MINISTRADAS</h5>
 					<div class="m-3">
-						<?php
-						require_once '../controller/disciplinaController.php';
-						$disciplina = new disciplina();
-						$consulta = $disciplina->disciplinasProf($id);
-
-						foreach($consulta as $linha){
-							$id = $linha['id_disciplina'];
-							$disciplina = $linha['nome'];
-							$turno = $linha['turno'];
-							$thumb = $linha['thumb'];
-						?>
-						<figure class="ucs">
-								<h5><?=$disciplina ?> <br/> <?=$turno ?></h5>
-							<figcaption>
-								<?php 
-								echo "
-								<img src='../../public/img/thumbs/$thumb'>
-								<a href='disciplinaProf.php?id=$id' class='btn btn-warning uc'>ACESSAR</a>";
-								?>
-							</figcaption>
-						</figure>
-						<?php
-						}
-					?>		
+						
 					</div>		
 				</div>
 			</section>

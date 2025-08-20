@@ -26,6 +26,12 @@
             return $result;
         }
 
+        public function disciplinasProf($id){
+            $disciplina = new disciplina();
+            $result = $disciplina->disciplinasProf($id);
+            return $result;
+        }
+
 
         public function editarDisciplina($disciplinaObj, $id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
@@ -58,10 +64,6 @@
                 $disciplinaObj = new disciplina();
                 $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
                 $disciplinaObj->setCurso($_POST['curso']);
-                $disciplinaObj->setPreRequisito($_POST['preRequisito']);
-                if(!$_POST['preRequisito']){
-                    $disciplinaObj->setPreRequisito("Nenhum");  
-                }
                 $this->cadastrarDisciplina ($disciplinaObj);
             }
             if (isset($_GET['action']) && $_GET['action'] == 'editarDisciplina') {
@@ -69,7 +71,6 @@
                 $disciplinaObj = new disciplina();
                 $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
                 $disciplinaObj->setCurso($_POST['curso']);
-                $disciplinaObj->setPreRequisito($_POST['preRequisito']);
                 $this->editardisciplina ($disciplinaObj, $id);
             }
 

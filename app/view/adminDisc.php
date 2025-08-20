@@ -41,9 +41,6 @@
                         <th>
                             CURSO
                         </th>
-                        <th>
-                            PRÉ-REQUISITO
-                        </th>
                         <th class='text-center'>
                             EDITAR
                         </th>
@@ -60,7 +57,6 @@
                           $logo = $linha['logo'];
                           $nome = $linha['nome'];
                           $curso = $linha['nome_curso'];
-                          $pre = $linha['pre_requisito'];
                           echo"
                           <tr class='dis'>
                               <td class='text-center'>". $i++ ."</td> 
@@ -68,7 +64,6 @@
                               <img src='../../public/img/logos/$logo'></td>
                               <td>$nome</td>
                               <td>$curso</td>
-                              <td>$pre</td>
                               <td class='text-center log'>
                                 <a href='editDis.php?id=$id&disc=$nome'>
                                 <img src='../../public/img/logos/edit.png'></a

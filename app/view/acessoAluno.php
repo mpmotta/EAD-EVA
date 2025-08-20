@@ -49,7 +49,7 @@
 				<div class="disciplinas">
 					<h4 class="m-3">Disciplinas:</h4>
 					<div class="m-3">
-											<?php
+					<?php
 						require_once '../controller/disciplinaController.php';
 						$disciplina = new disciplina();
 						$consulta = $disciplina->consultarDisciplinaAluno($myra);
