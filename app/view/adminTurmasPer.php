@@ -21,85 +21,28 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#matAluno">
                     MATRICULAR ALUNO
                 </button>
-                <button type="button" class="btn btn-sm btn-success ms-4" data-bs-toggle="modal" data-bs-target="#matGrupo">
-                    EXPORTAR ALUNOS (CSV)
-                </button>
 
-                <button type="button" class="btn btn-sm btn-primary ms-4" data-bs-toggle="modal" data-bs-target="#matLoteCSV">
-                    MATRICULAR LOTE (CSV)
-                 </button>
-
-                <a href="adminTurmasPer.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
+                <a href="indexAdmin.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
                 <br>&nbsp;
                 <hr class="pt-1 pb-1">
 
-                <table class="table table-bordered table stripped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                TURMA
-                            </th>
-                            <th>
-                                RA
-                            </th>
-                            <th>
-                                NOME
-                            </th>
-                            <th>
-                                DISCIPLINA
-                            </th>
-                            <th>
-                                PROFESSOR
-                            </th>
-                            <th>
-                                PERÍODO
-                            </th>
-                            <th>
-                                CURSO
-                            </th>
-                            <th>
-                                TURNO
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require_once '../controller/turmaController.php';
-                        $id_disciplina = $_GET['id'];
-                        $id_periodo = $_GET['per'];
-                        $turma = new Turma();
-                        $consulta = $turma->consultarTurma($id_disciplina, $id_periodo);
-                        $i = 1;
+                     <?php
+                        require_once '../controller/periodoController.php';
+                        $periodo = new Periodo();
+                        $consulta = $periodo->consultarPeriodos();
                         foreach ($consulta as $linha) {
-                            $nome = $linha['nome_turma'];
-                            $ra = $linha['aluno_ra'];
-                            $aluno = $linha['nome_aluno'];
-                            $disciplina = $linha['nome'];
-                            $professor = $linha['nome_prof'];
                             $periodo = $linha['periodo'];
-                            $curso = $linha['nome_curso'];
-                            $turno = $linha['turno'];
-
+                            $periodoId = $linha['id_periodo'];
                             echo "
-                          <tr>
-                              <td class='text-center'>" . $i++ . "</td> 
-                              <td>$nome</td>
-                              <td>$ra</td>
-                              <td>$aluno</td>
-                              <td>$disciplina</td>
-                              <td>$professor</td>
-                              <td>$periodo</td>
-                              <td>$curso</td>
-                              <td>$turno</td>";
-
-                            echo "</tr>";
+                            <figure class='ucs'>
+                                <h3>PERÍODO</h3>
+								<h2 class='py-3'>$periodo</h2>
+							<figcaption>
+								<a href='adminTurmasDisc.php?id=$periodoId' class='btn btn-warning uc'>ACESSAR</a>
+							</figcaption>
+						</figure>";
                         }
                         ?>
-                    </tbody>
-                </table>
             </section>
             <?php require_once 'footer.php'; ?>
         </div>

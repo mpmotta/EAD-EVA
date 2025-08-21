@@ -132,6 +132,9 @@ table{
 	font-weight: bold;
 	color: #000;	
 }
+.disc{
+	width: 150px !important;
+}
 .ucs{
 	width: 200px;
 	display: inline-block;

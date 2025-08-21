@@ -20,6 +20,12 @@
             return $result;
         }
 
+        public function consultarDisciplinaPeriodo($idPeriodo){
+            $disciplina = new disciplina();
+            $result = $disciplina->consultarDisciplinaPeriodo($idPeriodo);
+            return $result;
+        }
+
         public function consultarDisciplinaAluno($ra){
             $disciplina = new disciplina();
             $result = $disciplina->consultarDisciplinaAluno($ra);

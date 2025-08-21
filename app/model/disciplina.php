@@ -45,6 +45,19 @@ class Disciplina extends Connect{
         return $result;
     }
 
+    public function consultarDisciplinaPeriodo($idPeriodo){
+        $sql = "SELECT d.id_disciplina, d.nome, d.thumb, t.nome_turma, t.id_turma, tu.turno 
+        FROM $this->tabela as d
+        LEFT JOIN turmas as t ON disciplina_id = id_disciplina
+        LEFT JOIN turnos as tu ON turno_id = id_turno
+        WHERE t.periodo_id = :idPeriodo";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idPeriodo', $idPeriodo, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultarDisciplinaAluno($ra){
         $sql = "SELECT d.id_disciplina, d.nome, d.thumb 
         FROM $this->tabela as d

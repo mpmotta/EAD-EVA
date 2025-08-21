@@ -44,7 +44,7 @@
                         </div>
                     </a>
 
-                    <a href="adminTurmas.php">
+                    <a href="adminTurmasPer.php">
                         <div class="box">
                             TURMAS
                             <img src="../../public/icons/class.png" alt="turmas">
