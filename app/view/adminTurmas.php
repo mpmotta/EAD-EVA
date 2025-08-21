@@ -372,6 +372,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
     </html>
 <?php
 } else {
-    header('Location: ../index.php');
+    header('Location: ../view/index.php');
 }
 ?>

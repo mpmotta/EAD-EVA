@@ -1,5 +1,6 @@
-<?php
+<?php  
 	session_start();
+
         if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] == 9 ){ 
 ?>
 <!DOCTYPE html>
@@ -9,6 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA - Espaço Virtual de Aprendizagem</title>
     <link rel="stylesheet" href="css/style.css">
+        <script>
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    window.location.reload();
+                }
+            });
+    </script>
 </head>
 <body class="admin">
     <div class="container-full">
@@ -79,6 +87,6 @@
 </html>
 <?php
     }else{
-        header('Location: ../index.php');
+        header('Location: ../view/index.php');
     }   
 ?>
