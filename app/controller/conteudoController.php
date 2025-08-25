@@ -20,10 +20,9 @@
             return $result;
         }
 
-
-        public function consultarConteudoID($disc){
+        public function consultarConteudoID($id){
             $conteudo = new conteudo();
-            $result = $conteudo->consultarConteudo($disc);
+            $result = $conteudo->consultarConteudoID($id);
             return $result;
         }
 

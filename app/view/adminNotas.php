@@ -16,35 +16,77 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
         <div class="container-full">
             <?php require_once 'headerAdmin.php'; ?>
             <section class="container main bg-white">
-                <h4 class="mb-3"> EVA - GERENCIAR TURMAS</h4>
-
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#matAluno">
-                    MATRICULAR ALUNO
-                </button>
-
-                <a href="adminTurmasPer.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
-                <br>&nbsp;
+                <h4 class="text-center my-3">GERENCIAMENTO DE NOTAS</h4>
+                <a href="adminNotasPer.php" class="btn btn-sm btn-warning">VOLTAR</a>
                 <hr class="pt-1 pb-1">
 
+                <table class="table table-bordered table stripped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                TURMA
+                            </th>
+                            <th>
+                                RA
+                            </th>
+                            <th>
+                                NOME
+                            </th>
+                            <th>
+                                DISCIPLINA
+                            </th>
+                            <th>
+                                PROFESSOR
+                            </th>
+                            <th>
+                                PERÍODO
+                            </th>
+                            <th>
+                                CURSO
+                            </th>
+                            <th>
+                                TURNO
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php
-                        $idPeriodo = $_GET['id'];
-                        require_once '../controller/disciplinaController.php';
-                        $disciplina = new disciplinaController();
-                        $consulta = $disciplina->consultarDisciplinaPeriodo($idPeriodo);
+                        require_once '../controller/turmaController.php';
+                        $id_disciplina = $_GET['id'];
+                        $id_periodo = $_GET['per'];
+                        $turma = new Turma();
+                        $consulta = $turma->consultarTurma($id_disciplina, $id_periodo);
+                        $i = 1;
                         foreach ($consulta as $linha) {
+                            $nome = $linha['nome_turma'];
+                            $ra = $linha['aluno_ra'];
+                            $aluno = $linha['nome_aluno'];
                             $disciplina = $linha['nome'];
+                            $professor = $linha['nome_prof'];
+                            $periodo = $linha['periodo'];
+                            $curso = $linha['nome_curso'];
                             $turno = $linha['turno'];
-                            $disciplinaId = $linha['id_disciplina'];
-                             echo "
-                            <figure class='ucs disc'>
-                                <h3>$turno</h3>
-								<h6 class='py-3 disname'>$disciplina</h6>
-							<figcaption>
-								<a href='adminTurmas.php?id=$disciplinaId&per=$idPeriodo' class='btn btn-warning uc'>ACESSAR</a>
-							</figcaption>
-						</figure>";
+
+                            echo "
+                          <tr>
+                              <td class='text-center'>" . $i++ . "</td> 
+                              <td>$nome</td>
+                              <td>$ra</td>
+                              <td>$aluno</td>
+                              <td>$disciplina</td>
+                              <td>$professor</td>
+                              <td>$periodo</td>
+                              <td>$curso</td>
+                              <td>$turno</td>";
+
+                            echo "</tr>";
                         }
                         ?>
+                    </tbody>
+                </table>
             </section>
             <?php require_once 'footer.php'; ?>
         </div>
@@ -317,6 +359,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
     </html>
 <?php
 } else {
-    header('Location: ../index.php');
+    header('Location: ../view/index.php');
 }
 ?>

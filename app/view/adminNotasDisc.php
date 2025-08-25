@@ -16,14 +16,8 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
         <div class="container-full">
             <?php require_once 'headerAdmin.php'; ?>
             <section class="container main bg-white">
-                <h4 class="mb-3"> EVA - GERENCIAR TURMAS</h4>
-
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#matAluno">
-                    MATRICULAR ALUNO
-                </button>
-
-                <a href="adminTurmasPer.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
-                <br>&nbsp;
+                <h4 class="text-center my-3">GERENCIAMENTO DE NOTAS</h4>
+                <a href="adminNotasPer.php" class="btn btn-sm btn-warning">VOLTAR</a>
                 <hr class="pt-1 pb-1">
 
                         <?php
@@ -40,7 +34,7 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
                                 <h3>$turno</h3>
 								<h6 class='py-3 disname'>$disciplina</h6>
 							<figcaption>
-								<a href='adminTurmas.php?id=$disciplinaId&per=$idPeriodo' class='btn btn-warning uc'>ACESSAR</a>
+								<a href='adminNotas.php?id=$disciplinaId&per=$idPeriodo' class='btn btn-warning uc'>ACESSAR</a>
 							</figcaption>
 						</figure>";
                         }

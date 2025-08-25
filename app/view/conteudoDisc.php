@@ -16,35 +16,35 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
         <div class="container-full">
             <?php require_once 'headerAdmin.php'; ?>
             <section class="container main bg-white">
-                <h4 class="mb-3"> EVA - GERENCIAR TURMAS</h4>
+                <h4 class="text-center my-3">GERENCIAMENTO DE CONTEÚDOS</h4>
+                <a href="adminConteudos.php" class="btn btn-sm btn-warning">VOLTAR</a>
+                <hr class="py-1">
 
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#matAluno">
-                    MATRICULAR ALUNO
-                </button>
-
-                <a href="adminTurmasPer.php" class="btn btn-sm btn-warning ms-4">VOLTAR</a>
-                <br>&nbsp;
-                <hr class="pt-1 pb-1">
-
-                        <?php
-                        $idPeriodo = $_GET['id'];
-                        require_once '../controller/disciplinaController.php';
-                        $disciplina = new disciplinaController();
-                        $consulta = $disciplina->consultarDisciplinaPeriodo($idPeriodo);
+                <section class="conteudo mb-5">
+                    <?php
+                        require_once '../controller/conteudoController.php';
+                        $id_disciplina = $_GET['id'];
+                        $conteudo = new conteudoController();
+                        $consulta = $conteudo->consultarConteudoID($id_disciplina);
                         foreach ($consulta as $linha) {
-                            $disciplina = $linha['nome'];
-                            $turno = $linha['turno'];
-                            $disciplinaId = $linha['id_disciplina'];
-                             echo "
-                            <figure class='ucs disc'>
-                                <h3>$turno</h3>
-								<h6 class='py-3 disname'>$disciplina</h6>
-							<figcaption>
-								<a href='adminTurmas.php?id=$disciplinaId&per=$idPeriodo' class='btn btn-warning uc'>ACESSAR</a>
-							</figcaption>
-						</figure>";
+                            $tipo = $linha['tipo'];
+                            $conteudo = $linha['conteudo'];
+
+
+                            if($tipo == "Titulo"){
+                                echo "<h5>$conteudo</h5>"; 
+                            }elseif($tipo == "Video"){
+                                echo "<div class='my-5 text-center'>$conteudo</div>";
+                            }elseif($tipo == "Saiba"){
+                                echo "<div class='my-5'>$conteudo</div>
+                                <hr class='py-1'>";
+                            }else{
+                                echo "<div class='my-5'>$conteudo</div>";
+                            }
+                            
                         }
                         ?>
+                    </section>
             </section>
             <?php require_once 'footer.php'; ?>
         </div>
@@ -317,6 +317,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nive
     </html>
 <?php
 } else {
-    header('Location: ../index.php');
+    header('Location: ../view/index.php');
 }
 ?>

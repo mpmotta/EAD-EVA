@@ -23,7 +23,7 @@
     <?php require_once 'headerAdmin.php'; ?>
         <section class="container bgadmin">
             <h5 class="text-center pt-3">PÁGINA ADMINISTRATIVA</h5>
-            <article class="mainBox mt-2">
+            <article class="mainBox mt-2 text-center">
                     <a href="adminAlunos.php">
                         <div class="box">
                             ALUNOS
@@ -52,6 +52,14 @@
                         </div>
                     </a>
 
+                    <a href="adminNotasPer.php">
+                        <div class="box">
+                            NOTAS
+                            <img src="../../public/icons/grade.png" alt="notas">
+                        </div>
+                    </a>
+
+                    <br>
                     <a href="adminTurmasPer.php">
                         <div class="box">
                             TURMAS
@@ -65,7 +73,7 @@
                             <img src="../../public/icons/calendar.png" alt="períodos">
                         </div>
                     </a>
-                    <br>
+                    
                     <a href="adminConteudos.php">
                         <div class="box">
                             CONTEÚDOS

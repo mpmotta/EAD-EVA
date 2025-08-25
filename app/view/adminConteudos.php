@@ -20,8 +20,27 @@
 <body>
     <div class="container-full">
     <?php require_once 'headerAdmin.php'; ?>
-        <section class="container main bg-white">
-            <h2> ADMIN - GERENCIAMENTO AVANÇADO</h2>
+        <section class="container main bg-white mb-5">
+            <h4 class="text-center my-3">GERENCIAMENTO DE CONTEÚDOS</h4>
+            <a href="indexAdmin.php" class="btn btn-sm btn-warning">VOLTAR</a>
+            <hr class="pt-1 pb-1">
+
+                    <?php
+                        require_once '../controller/disciplinaController.php';
+                        $disciplina = new disciplinaController();
+                        $consulta = $disciplina->consultarDisciplinas();
+                        foreach ($consulta as $linha) {
+                            $disciplina = $linha['nome'];
+                            $disciplinaId = $linha['id_disciplina'];
+                             echo "
+                            <figure class='ucs disc'>
+								<h6 class='py-3 disname'>$disciplina</h6>
+							<figcaption>
+								<a href='conteudoDisc.php?id=$disciplinaId' class='btn btn-warning uc'>ACESSAR</a>
+							</figcaption>
+						</figure>";
+                        }
+                    ?>
     
         </section>
         <?php require_once 'footer.php'; ?>

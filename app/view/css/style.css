@@ -135,6 +135,9 @@ table{
 .disc{
 	width: 150px !important;
 }
+.disname{
+	height: 75px;
+}
 .ucs{
 	width: 200px;
 	display: inline-block;
