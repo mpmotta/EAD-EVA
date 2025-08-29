@@ -39,6 +39,7 @@
 					<h5><?=$nome ?></h5>
 					<img class="avatar" src="../../public/img/avatar/<?=$avatar ?>" alt="avatar do usuário" />
 					<h6><?=$email ?></h6>
+					<h5 class="mt-3"><i class="fas fa-envelope msg"></i>Mensagens</h5>
 					<?php
 						}
 					?>
