@@ -45,6 +45,17 @@ class Disciplina extends Connect{
         return $result;
     }
 
+        public function consultarDisciplina($id){
+        $sql = "SELECT d.id_disciplina, d.nome, d.thumb
+        FROM $this->tabela as d
+        WHERE d.id_disciplina = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultarDisciplinaPeriodo($idPeriodo){
         $sql = "SELECT d.id_disciplina, d.nome, d.thumb, t.nome_turma, t.id_turma, tu.turno 
         FROM $this->tabela as d
@@ -103,12 +114,11 @@ class Disciplina extends Connect{
         $stmt->execute();
     }
 
-    public function editarDisciplina($disciplina, $id){
-        $sql = "UPDATE $this->tabela SET nome_disciplina = :nomeDisciplina, curso = :curso,
+    public function editarDisciplina($nome, $id){
+        $sql = "UPDATE $this->tabela SET nome = :nomeDisciplina
         WHERE id_disciplina = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':nomeDisciplina', $disciplina->getNomeDisciplina(), PDO::PARAM_STR);
-        $stmt->bindParam(':curso', $disciplina->getCurso(), PDO::PARAM_STR);
+        $stmt->bindParam(':nomeDisciplina', $nome, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }

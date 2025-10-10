@@ -20,12 +20,17 @@
             return $result;
         }
 
+        public function consultarDisciplina($id){
+            $disciplina = new disciplina();
+            $result = $disciplina->consultarDisciplina($id);
+            return $result;
+        }
+
         public function consultarDisciplinaPeriodo($idPeriodo){
             $disciplina = new disciplina();
             $result = $disciplina->consultarDisciplinaPeriodo($idPeriodo);
             return $result;
         }
-
         public function consultarDisciplinaAluno($ra){
             $disciplina = new disciplina();
             $result = $disciplina->consultarDisciplinaAluno($ra);
@@ -39,10 +44,11 @@
         }
 
 
-        public function editarDisciplina($disciplinaObj, $id) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+        public function editarDisciplina($nome, $id) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
                 $disciplina = new disciplina(); 
-                $disciplina->editardisciplina($disciplinaObj, $id);
+                $disciplina->editarDisciplina($nome, $id);
+               
                 header('Location: ../view/adminDisc.php?alterado=ok');
             } else {
                 header("Location: ../view/adminDisc.php?erro");
@@ -73,11 +79,9 @@
                 $this->cadastrarDisciplina ($disciplinaObj);
             }
             if (isset($_GET['action']) && $_GET['action'] == 'editarDisciplina') {
-                $id = $_GET['id'];
-                $disciplinaObj = new disciplina();
-                $disciplinaObj->setNomeDisciplina($_POST['nomeDisciplina']);
-                $disciplinaObj->setCurso($_POST['curso']);
-                $this->editardisciplina ($disciplinaObj, $id);
+                $id = $_POST['id'];
+                $nome = $_POST['nome'];
+                $this->editarDisciplina ($nome, $id);
             }
 
             if (isset($_GET['action']) && $_GET['action'] == 'alterarLogo') {

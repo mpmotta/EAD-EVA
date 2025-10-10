@@ -65,7 +65,7 @@
                               <td>$nome</td>
                               <td>$curso</td>
                               <td class='text-center log'>
-                                <a href='editDis.php?id=$id&disc=$nome'>
+                                <a href='editDis.php?id=$id'>
                                 <img src='../../public/img/logos/edit.png'></a
                               </td>
                               </tr>";

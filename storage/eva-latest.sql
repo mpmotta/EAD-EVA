@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 15-Ago-2025 às 18:55
+-- Tempo de geração: 10-Out-2025 às 20:28
 -- Versão do servidor: 5.6.51
 -- versão do PHP: 8.0.7
 
@@ -46,7 +46,8 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `status_aluno`, `avatar`, `ra`, `cpf`, `email`, `fone`, `curso_id`, `data_criado`, `data_editado`) VALUES
-(4, 'Daiene Torgo Fabretti', 'ativo', 'avatar.png', '4513515-12', NULL, 'daiene@gmail.com', '99885566', 1, '2025-08-12 18:38:58', '2025-08-12 18:38:58');
+(4, 'Daiene Torgo Fabretti', 'ativo', 'avatar.png', '4513515-12', NULL, 'daiene@gmail.com', '99885566', 1, '2025-08-12 18:38:58', '2025-08-12 18:38:58'),
+(5, 'Lucas Pereira dos Santos', 'ativo', 'avatar.png', '9874528-95', NULL, 'lucas.psantos@gmail.com', '(51) 99866-4477', NULL, '2025-08-20 20:32:47', '2025-08-20 20:32:47');
 
 -- --------------------------------------------------------
 
@@ -71,10 +72,11 @@ CREATE TABLE `conteudos` (
 --
 
 INSERT INTO `conteudos` (`id_conteudo`, `disciplina_id`, `curso`, `num_aula`, `conteudo`, `tipo`, `quem_editou`, `data_criado`, `data_editado`) VALUES
-(1, 12, 1, 1, 'Ingles Instrumental - Aula 1', 'Titulo', 'Admin', '2024-10-07 18:52:35', '2024-10-09 18:32:21'),
-(2, 12, 1, 1, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/IOU6qyF9u3s?si=ikpkE6eY9S2B_w95\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>', 'Video', 'Admin', '2024-10-07 18:55:05', '2024-10-09 18:32:25'),
-(3, 12, 1, 1, 'APRESENTAÇÃO\nO Inglês Instrumental, English for Specific Purposes (ESP), é uma abordagem que surgiu nas\nuniversidades brasileiras, nos anos 70, apresentando técnicas de leitura que possibilitavam, ao\nleitor, compreender e interpretar textos em inglês. A demanda principal do mundo globalizado é\nque estejamos sempre atualizados; o mercado de trabalho exige que sejamos profissionais\narrojados e o inglês aparece como o idioma oficial do mercado internacional.\nJuntando todas essas constatações, entendemos a necessidade de se obter uma certa proficiência\nem técnicas de leitura para cumprirmos tais exigências, através da utilização de bibliografias\ntécnicas ou não, produzidas mundialmente. Por isso, o nosso objetivo nesta Unidade de\nAprendizagem é focarmos na importância do Inglês Instrumental, aplicando-o, eficientemente,\npara obtermos a essência dos textos em inglês que lermos.\nBons estudos.\nAo final desta Unidade de Aprendizagem, você deve apresentar os seguintes aprendizados:\n• Explicar a importância do Inglês Instrumental na leitura de textos em inglês.\n• Reconhecer a importância do inglês como o idioma oficial do mercado internacional.\n• Realizar a tradução e interpretação de pequenos textos, a partir de técnicas bem simples.', 'texto', 'Admin', '2024-10-07 19:22:12', '2025-08-15 18:53:49'),
-(4, 22, 1, 1, 'HTML-AULA 1', 'Titulo', 'Admin', '2025-08-15 18:54:56', '2025-08-15 18:55:21');
+(1, 22, 1, 1, 'Programacao Front-End - Aula 1', 'Titulo', 'Admin', '2024-10-07 18:52:35', '2025-08-25 20:00:39'),
+(2, 22, 1, 1, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/IOU6qyF9u3s?si=ikpkE6eY9S2B_w95\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>', 'Video', 'Admin', '2024-10-07 18:55:05', '2025-08-25 19:59:16'),
+(3, 22, 1, 1, 'APRESENTAÇÃO\nO Inglês Instrumental, English for Specific Purposes (ESP), é uma abordagem que surgiu nas\nuniversidades brasileiras, nos anos 70, apresentando técnicas de leitura que possibilitavam, ao\nleitor, compreender e interpretar textos em inglês. A demanda principal do mundo globalizado é\nque estejamos sempre atualizados; o mercado de trabalho exige que sejamos profissionais\narrojados e o inglês aparece como o idioma oficial do mercado internacional.\nJuntando todas essas constatações, entendemos a necessidade de se obter uma certa proficiência\nem técnicas de leitura para cumprirmos tais exigências, através da utilização de bibliografias\ntécnicas ou não, produzidas mundialmente. Por isso, o nosso objetivo nesta Unidade de\nAprendizagem é focarmos na importância do Inglês Instrumental, aplicando-o, eficientemente,\npara obtermos a essência dos textos em inglês que lermos.\nBons estudos.\nAo final desta Unidade de Aprendizagem, você deve apresentar os seguintes aprendizados:\n• Explicar a importância do Inglês Instrumental na leitura de textos em inglês.\n• Reconhecer a importância do inglês como o idioma oficial do mercado internacional.\n• Realizar a tradução e interpretação de pequenos textos, a partir de técnicas bem simples.', 'texto', 'Admin', '2024-10-07 19:22:12', '2025-08-25 19:59:23'),
+(4, 22, 1, 2, 'Programacao Front-End - Aula 2', 'Titulo', 'Admin', '2025-08-15 18:54:56', '2025-08-25 20:00:51'),
+(5, 22, 1, 1, 'Saiba Mais', 'Saiba', 'Admin', '2025-08-25 19:56:46', '2025-08-25 19:59:37');
 
 -- --------------------------------------------------------
 
@@ -95,10 +97,12 @@ CREATE TABLE `cursos` (
 --
 
 INSERT INTO `cursos` (`id_curso`, `nome_curso`, `quem_editou`, `data_criado`, `data_editado`) VALUES
-(1, 'Tecnico em Informatica', 'Admin', '2024-10-09 18:31:14', '2025-08-06 20:01:24'),
-(2, 'Técnico em ADM', 'Admin', '2024-10-09 18:31:27', '2024-10-16 12:53:18'),
+(1, 'TÃ©cnico em InformÃ¡tica', 'Admin', '2024-10-09 18:31:14', '2025-10-10 20:24:03'),
+(2, 'TÃ©cnico em AdministraÃ§Ã£o', 'Admin', '2024-10-09 18:31:27', '2025-10-10 20:24:38'),
 (3, 'Jovem Profissional', 'Admin', '2024-10-09 18:31:46', '2024-10-09 18:31:46'),
-(4, 'Pacote Office', 'Admin', '2024-10-09 18:31:56', '2024-10-09 18:31:56');
+(4, 'Pacote Office', 'Admin', '2024-10-09 18:31:56', '2024-10-09 18:31:56'),
+(5, 'TÃ©cnico em AdministraÃ§Ã£o EAD', 'Admin', '2025-10-10 20:25:13', '2025-10-10 20:25:47'),
+(6, 'TÃ©cnico em InformÃ¡tica EAD', 'Admin', '2025-10-10 20:25:31', '2025-10-10 20:25:52');
 
 -- --------------------------------------------------------
 
@@ -108,11 +112,11 @@ INSERT INTO `cursos` (`id_curso`, `nome_curso`, `quem_editou`, `data_criado`, `d
 
 CREATE TABLE `disciplinas` (
   `id_disciplina` int(11) NOT NULL,
-  `nome` varchar(60) CHARACTER SET swe7 NOT NULL,
+  `nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `thumb` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'thumb.png',
   `logo` varchar(90) COLLATE utf8_unicode_ci DEFAULT 'logo.png',
   `curso` int(11) NOT NULL,
-  `pre_requisito` varchar(90) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Nenhum',
+  `Ciclo` int(1) NOT NULL,
   `quem_editou` varchar(60) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Admin',
   `data_criado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `data_editado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -122,30 +126,24 @@ CREATE TABLE `disciplinas` (
 -- Extraindo dados da tabela `disciplinas`
 --
 
-INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `thumb`, `logo`, `curso`, `pre_requisito`, `quem_editou`, `data_criado`, `data_editado`) VALUES
-(1, 'Sistemas Operacionais I', 'so.png', 'so1.png', 1, 'Nenhum', 'Admin', '2024-10-02 17:39:37', '2025-08-15 18:45:26'),
-(2, 'Sistemas Operacionais II', 'thumb.png', 'so2.png', 1, 'Nenhum', 'Admin', '2024-10-02 18:28:13', '2025-08-06 19:35:30'),
-(3, 'Introdu????o a Redes', 'thumb.png', 'rede.png', 1, 'Nenhum', 'Admin', '2024-10-02 18:31:21', '2025-08-06 19:35:30'),
-(4, 'Introdu????o ???? Inform??tica', 'thumb.png', 'info.png', 1, 'Nenhum', 'Admin', '2024-10-02 18:32:45', '2025-08-06 19:35:30'),
-(5, 'Tecnologia Wireless', 'thumb.png', 'wir.png', 1, 'Introdução a Redes', 'Admin', '2024-10-02 18:52:27', '2025-08-06 19:35:30'),
-(6, 'Linguagem de Programacao Web I', 'php.png', 'php.png', 1, 'Lógica de Programação', 'Admin', '2024-10-07 17:32:37', '2025-08-06 20:00:38'),
-(7, 'Linguagem de Programacao Web II ', 'php.png', 'php.png', 1, 'Banco de Dados', 'Admin', '2024-10-07 17:33:01', '2025-08-06 20:00:46'),
-(8, 'Banco de Dados', 'thumb.png', 'bd.png', 1, 'Análise de Sistemas', 'Admin', '2024-10-07 17:33:32', '2025-08-06 19:35:30'),
-(9, 'Linguagem de Programacao Desktop I', 'python.png', 'python.png', 1, 'Lógica de Programação', 'Admin', '2024-10-07 17:37:04', '2025-08-06 19:59:13'),
-(10, 'Linguagem de Programacao Desktop II', 'python.png', 'python.png', 1, 'Banco de Dados', 'Admin', '2024-10-07 17:37:23', '2025-08-06 20:02:07'),
-(11, 'Arquitetura de Computadores', 'thumb.png', 'hd.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:00:22', '2025-08-06 19:35:30'),
-(12, 'Ingl??s Instrumental', 'thumb.png', 'flag.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:00:35', '2025-08-06 19:35:30'),
-(13, 'Mercado de Trabalho', 'thumb.png', 'mercado.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:00:51', '2025-08-06 19:35:30'),
-(14, 'Organiza????o de Empresas', 'thumb.png', 'empresa.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:01:02', '2025-08-06 19:35:30'),
-(15, 'Redes de Computadores', 'thumb.png', 'rede.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:01:24', '2025-08-06 19:35:30'),
-(16, 'Design e Anima????o', 'thumb.png', 'design.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:01:36', '2025-08-06 19:35:30'),
-(17, 'Internet', 'thumb.png', 'internet.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:01:47', '2025-08-06 19:35:30'),
-(18, 'Metodologia Para Elabora????o de Projetos', 'thumb.png', 'project.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:01:59', '2025-08-06 19:35:30'),
-(19, 'L??gica de Programa????o', 'thumb.png', 'logic.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:02:15', '2025-08-06 19:35:30'),
-(20, 'An??lise de Sistemas', 'thumb.png', 'flux.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:02:26', '2025-08-06 19:35:30'),
-(21, 'Fundamentos de Sistemas Operacionais', 'thumb.png', 'os.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:02:39', '2025-08-06 19:35:30'),
-(22, 'HTML', 'html.png', 'html.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:02:48', '2025-08-15 18:50:06'),
-(23, 'Computa????o em Nuvem', 'thumb.png', 'cloud.png', 1, 'Nenhum', 'Admin', '2024-10-07 18:02:59', '2025-08-06 19:35:30');
+INSERT INTO `disciplinas` (`id_disciplina`, `nome`, `thumb`, `logo`, `curso`, `Ciclo`, `quem_editou`, `data_criado`, `data_editado`) VALUES
+(1, 'Sistemas Operacionais ProprietÃ¡rios', 'so.png', 'so1.png', 1, 1, 'Admin', '2024-10-02 17:39:37', '2025-10-10 20:17:59'),
+(2, 'Sistemas Operacionais Livres', 'thumb.png', 'so2.png', 1, 1, 'Admin', '2024-10-02 18:28:13', '2025-10-10 20:18:03'),
+(3, 'Redes de Computadores', 'thumb.png', 'rede.png', 1, 1, 'Admin', '2024-10-02 18:31:21', '2025-10-10 20:18:06'),
+(4, 'IntroduÃ§Ã£o Ã  InformÃ¡tica', 'thumb.png', 'info.png', 1, 1, 'Admin', '2024-10-02 18:32:45', '2025-10-10 20:18:09'),
+(5, 'InteligÃªncia Artificial', 'thumb.png', 'ia.png', 1, 1, 'Admin', '2024-10-02 18:52:27', '2025-10-10 20:18:14'),
+(6, 'Linguagem de ProgramaÃ§Ã£o Web', 'php.png', 'php.png', 1, 2, 'Admin', '2024-10-07 17:32:37', '2025-10-10 20:18:17'),
+(8, 'Banco de Dados', 'thumb.png', 'bd.png', 1, 1, 'Admin', '2024-10-07 17:33:32', '2025-10-10 20:18:20'),
+(9, 'Linguagem de ProgramaÃ§Ã£o Backend', 'python.png', 'python.png', 1, 2, 'Admin', '2024-10-07 17:37:04', '2025-10-10 20:18:24'),
+(11, 'Manutencao de Hardware ', 'thumb.png', 'hd.png', 1, 1, 'Admin', '2024-10-07 18:00:22', '2025-10-10 20:18:27'),
+(12, 'Desenvolvimento de Jogos', 'thumb.png', 'games.png', 1, 2, 'Admin', '2024-10-07 18:00:35', '2025-10-10 20:19:26'),
+(15, 'Ciberseguranca', 'thumb.png', 'sec.png', 1, 1, 'Admin', '2024-10-07 18:01:24', '2025-10-10 20:18:33'),
+(16, 'Design e AnimaÃ§Ã£o', 'thumb.png', 'design.png', 1, 1, 'Admin', '2024-10-07 18:01:36', '2025-10-10 20:18:44'),
+(17, 'Internet das Coisas', 'thumb.png', 'iot.png', 1, 1, 'Admin', '2024-10-07 18:01:47', '2025-10-10 20:18:49'),
+(19, 'LÃ³gica de ProgramaÃ§Ã£o', 'thumb.png', 'logic.png', 1, 1, 'Admin', '2024-10-07 18:02:15', '2025-10-10 20:18:52'),
+(22, 'Programacao Front-End', 'html.png', 'html.png', 1, 1, 'Admin', '2024-10-07 18:02:48', '2025-10-10 20:18:55'),
+(23, 'ComputaÃ§Ã£o em Nuvem', 'thumb.png', 'cloud.png', 1, 2, 'Admin', '2024-10-07 18:02:59', '2025-10-10 20:19:00'),
+(24, 'Projeto Final', 'thumb.png', 'logo.png', 1, 3, 'Admin', '2025-10-10 20:17:44', '2025-10-10 20:26:08');
 
 -- --------------------------------------------------------
 
@@ -200,7 +198,7 @@ CREATE TABLE `turmas` (
   `id_turma` int(11) NOT NULL,
   `nome_turma` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `ativa` tinyint(1) NOT NULL DEFAULT '1',
-  `aluno_ra` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `aluno_ra` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `disciplina_id` int(11) NOT NULL,
   `professor_id` int(11) NOT NULL,
   `periodo_id` int(11) NOT NULL,
@@ -217,7 +215,8 @@ CREATE TABLE `turmas` (
 
 INSERT INTO `turmas` (`id_turma`, `nome_turma`, `ativa`, `aluno_ra`, `disciplina_id`, `professor_id`, `periodo_id`, `curso_id`, `turno_id`, `alterado_por`, `data_criado`, `data_editado`) VALUES
 (1, 'INF-T1B', 1, '4513515-12', 1, 3, 1, 1, 2, 'Admin', '2025-08-15 18:21:10', '2025-08-15 18:48:09'),
-(2, 'INF-T1B', 1, '4513515-12', 22, 2, 1, 1, 2, 'Admin', '2025-08-15 18:21:10', '2025-08-15 18:46:37');
+(2, 'INF-T1B', 1, '4513515-12', 22, 2, 1, 1, 2, 'Admin', '2025-08-15 18:21:10', '2025-08-15 18:46:37'),
+(3, 'INF-M1A', 1, '9874528-95', 16, 2, 1, 1, 1, 'Admin', '2025-08-20 20:38:33', '2025-08-21 20:08:04');
 
 -- --------------------------------------------------------
 
@@ -238,7 +237,7 @@ CREATE TABLE `turnos` (
 --
 
 INSERT INTO `turnos` (`id_turno`, `turno`, `editado_por`, `data_criado`, `data_editado`) VALUES
-(1, 'Manhã', 'Admin', '2024-10-16 13:08:05', '2024-10-16 13:08:05'),
+(1, 'ManhÃ£', 'Admin', '2024-10-16 13:08:05', '2025-10-10 20:22:59'),
 (2, 'Tarde', 'Admin', '2024-10-16 13:08:15', '2024-10-16 13:08:15'),
 (3, 'Noite', 'Admin', '2024-10-16 13:08:22', '2024-10-16 13:08:22'),
 (4, 'EAD', 'Admin', '2024-10-16 13:08:29', '2024-10-16 13:08:29');
@@ -252,7 +251,7 @@ INSERT INTO `turnos` (`id_turno`, `turno`, `editado_por`, `data_criado`, `data_e
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `username` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `senha` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2',
+  `senha` varchar(128) COLLATE utf8_unicode_ci DEFAULT '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6',
   `nivel` tinyint(1) DEFAULT '1',
   `email` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'avatar.png',
@@ -266,11 +265,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `senha`, `nivel`, `email`, `avatar`, `ultimo_login`, `data_criado`, `data_editado`) VALUES
-(1, 'Admin', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 9, 'admin@eva-alcidesmaya.com.br', 'avatar.png', '2025-08-15 18:16:47', '2024-09-28 20:31:27', '2025-08-15 18:16:47'),
-(2, 'NADD', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 3, 'nadd@alcidesmaya.com.br', 'avatar.png', NULL, '2024-09-28 21:03:32', '2025-08-11 17:16:18'),
-(73, 'marcio_motta', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 2, 'mmotta@gmail.com', 'obiwan.jpg', '2025-08-15 18:01:36', '2025-08-12 17:45:02', '2025-08-15 18:12:29'),
-(74, 'alexandre_bonnamain', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 2, 'bonnamain@gmail.com', 'avatar.png', NULL, '2025-08-12 17:50:40', '2025-08-12 17:50:40'),
-(77, '4513515-12', 'f1e5bd3b9be312cd33709618fe67ef0a1a76fe118c4fe8b71af5b4bc87a028d2', 1, 'daiene@gmail.com', 'avatar.png', '2025-08-15 18:18:45', '2025-08-12 18:38:58', '2025-08-15 18:18:45');
+(1, 'Admin', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 9, 'admin@eva-alcidesmaya.com.br', 'avatar.png', '2025-10-10 18:09:32', '2024-09-28 20:31:27', '2025-10-10 18:09:32'),
+(2, 'NADD', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 3, 'nadd@alcidesmaya.com.br', 'avatar.png', NULL, '2024-09-28 21:03:32', '2025-10-10 18:09:44'),
+(73, 'marcio_motta', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 2, 'mmotta@gmail.com', 'obiwan.jpg', '2025-08-29 18:02:59', '2025-08-12 17:45:02', '2025-10-10 18:09:49'),
+(74, 'alexandre_bonnamain', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 2, 'bonnamain@gmail.com', 'avatar.png', NULL, '2025-08-12 17:50:40', '2025-10-10 18:09:53'),
+(77, '4513515-12', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 1, 'daiene@gmail.com', 'avatar.png', '2025-09-10 18:06:58', '2025-08-12 18:38:58', '2025-10-10 18:09:56'),
+(78, '9874528-95', '7B00348CD926B12509E4326E7E1AA6BC23C59D3621D0A9EC902E09A01C692ED6', 1, 'lucas.psantos@gmail.com', 'avatar.png', NULL, '2025-08-20 20:32:47', '2025-10-10 18:10:01');
 
 --
 -- Índices para tabelas despejadas
@@ -352,25 +352,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `conteudos`
 --
 ALTER TABLE `conteudos`
-  MODIFY `id_conteudo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_conteudo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_disciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `periodos`
@@ -388,7 +388,7 @@ ALTER TABLE `professores`
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `turnos`
@@ -400,7 +400,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- Restrições para despejos de tabelas

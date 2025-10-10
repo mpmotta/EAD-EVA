@@ -19,24 +19,26 @@
             <hr/>
         </section>
         <section class="container">
-            <h4> EVA - EDITAR CONTEÚDO</h4>
-            <?php
-                $disc = $_GET['disc'];
-                require_once '../controller/conteudoController.php';
-                $conteudo = new Conteudo();
-                $consulta = $conteudo->consultarConteudo($disc);
+            <div class="modal-body p-5 cadastra">
+                <form action='../controller/disciplinaController.php?action=editarDisciplina' method='post'>
+                <?php
+                    $idDisc = $_GET['id'];
+                    require_once '../controller/disciplinaController.php';
+                    $Disciplina = new Disciplina();
+                    $consulta = $Disciplina->consultarDisciplina($idDisc);
 
-                foreach($consulta as $linha){
-                    $conteudo = $linha['conteudo'];
-                    if ($linha['tipo'] == 'Titulo'){
-                        echo "<h4>$conteudo</h4>";
-                    }else{
-                         echo "<div>$conteudo</div>"; 
+                    foreach($consulta as $linha){
+   
+                    echo "<input type='hidden' name='id' value='" . $linha['id_disciplina'] . "'>
+                    <input type='text' name='nome' class='form-control' value='" . $linha['nome'] . "' required>";
+                                            
                     }
-                
-                }
 
-            ?>
+                ?>
+                    <input type="submit" value="Alterar" class="btn btn-success mt-4">
+                
+                </form>
+            </div>    
         </section>
         <div class="mt-5 mb-5"></div>
         <?php require_once 'footer.php'; ?>
