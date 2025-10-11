@@ -115,6 +115,9 @@ table{
 	color: #fff;
     padding: 20px 10px;
 }
+.noRight{
+	margin-right: 0 !important;
+}
 .info h5, .info h6{
 	text-align: center;
 	color: #fC3;
@@ -233,4 +236,14 @@ table{
 }
 .avatar{
 	border-radius: 50%;
+}
+.aulas{
+	width: 128px !important;
+}
+.conteudos{
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.numAulas{
+	width: 90px;
 }

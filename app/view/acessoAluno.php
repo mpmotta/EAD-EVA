@@ -23,10 +23,10 @@
 						$consulta = $aluno->showAlunoRA($myra);
 
 						foreach($consulta as $linha){
+							$idAluno = $linha['id_aluno'];
 							$nome = $linha['nome_aluno'];
 							$ra = $linha['ra'];
 							$email = $linha['email'];
-							$curso = $linha['nome_curso'];
 							$curso = $linha['nome_curso'];
 							$turno = $linha['turno'];
 							$turma = $linha['nome_turma'];
@@ -55,7 +55,7 @@
 						$consulta = $disciplina->consultarDisciplinaAluno($myra);
 
 						foreach($consulta as $linha){
-							$id = $linha['id_disciplina'];
+							$idDisc = $linha['id_disciplina'];
 							$disciplina = $linha['nome'];
 							$thumb = $linha['thumb'];
 						?>
@@ -65,7 +65,7 @@
 								<?php 
 								echo "
 								<img src='../../public/img/thumbs/$thumb'>
-								<a href='disciplinaAluno.php?id=$id' class='btn btn-warning uc'>ACESSAR</a>";
+								<a href='disciplinaAluno.php?idAluno=$idAluno&idDisc=$idDisc' class='btn btn-warning uc'>ACESSAR</a>";
 								?>
 							</figcaption>
 						</figure>

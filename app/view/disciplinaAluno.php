@@ -2,6 +2,8 @@
 	session_start();
         if(isset($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['nivel'] == 1 ){ 
 			$myra = $_SESSION['username'];
+			$idAluno = $_GET['idAluno'];
+			$idDisc = $_GET['idDisc'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,11 +18,11 @@
 	<?php require_once 'headerAdmin.php'; ?>
         <section class="aluno">		
 			<section class="flex">
-				<aside class="info">
+				<aside class="info noRight">
 					<?php
-						require_once '../controller/conteudoController.php';
-						$conteudo = new Conteudo(); 
-						$consulta = $conteudo->consultarConteudo($id);
+						require_once '../controller/alunoController.php';
+						$aluno = new Aluno(); 
+						$consulta = $aluno->showAlunoRA($myra);
 
 						foreach($consulta as $linha){
 							$nome = $linha['nome_aluno'];
@@ -46,32 +48,25 @@
 						}
 					?>
 				</aside>
-				<div class="disciplinas">
-					<h4 class="m-3">Disciplinas:</h4>
-					<div class="m-3">
-											<?php
-						require_once '../controller/disciplinaController.php';
-						$disciplina = new disciplina();
-						$consulta = $disciplina->consultarDisciplinaAluno($myra);
+				<div class="conteudos row">
+					<?php
+						require_once '../controller/conteudoController.php';
+						$conteudo = new conteudo();
+						$consulta = $conteudo->contarAulas($idDisc);
+						
+					echo'						
+					<div class="numAulas col-md-1 bg-body-tertiary pt-3">';
 
 						foreach($consulta as $linha){
-							$id = $linha['id_disciplina'];
-							$disciplina = $linha['nome'];
-							$thumb = $linha['thumb'];
-						?>
-						<figure class="ucs">
-								<h5><?=$disciplina ?></h5>
-							<figcaption>
-								<?php 
-								echo "
-								<img src='../../public/img/thumbs/$thumb'>
-								<a href='disciplinaAluno.php?id=$id' class='btn btn-warning uc'>ACESSAR</a>";
-								?>
-							</figcaption>
-						</figure>
-						<?php
-						}
-					?>	
+							$num = $linha['num_aula'];
+							echo "<p>Aula $num</p>"; 
+						}?>
+					</div>
+
+					<div class="col-md-11 mt-3">
+						
+
+	
 					</div>		
 				</div>
 			</section>

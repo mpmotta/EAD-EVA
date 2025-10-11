@@ -134,7 +134,7 @@ class Aluno extends Connect {
     }
 
         public function showAlunoRA($ra){
-        $sql = "SELECT a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso_id, c.nome_curso, tu.turno, t.nome_turma
+        $sql = "SELECT a.id_aluno, a.nome_aluno, a.status_aluno, a.avatar, a.ra, a.cpf, a.email, a.fone, a.curso_id, c.nome_curso, tu.turno, t.nome_turma
         FROM $this->tabela as a
         LEFT JOIN cursos AS c ON a.curso_id = c.id_curso
         LEFT JOIN turmas AS t ON a.ra = t.aluno_ra

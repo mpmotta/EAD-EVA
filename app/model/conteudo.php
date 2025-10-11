@@ -65,6 +65,19 @@ class Conteudo extends Connect{
         return $result;
     }
 
+    public function contarAulas($id){
+        $sql = "SELECT num_aula
+        FROM $this->tabela 
+        WHERE disciplina_id = :id
+        GROUP bY num_aula
+        LIMIT 12";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function consultarConteudoID($id){
         $sql = "SELECT num_aula, d.nome, disciplina_id, conteudo, tipo, c.quem_editou, c.data_editado
         FROM $this->tabela as c

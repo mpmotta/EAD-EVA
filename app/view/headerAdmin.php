@@ -37,23 +37,23 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark list">
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993400528">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                       Coordenação (Márcio) <span class="break">(51) 99340-0528</span>
                     </a></li>
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993880915">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                       NADD (Kathy) <span class="break"> (51) 99388-0915 </span>
                     </a></li>
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993880915">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                       NADD (Estagiário) <span class="break"> (51) 99388-0915 </span>
                     </a></li>
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993400596">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                       CAE (Financeiro) <span class="break"> (51) 99340-0596 </span>
                     </a></li>
                     <li><a class="dropdown-item" target="_blank" href="https://wa.me/5551993881095">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                       CAE (Geral) <span class="break"> (51) 99388-1095 </span>
                     </a></li>
                   </ul>

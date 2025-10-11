@@ -26,6 +26,13 @@
             return $result;
         }
 
+        public function contarAulas($id){
+            $conteudo = new conteudo();
+            $result = $conteudo->contarAulas($id);
+            return $result;
+        }
+
+
 
         public function editarconteudo($conteudoObj, $id) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
