@@ -4,6 +4,13 @@
 			$myra = $_SESSION['username'];
 			$idAluno = $_GET['idAluno'];
 			$idDisc = $_GET['idDisc'];
+
+			if(isset($_GET['numAula'])){
+				$numAula = $_GET['numAula'];
+			}else{
+				$numAula = 1;
+			}
+						
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,8 +24,8 @@
     <div class="container-full">
 	<?php require_once 'headerAdmin.php'; ?>
         <section class="aluno">		
-			<section class="flex">
-				<aside class="info noRight">
+			<section class="content flex">
+				<aside class="info2">
 					<?php
 						require_once '../controller/alunoController.php';
 						$aluno = new Aluno(); 
@@ -48,27 +55,55 @@
 						}
 					?>
 				</aside>
-				<div class="conteudos row">
+				<div class="aulas">
 					<?php
 						require_once '../controller/conteudoController.php';
 						$conteudo = new conteudo();
 						$consulta = $conteudo->contarAulas($idDisc);
 						
-					echo'						
-					<div class="numAulas col-md-1 bg-body-tertiary pt-3">';
+						echo'						
+						<div class="numAulas pt-3">';
 
-						foreach($consulta as $linha){
-							$num = $linha['num_aula'];
-							echo "<p>Aula $num</p>"; 
-						}?>
-					</div>
-
-					<div class="col-md-11 mt-3">
+							foreach($consulta as $linha){
+								$num = $linha['num_aula'];
+								echo "<p><a href='disciplinaAluno.php?idAluno=$idAluno&idDisc=$idDisc&numAula=$num'>Aula $num</a></p>"; 
+								
+							}
+						echo "</div>";	
+						?>
+					</div>	
+				<div class="conteudos mt-3 ms-3">
+					<?php
+						require_once '../controller/conteudoController.php';
 						
+						$conteudo = new conteudo();
+						$consulta = $conteudo->consultarConteudoID($idDisc, $numAula);
+						
+						foreach($consulta as $linha){
 
-	
-					</div>		
+								$conteudo = $linha['conteudo'];
+								$tipo = $linha['tipo'];
+
+								if($tipo == 'Titulo'){
+									echo "<h3>$conteudo</h3>";
+								}
+								if($tipo == 'Video'){
+									echo "<div>$conteudo</div>";
+								}
+				
+								if($tipo == 'Texto'){
+									echo "<div class='paragrafo'>$conteudo</div>";
+								}
+								
+								if($tipo == 'Saiba'){
+									echo "<div>$conteudo</div>";
+								}
+
+
+
+						}?>
 				</div>
+
 			</section>
         </section>
 		<footer class="fixed-bottom bg-dark bg-gradient text-center text-white pt-2 pb-2">

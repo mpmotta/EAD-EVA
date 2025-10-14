@@ -78,14 +78,15 @@ class Conteudo extends Connect{
         return $result;
     }
 
-    public function consultarConteudoID($id){
-        $sql = "SELECT num_aula, d.nome, disciplina_id, conteudo, tipo, c.quem_editou, c.data_editado
-        FROM $this->tabela as c
-        LEFT JOIN disciplinas as d ON c.disciplina_id = d.id_disciplina
+    public function consultarConteudoID($id, $num){
+        $sql = "SELECT num_aula, disciplina_id, conteudo, tipo
+        FROM $this->tabela 
         WHERE disciplina_id = :id
-        ORDER bY num_aula";
+        AND num_aula = :num
+        ORDER BY num_aula, id_conteudo";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

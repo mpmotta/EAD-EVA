@@ -115,25 +115,40 @@ table{
 	color: #fff;
     padding: 20px 10px;
 }
-.noRight{
-	margin-right: 0 !important;
+.info2{
+	padding-top: 20px !important;
+	text-align: center;
+	width: 210px;
+	height: 85vh;
+	background-color: #999;
+	color: #fff;
+    padding: 5px;
 }
-.info h5, .info h6{
+.info h5, .info h6, .info2 h5, .info2 h6{
 	text-align: center;
 	color: #fC3;
 	text-shadow: 1px 1px 3px #000;
 }
-.info img{
+.info img, .info2 img{
 	width: 60%;	
 	margin: 10px;
 }
-.info ul{
+
+.info ul {
 	list-style-type: none;
 	padding-top: 10px;	
 	padding-left: 20px;	
 }
-.info li{
+.info2 ul{
+	list-style-type: none;
+	padding-top: 7px;	
+	padding-left: 10px;	
+}
+.info li, .info2 li {
 	margin: 5px 0;	
+}
+.info2 *{
+	transform: scale(0.85);
 }
 .negrito{
 	font-weight: bold;
@@ -238,12 +253,13 @@ table{
 	border-radius: 50%;
 }
 .aulas{
-	width: 128px !important;
-}
-.conteudos{
-	margin: 0 !important;
-	padding: 0 !important;
-}
+	width: 98px !important;}
 .numAulas{
-	width: 90px;
+	padding-left: 24px;
+	background-color: #cfcfcf;
+	border-right: solid 1.5px #666;
+	height: 100%;
+}
+.paragrafo{
+	width: 900px !important;
 }
