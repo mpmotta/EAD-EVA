@@ -110,7 +110,7 @@ table{
     margin-right: 40px;
 	text-align: center;
 	width: 240px;
-	height: 85vh;
+	height: 75vh;
 	background-color: #999;
 	color: #fff;
     padding: 20px 10px;
@@ -119,7 +119,7 @@ table{
 	padding-top: 20px !important;
 	text-align: center;
 	width: 210px;
-	height: 85vh;
+	height: 75vh;
 	background-color: #999;
 	color: #fff;
     padding: 5px;
@@ -148,7 +148,7 @@ table{
 	margin: 5px 0;	
 }
 .info2 *{
-	transform: scale(0.85);
+	transform: scale(0.92);
 }
 .negrito{
 	font-weight: bold;
@@ -252,13 +252,31 @@ table{
 .avatar{
 	border-radius: 50%;
 }
-.aulas{
-	width: 98px !important;}
+.aula{
+	width: 116px !important;
+	padding-left: 10px;
+}
 .numAulas{
-	padding-left: 24px;
-	background-color: #cfcfcf;
-	border-right: solid 1.5px #666;
-	height: 100%;
+	padding: 0 14px;
+	background-color: #e6e6e6;
+}
+.conteudos{
+	border-left: solid 1.5px #999;
+}
+
+.aulas{
+	width: 70px;
+	font-weight: 900;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+	border: solid 2px #000;
+	border-radius: 8px;
+}
+.aulas:hover, .aulas.ativo{
+		background-color: #000;
+		color:#fff;
 }
 .paragrafo{
 	width: 900px !important;

@@ -7,8 +7,10 @@
 
 			if(isset($_GET['numAula'])){
 				$numAula = $_GET['numAula'];
+				$aulaAtiva = $_GET['numAula'];
 			}else{
 				$numAula = 1;
+				$aulaAtiva = 1;
 			}
 						
 ?>
@@ -55,7 +57,7 @@
 						}
 					?>
 				</aside>
-				<div class="aulas">
+				<div class="aula">
 					<?php
 						require_once '../controller/conteudoController.php';
 						$conteudo = new conteudo();
@@ -63,16 +65,19 @@
 						
 						echo'						
 						<div class="numAulas pt-3">';
-
 							foreach($consulta as $linha){
 								$num = $linha['num_aula'];
-								echo "<p><a href='disciplinaAluno.php?idAluno=$idAluno&idDisc=$idDisc&numAula=$num'>Aula $num</a></p>"; 
-								
+
+								$classeCSS = 'aulas';
+								if ($num == $aulaAtiva) {
+									$classeCSS .= ' ativo';
+								}
+								echo "<p><a class='$classeCSS' href='disciplinaAluno.php?idAluno=$idAluno&idDisc=$idDisc&numAula=$num'>Aula $num</a></p>";
 							}
 						echo "</div>";	
 						?>
 					</div>	
-				<div class="conteudos mt-3 ms-3">
+				<div class="conteudos pt-3 ps-3 pb-5">
 					<?php
 						require_once '../controller/conteudoController.php';
 						
@@ -110,6 +115,15 @@
         <span class="foot">Copyright &copy 2024/2025 - EVA - Espaço Virtual de Aprendizagem</span>
 </footer>
     </div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+    		$('.aulas').on('click', function(){
+        		$('.aulas').removeClass('ativo');
+        		$(this).addClass('ativo');
+			});
+		});
+	</script>	
 </body>
 </html>
 <?php
